@@ -1,0 +1,212 @@
+<!-- Wordpress Loop displays the content of a post. -->
+              <div class="entry ">
+          <h3 class="entrytitle" id="post-1205"> 
+            Developing a WordPress Theme          </h3>
+          <h4 class="blogdate">
+            August 24th, 2014 
+          </h4>
+          <div class="entrybody">
+            <p>
+<img src="https://web.archive.org/web/20160307051904im_/http://69.195.124.245/~pumpkip1/wp-content/uploads/2014/08/SiteEvolution.png" class="img-responsive">
+</p>
+
+<p>
+This website has undergone a huge makeover. After much trial, error, and research, I have finally got a custom WordPress theme up and running. In this post, I will share with you some notes about what I’ve learned as well as some example code in case you want to get started in creating your own custom WordPress theme. (The theme folder is available to download from GitHub at <a href="https://web.archive.org/web/20160307051904/https://github.com/Karlina-Bytes/WordpressTheme_3.0" target="_blank">here</a>).
+</p>
+
+<h3>What is WordPress?</h3>
+
+<p>
+Essentially, there are two “forms” of WordPress. Firstly, <a href="https://web.archive.org/web/20160307051904/http://wordpress.org/" target="_blank">WordPress</a> (the software) is a content management system for creating custom website templates. It’s free and open source, and therefore, it can be customized to fit your needs. Secondly, there is <a href="https://web.archive.org/web/20160307051904/https://wordpress.com/" target="_blank">wordpress.com</a>, a blogging platform that runs on WordPress. 
+</p>
+
+<h3>My WordPress Odyssey</h3>
+
+<p>
+This website, originally started as a simple wordpress.com blog. It used a free, pre-made theme called <a href="https://web.archive.org/web/20160307051904/https://wordpress.org/themes/mystique" target="_blank">Mystique</a> (version 2.5.7). It was a fairly basic blog, with blog posts in chronological order on the home page as well as an About page. To make my website easier to find, I bought a custom domain name, <strong>pumpkinprogrammer.com</strong>. Originally, it was <strong>pumpkinprogrammer.wordpress.com</strong>. 
+</p>
+
+<p>
+Initially, I was satisfied with this setup since all I was doing was basic blogging. I ran into my first roadblock when I tried to insert JavaScript code into a blog post. I was trying to make an interactive “quote generator” that would display random inspirational quotes when the user clicked on a button. Unfortunately, wordpress.com disallows the use of script in blog post and page content. Of course, this is for security reasons, but as someone who wanted to do more than just basic blogging, I was a bit frustrated with these limitations. I wanted my website to be interactive and responsive. Then, one weekend, I had an epiphany.
+</p>
+
+<p>
+During the <a href="https://web.archive.org/web/20160307051904/http://pumpkinprogrammer.com/2014/07/22/hackathons-for-newbies/" target="_blank">AngelHack hackathon</a>, I learned about Bootstrap, a front-end web framework for making beautiful sites. It opened my eyes to a whole new world of website customization possibilities. With new tools in my arsenal, I knew I could never go back to plain, old-fashioned static sites. After that weekend, I bought server space on <a href="https://web.archive.org/web/20160307051904/http://www.bluehost.com/" target="_blank">BlueHost</a> and transferred my website to its new home. Free of the constraints of wordpress.com, I could do virtually anything I wanted! I could customize my website and add JavaScript wherever I pleased. In a few moments, I’ll describe what’s involved in creating a custom WordPress theme, but first let’s talk about Bootstrap!
+</p>
+
+<h3>What is Bootstrap?</h3>
+
+<p>
+<a href="https://web.archive.org/web/20160307051904/http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> is a free front-end framework for creating sleek, responsive websites. Bootstrap is basically a collection of CSS and JavaScript templates for customizing the front-end portion of a website (the back-end part of my website is handled by WordPress, which involves a lot PHP).
+</p>
+
+<p>
+Some key features of this website that implement Bootstrap include the navigation bar at the top of every page and the way the social media buttons in the sidebar turn green when you mouse over them (or touch them with your finger on a mobile device). 
+</p>
+
+<p>
+<img src="https://web.archive.org/web/20160307051904im_/http://69.195.124.245/~pumpkip1/wp-content/uploads/2014/08/HoverTable.png" class="img-responsive">
+</p>
+
+<p>
+What’s really cool about Bootstrap is that it enables your website to adapt to different screen sizes. That’s why this is called a “responsive” website. This site looks different on a smartphone than it does on a desktop with the browser opened up to full screen. For example, the navigation bar will display the page links as a vertical drop-down list instead of a horizontal array.
+</p>
+
+<p>
+<img src="https://web.archive.org/web/20160307051904im_/http://69.195.124.245/~pumpkip1/wp-content/uploads/2014/08/NavigationBar.png" class="img-responsive">
+</p>
+
+<h3>Developing a WordPress Theme</h3>
+
+<p>
+Now that you know a little bit about what you can do with Bootstrap, I’ll show you what I know about getting started in making your own custom WordPress theme. I warn you, though. WordPress is not exactly beginner-friendly and can be very frustrating, so it may be a good idea to sit down with a stiff drink and be prepared to scour the Internet for hours trying to find the solution to some mysterious little bug.** I’m hoping to spare you some of the initial frustration that may dissuade you from wanting to get started by providing a brief overview of what you need to get started. 
+</p>
+
+<p>
+Before you begin, you must, of course, <a href="https://web.archive.org/web/20160307051904/http://codex.wordpress.org/Installing_WordPress" target="_blank">install WordPress</a> on your server (I’m currently using version 3.9.2 of WordPress). After that, locate the themes folder on your server’s directory. In the themes folder, you should find subfolders with names like “twentyfourteen” and “twentythirteen” for pre-made default themes. You can place my custom theme folder, “wpbootstrap,” in the same directory as the other theme folders. Click <a href="https://web.archive.org/web/20160307051904/https://www.dropbox.com/sh/1812iwv8o4jx0nq/AAA2DrNC8aEJga7Me7U9Hxoza?dl=0">here</a> to download the example theme from my Dropbox.
+</p>
+
+<p>
+After you download the example theme, you can upload it to your themes folder. Then, in the WordPress dashboard (the administration console), you can select this theme and see how it looks on your site. It will probably look crappy on your website since I tailored this theme for my content. The purpose of this exercise is to demonstrate how to upload and activate WordPress themes. 
+</p>
+
+<p>
+<img src="https://web.archive.org/web/20160307051904im_/http://69.195.124.245/~pumpkip1/wp-content/uploads/2014/08/PageHierarchy.png" class="img-responsive">
+</p>
+
+<p>
+If you examine the PHP files in the &#8220;pumpkintheme&#8221; folder, you will find some essential WordPress theme components:
+</p>
+
+<ul>
+
+<li>
+<p>
+In <strong>header.php</strong>, you will find code for the navigation bar at the top of the page and for displaying the favicon on the browser tab. In this file, you place HTML head code in general.
+</p>
+</li>
+
+<li>
+<p>
+In <strong>sidebar.php</strong>, you can specify how you want your sidebar to look. This is where I include widgets such as pumpkin social media buttons and a list of blog categories.
+</p>
+</li>
+
+<li>
+<p>
+In <strong>footer.php</strong>, there is code for customizing the bottom of the page as well as code for closing the HTML body tag. This is where I included copyright information and an orange horizontal line to separate the bottom of the page from the page body. 
+</p>
+</li>
+
+</ul>
+
+<p>
+Behind the scenes, there are special files for specifying the template for blog posts and pages. These are in the same folder as header.php, sidebar.php, and footer.php:
+</p>
+
+<ul>
+
+<li>
+<p>
+In <strong>index.php</strong>, you can customize the way your homepage looks. Alternatively, you can create a homepage from your WordPress dashboard. After you create the homepage from the dashboard, be sure to go into settings &gt; reading to set the front page as Home. That’s the way I did it. Also, this is where I placed “The Loop” for iterating through my blog posts. So instead of index.php defining my home page, index.php defines the page called Blog. 
+</p>
+</li>
+
+<li>
+<p>
+In <strong>page.php</strong>, you can control the way pages look. You can think of this as a skeleton consisting of things like a header, sidebar, and footer. For clarification, pages are not blog posts. Instead, they are pages you typically access through a navigation bar. 
+</p>
+</li>
+
+<li>
+<p>
+In <strong>single.php</strong>, there is code for controlling the way individual blog posts look. So this is the “skeleton” or template for blog posts. Like pages.php, I included PHP code for displaying the header, sidebar, and footer.
+</p>
+</li>
+
+<li>
+<p>
+My site doesn’t include a <strong>comments.php</strong> since I’m too lazy to moderate comments and I tend to get a lot of spam whenever I do enable comments. This is where you would write code to customize the way comments look on your site. In addition to comments.php, there are other optional files such as <strong>archive.php</strong>, <strong>category.php</strong>, and <strong>tap.php</strong>.
+</p>
+</li>
+
+<li>
+<p>
+In <strong>functions.php</strong>, you can specify functionalities you want in your website. For example, I put in some PHP code for controlling the length of blog post excerpts on the Blog page.
+</p>
+</li>
+
+<li>
+<p>
+In <strong>style.css</strong>, you can customize the way your website looks with CSS classes. In here, I included code for making the highlight color for Bootstrap hover tables bright green.
+</p>
+</li>
+
+</ul>
+
+<p>
+The most important piece of code in your theme is probably <a href="https://web.archive.org/web/20160307051904/http://codex.wordpress.org/The_Loop"><strong>“The Loop.”</strong></a> Basically, “The Loop” is PHP code for querying posts and displaying them on a page in list format. In my index.php file, you can see how my loop works. It gets all of my blog posts and displays their titles, dates, excerpts, and featured images (a.k.a. thumbnails).
+</p>
+
+<p>
+<img src="https://web.archive.org/web/20160307051904im_/http://69.195.124.245/~pumpkip1/wp-content/uploads/2014/08/loopCode.png" class="img-responsive">
+</p>
+
+<h3>Resources</h3>
+
+<p>
+Here are some resources for getting started with WordPress and Bootstrap:
+</p>
+
+<ul>
+
+<li>
+<p>
+de Valk, Joost. “The anatomy of a WordPress theme.” Yoast. 10 January 2011.<br>
+<a href="https://web.archive.org/web/20160307051904/https://yoast.com/wordpress-theme-anatomy/" target="_blank">https://yoast.com/wordpress-theme-anatomy/</a>
+</p>
+</li>
+
+<li>
+<p>
+“Getting Started With WordPress.” Codex. WordPress.org. 2014.<br>
+<a href="https://web.archive.org/web/20160307051904/http://codex.wordpress.org/Getting_Started_with_WordPress" target="_blank">http://codex.wordpress.org/Getting_Started_with_WordPress</a>
+</p>
+</li>
+
+<li>
+<p>
+Gordon, Zac. “How to Build a Responsive WordPress Theme with Bootstrap.” Treehouse Blog. 10 October 2012.<br>
+<a href="https://web.archive.org/web/20160307051904/http://blog.teamtreehouse.com/responsive-wordpress-bootstrap-theme-tutorial" target="_blank">http://blog.teamtreehouse.com/responsive-wordpress-bootstrap-theme-tutorial</a>
+</p>
+</li>
+
+<li>
+<p>
+“Examples.” Getting Started. Bootstrap. 2014.<br>
+<a href="https://web.archive.org/web/20160307051904/http://getbootstrap.com/getting-started/#examples" target="_blank">http://getbootstrap.com/getting-started/#examples</a>
+</p>
+</li>
+
+</ul>
+
+<h3>Notes:</h3>
+
+<p>
+** One example of my many frustrations with WordPress was trying to get the Bootstrap carousel to stop inserting blank slides after the last real slide. After several hours of careful debugging, I found the rather unexpected solution on a <a href="https://web.archive.org/web/20160307051904/https://github.com/twbs/bootstrap/issues/2647" target="_blank">GitHub message board</a>. WordPress had been automatically inserting characters into my page content, so I had to copy-paste a special function in the functions.php file to stop WordPress from ruining my carousels.
+</p>
+
+<pre>
+/* Stop WordPress from adding those annoying closing paragraph tags */
+  remove_filter( 'the_content', 'wpautop' );
+  remove_filter( 'the_excerpt', 'wpautop' );
+</pre>          </div>
+          <div>
+            <hr>
+            <p class="blogcategory">
+              <strong>
+                Categories: <a href="https://web.archive.org/web/20160307051904/http://pumpkinprogrammer.com/category/design/" rel="category tag">design</a> &bull; <a href="https://web.archive.org/web/20160307051904/http://pumpkinprogrammer.com/category/technology/" rel="category tag">technology</a>              </strong>
+            </p>
+          </div>
+        </div>	
+        <!-- End of The Loop. -->

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app56.us.archive.org';v.server_ms=481;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=R56vIgLu" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=nWgLpXRB" charset="utf-8"></script>
+<script type="text/javascript">
+if (window._WBWombatInit) {
+  wbinfo = {}
+  wbinfo.url = "http://www.karlina-bytes.com:80/2015/06/best-practices-for-readable-code/";
+  wbinfo.timestamp = "20150712220757";
+  wbinfo.request_ts = "20150712220757";
+  wbinfo.prefix = "https://web.archive.org/web/";
+  wbinfo.mod = "if_";
+  wbinfo.is_framed = false;
+  wbinfo.is_live = false;
+  wbinfo.coll = "web";
+  wbinfo.proxy_magic = "";
+  wbinfo.static_prefix = "/_static/";
+  wbinfo.enable_auto_fetch = true;
+  wbinfo.auto_fetch_worker_prefix = "https://web.archive.org/web/";
+  wbinfo.wombat_ts = "20150712220757";
+  wbinfo.wombat_sec = "1436738877";
+  wbinfo.wombat_scheme = "https";
+  wbinfo.wombat_host = "www.karlina-bytes.com:80";
+  wbinfo.ignore_prefixes = ["/__wb/",
+                            "/_static/",
+                            "/web/",
+                            "http://analytics.archive.org/",
+                            "https://analytics.archive.org/",
+                            "//analytics.archive.org/",
+                            "http://archive.org/",
+                            "https://archive.org/",
+                            "//archive.org/",
+                            "http://faq.web.archive.org/",
+                            "http://web.archive.org/",
+                            "https://web.archive.org/"
+                            ];
+  wbinfo.wombat_opts = {};
+  window._WBWombatInit(wbinfo);
+}
+__wm.init("https://web.archive.org/web");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=HyR5oymJ" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.karlina-bytes.com/xmlrpc.php">
+
+<!--================================================================-->
+<!-- A tag YouTube required me to add to prove that I own this site -->
+<!--================================================================-->
+<meta name="google-site-verification" content="rCOMt6pSBoCyUFrvFDccWMB8osntwF0FhN-9EXYLcFA"/>
+<meta name="google-site-verification" content="G_u7SvgOaOT6c4wGjEkHuMquWy0K43Tt0bwXAtKJBPE"/>
+
+<!--====================================-->
+<!-- Set up the page title and favicon. -->
+<!--====================================-->
+<link rel="icon" href="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/favicon.ico" type="image/x-icon"/>
+<title>  Best Practices for Readable Code</title>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » Feed" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » Comments Feed" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/comments/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » Best Practices for Readable Code Comments Feed" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/feed/"/>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/web.archive.org\/web\/20150712220757\/http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/web.archive.org\/web\/20150712220757\/http:\/\/www.karlina-bytes.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="bootstrap-css-css" href="https://web.archive.org/web/20150712220757cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/bootstrap/css/bootstrap.min.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="style-css-css" href="https://web.archive.org/web/20150712220757cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/style.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="kode_orange-style-css" href="https://web.archive.org/web/20150712220757cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/style.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="jetpack_css-css" href="https://web.archive.org/web/20150712220757cs_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/css/jetpack.css?ver=3.6" type="text/css" media="all"/>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-includes/js/jquery/jquery.js?ver=1.11.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/bootstrap/js/bootstrap.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/jquery.min.js?ver=4.2.2"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.karlina-bytes.com/xmlrpc.php?rsd"/>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.karlina-bytes.com/wp-includes/wlwmanifest.xml"/> 
+<link rel="prev" title="AI in Cinema: Her" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/2015/06/ai-in-cinema-her/"/>
+<link rel="next" title="Exponential Thinking at Singularity University" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/2015/06/exponential-thinking-at-singularity-university/"/>
+<meta name="generator" content="WordPress 4.2.2"/>
+<link rel="canonical" href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/"/>
+<link rel="shortlink" href="https://web.archive.org/web/20150712220757/http://wp.me/p64cJE-5A"/>
+
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220757/http://i0.wp.com/">
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220757/http://i1.wp.com/">
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220757/http://i2.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Best Practices for Readable Code"/>
+<meta property="og:url" content="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/"/>
+<meta property="og:description" content="If you are in the midst of writing a computer program, would you be able to remember exactly what your program does in a year from now? Would other programmers be able to look at your code and know..."/>
+<meta property="article:published_time" content="2015-06-13T16:24:17+00:00"/>
+<meta property="article:modified_time" content="2015-06-19T21:38:49+00:00"/>
+<meta property="og:site_name" content="Karlina Bytes"/>
+<meta property="og:image" content="https://web.archive.org/web/20150712220757im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/06/code_write.png?fit=1200%2C1200"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="twitter:image" content="https://web.archive.org/web/20150712220757im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/06/code_write.png?fit=1200%2C1200&amp;w=240"/>
+<meta name="twitter:card" content="summary"/>
+</head>
+
+<body class="single single-post postid-346 single-format-standard"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="wm-ipp-inside">
+  <div style="position:relative;">
+    <div id="wm-logo" style="float:left;width:130px;padding-top:10px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+    </div>
+    <div class="r" style="float:right;">
+      <div id="wm-btns" style="text-align:right;height:25px;">
+                  <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php"
+             title="Sign In"
+             id="wm-sign-in"
+          >
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        	<a href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" onclick="__wm.h(event);return false;" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share">
+          <a href="/web/20150712220757/http://web.archive.org/screenshot/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/"
+             id="wm-screenshot"
+             title="screenshot">
+            <span class="wm-icon-screen-shot"></span>
+          </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com:80/2015/06/best-practices-for-readable-code/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com:80/2015/06/best-practices-for-readable-code/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+    </div>
+    <table class="c" style="">
+      <tbody>
+	<tr>
+	  <td class="u" colspan="2">
+	    <form target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20150712220757" /><input type="submit" value="Go" /></form>
+	  </td>
+	  <td class="n" rowspan="2" style="width:110px;">
+	    <table>
+	      <tbody>
+		<!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+		<tr class="m">
+		  <td class="b" nowrap="nowrap">Jun</td>
+		  <td class="c" id="displayMonthEl" title="You are here: 22:07:57 Jul 12, 2015">JUL</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20150825181350/http://karlina-bytes.com/2015/06/best-practices-for-readable-code/" title="25 Aug 2015"><strong>Aug</strong></a></td>
+		</tr>
+		<!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+		<tr class="d">
+		  <td class="b" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0" /></td>
+		  <td class="c" id="displayDayEl" style="width:34px;font-size:24px;white-space:nowrap;" title="You are here: 22:07:57 Jul 12, 2015">12</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20150825181350/http://karlina-bytes.com/2015/06/best-practices-for-readable-code/" title="18:13:50 Aug 25, 2015"><img src="/_static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a></td>
+		</tr>
+		<!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+		<tr class="y">
+		  <td class="b" nowrap="nowrap">2014</td>
+		  <td class="c" id="displayYearEl" title="You are here: 22:07:57 Jul 12, 2015">2015</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20161021013851/http://karlina-bytes.com/2015/06/best-practices-for-readable-code/" title="21 Oct 2016"><strong>2016</strong></a></td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="s">
+	    	    <div id="wm-nav-captures">
+	      	      <a class="t" href="/web/20150712220757*/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/" title="See a list of every capture for this URL">5 captures</a>
+	      <div class="r" title="Timespan for captures of this URL">12 Jul 2015 - 21 Oct 2016</div>
+	      </div>
+	  </td>
+	  <td class="k">
+	    <a href="" id="wm-graph-anchor">
+	      <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+		<canvas id="wm-sparkline-canvas" width="625" height="27" border="0"></canvas>
+	      </div>
+	    </a>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+    <div style="position:absolute;bottom:0;right:2px;text-align:right;">
+      <a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span style="font-size:80%">About this capture</span></a>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;transpiled=0&amp;referer=https%3A//web.archive.org/web/20150712220757/http%3A//www.karlina-bytes.com/2015/06/best-practices-for-readable-code/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><script type="text/javascript">
+__wm.bt(625,27,25,2,"web","http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/","20150712220757",1996,"/_static/",["/_static/css/banner-styles.css?v=HyR5oymJ","/_static/css/iconochive.css?v=qtvMKcIJ"]);
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+<div id="page" class="hfeed site">
+
+<!--==========================================================-->
+<!-- Display a fixed navigation bar at the top of the screen. -->
+<!--==========================================================-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--=================================================================-->
+      <!-- When viewed from a mobile device, a three-bar icon will appear. -->
+      <!-- Click on this button to show or hide a drop-down menu of links. -->
+      <!--=================================================================-->
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <!--=================================================================-->
+      <!-- Display an image logo that links to the home page when clicked. -->
+      <!--=================================================================-->
+      <a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/">
+        <span class="navbar-brand navbar-logo">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/07/kb_logo.png" width="200">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/07/kb_logo_hover.png" width="200">
+        </span>
+      </a>
+    </div><!--/.navbar-header-->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <!--==============================================================-->
+      <!-- Display a list of site page links. Iterate through the list. -->
+      <!--==============================================================-->
+      <ul class="nav navbar-nav"><li><li class="page_item page-item-5"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/about/">About</a></li>
+<li class="page_item page-item-7"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/recommended/">Recommended</a></li>
+</li></ul> 
+      
+      <!--===================================================================-->
+      <!-- Display a search bar (pull-right on desktop, pull-left on mobile) -->
+      <!--===================================================================-->
+      <div class="navbar-search">
+        <div class="pull-right">
+          
+<form class="form-group" style="display:inline;" role="search" method="get" id="search-form" action="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/">
+    <div class="search-wrap">
+      <div class="input-group">
+      
+        <!-- The search term box -->
+        <input class="form-control" id="searchBox" type="text" placeholder="Search..." name="s" id="search-input" value=""/>
+        
+        <!-- The submit button -->
+        <span class="input-group-addon">
+          <button type="submit" id="search-submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+        
+    </div><!-- #input-group -->
+  </div><!-- #search-wrap -->
+</form>
+ 
+        </div>
+        <div class="pull-left">
+          
+<form class="form-group" style="display:inline;" role="search" method="get" id="search-form" action="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/">
+    <div class="search-wrap">
+      <div class="input-group">
+      
+        <!-- The search term box -->
+        <input class="form-control" id="searchBox" type="text" placeholder="Search..." name="s" id="search-input" value=""/>
+        
+        <!-- The submit button -->
+        <span class="input-group-addon">
+          <button type="submit" id="search-submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+        
+    </div><!-- #input-group -->
+  </div><!-- #search-wrap -->
+</form>
+        </div>
+      </div><!--/.navbar-search-->
+      
+    </div><!--/.collapse-->
+  </div><!--/.container-->
+</nav><!--/.navbar-->
+
+<!--============================-->
+<!-- Beginning of body content. -->
+<!--============================-->
+<div id="content" class="site-content">
+<div class="row">
+  <div id="main" class="col-md-8">
+    <div id="primary" class="content-area">
+            
+        <!-- Display the title of the blog post -->
+        <h2>Best Practices for Readable Code</h2>
+        
+        <!-- Display the date in which the blog post was published -->
+        <h4>13  •  June  •  2015</h4>
+        <br>
+        
+        <!-- Display the actual blog content here -->
+        <p>
+<img src="https://web.archive.org/web/20150712220757im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/06/code_write.png?w=100%25" class="img-responsive" data-recalc-dims="1">
+</p>
+<p>
+If you are in the midst of writing a computer program, would you be able to remember exactly what your program does in a year from now? Would other programmers be able to look at your code and know what’s going on? If you don’t have a definite “yes” answer, then it might be time to upgrade your code documentation techniques! In this post, I will share a few “best practices” I’ve found useful for writing readable code.
+</p>
+<h3>Use Descriptive Identifiers</h3>
+<p>
+Firstly, programmers should use descriptive names for variables and functions. This will reduce the amount of comments your code will need. In other words, descriptive identifiers make code self-explanatory. Ideally, another programmer looking at your code should get the gist of what it’s trying to accomplish. Of course, comments are still crucial for well-documented code.
+</p>
+<p>
+<pre>
+// Good! The code is fairly self-explanatory.
+void insertNewItem(string product_name, int product_id)
+{
+  ...
+}
+
+// Bad! What are these things?
+void a(int cv, int av)
+{
+  ...
+}
+</pre>
+</p>
+<h3>Use a Consistent Commenting Format</h3>
+<p>
+It’s a good idea to use a consistent commenting style throughout your program. I personally like to use a style similar to <a href="https://web.archive.org/web/20150712220757/http://usejsdoc.org/" target="_blank">JSDoc</a> for commenting my code. JSDoc is actually an API that auto-generates comments for your JavaScript functions. JSDoc comments include “tags” for function parameters and return values. 
+</p>
+<p>
+<pre>
+/**
+* Description of the function.
+* @param {Data_Type} parameter_1 Parameter description
+* @param {Data_Type} parameter_2 Parameter description
+* ...
+* @return {Data_Type} return_value Return value description
+*/
+function function_identifier(parameter_1, parameter_2, ...) {...}
+</pre>
+</p>
+<p>
+As you can see, JSDoc is particularly useful for languages (e.g. JavaScript) where variables are weakly typed. A language like C++ is more self-descriptive, and therefore, requires less detailed documentation. 
+</p>
+<p>
+Here’s a JavaScript example that utilizes JSDoc style comments:
+</p>
+<p>
+<pre>
+/**
+* Compute the nth term of the Fibonacci sequence.
+* Assume that the first term is 1 (i.e. fibonacci(0) = 1).
+* @param {Integer} n: the index of the Fibonacci term, where n &gt;= 0.
+* @return {Integer} the nth Fibonacci number
+*/
+function fibonacci(var n) {
+  if (n &lt;= 0) return 1;
+  return fibonacci(n - 2) + fibonacci(n - 1);
+}
+</pre>
+</p>
+<p>
+<strong>A note about function descriptions:</strong> To keep code easy to document and understand at a glance, it’s best to keep function descriptions as high-level as possible. In the example above, all we should see in the function description is what the function will accomplish, not how it works.  
+</p>
+<h3>Avoid Redundant Comments</h3>
+<p>
+Someone once told me that comments are like toilet paper. You can never use too much. Well, I disagree! There was a time when I became overzealous with my comments. I used to comment lines of code that were fairly self-descriptive. Not only is this style of commenting tedious, it doesn’t really make the code more readable. Instead, it makes it more tedious to read.
+</p>
+<p>
+Someone once told me that comments are like toilet paper. You can never use too much. Well, I disagree! There was a time when I became overzealous with my comments. I used to comment lines of code that were fairly self-descriptive. Not only is this style of commenting tedious, it doesn’t really make the code more readable. Instead, it makes it more tedious to read.
+</p>
+<p>
+<pre>
+// Increment the product_count by one. 
+// (No shit, Sherlock)!
+product_count++;
+</pre>
+</p>
+<h3>Modularize as Much as Possible</h3>
+<p>
+If at all possible, avoid creating large “god functions” (a term my brilliant coworker coined one day). A function should accomplish one discrete task, not many. There are several reasons why modularization is a good idea:
+</p>
+<ol>
+<li>
+<strong>It’s more readable.</strong> (No one wants to sift through a gargantuan wall of text).
+</li>
+<li>
+<strong>It prevents redundancy.</strong> “Boilerplate code” (code that is commonly reused) can be packaged into discrete functions and called at various points in the program. This is better than copy-pasting the same old block of code multiple times.
+</li>
+</ol>
+<h3>Add a Meta Comment</h3>
+<p>
+Lastly, it’s a good idea to add a “meta” comment to the top of the file. This meta comment should give a succinct overview of the file and explain, at a high level, what the code does. At a minimum, this comment should include the filename, author(s), date last modified, and a brief description of what the code in the file accomplishes.
+</p>
+<p>
+<pre>
+/*******************************************************
+* product.cpp
+* @author Karlina Beringer
+* @date June 13, 2015
+* @description This file implements the Product class.
+* Products are sellable items in the store’s database.
+********************************************************/
+</pre>
+
+<!--================================-->
+<!-- Google Analytics Tracking Info -->
+<!--================================-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//web.archive.org/web/20150712220757/http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63739902-1', 'auto');
+  ga('send', 'pageview');
+
+</script>        
+        <!-- Display the blog post categories -->
+        <hr>
+        <h3>Categories</h3>
+        <p><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/education/" rel="category tag">Education</a> | <a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/programming/" rel="category tag">Programming</a></p>
+        
+        <!-- Display the comments section -->
+        
+<div id="comments" class="comments-area">
+  
+	
+        <!-- Display the comment form -->
+        <hr>
+							<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/web/20150712220757/http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+																			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true" required="required"/></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required"/></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30"/></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea></p>						<p class="form-allowed-tags" id="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"/> <input type="hidden" name="comment_post_ID" value="346" id="comment_post_ID"/>
+<input type="hidden" name="comment_parent" id="comment_parent" value="0"/>
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4c325924e6"/></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="133"/></p>					</form>
+							</div><!-- #respond -->
+				<hr>
+
+</div><!-- #comments -->        
+        
+      <!-- If the blog post cannot be found, display an appropriate message -->
+            
+    </div><!-- #primary -->
+  </div><!-- #main -->
+  <div id="secondary" class="col-md-4">
+    
+<div id="primary-sidebar" class="sidebar primary-sidebar widget-area" role="complementary">
+  
+  <!-- Display social media icons (Facebook, YouTube, GitHub, Twitter) -->
+  <h2 class="sideBarText">Connect with Karlina</h2>
+  <table>
+    <tr>
+    
+      <!-- A link to the Karlina Bytes Facebook page -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220757/https://www.facebook.com/karlinabytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/facebook.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes YouTube channel -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220757/https://www.youtube.com/c/KarlinabytesChannel" target="_blank">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/youtube.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes GitHub profile -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220757/https://github.com/Karlina-Bytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/github.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes Twitter page -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220757/https://twitter.com/Karlina_Bytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220757im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/twitter.png" class="img-responsive">
+        </a>
+      </td>
+      
+    </tr>
+  </table>
+  <hr>
+    
+  <!-- Display an email subscribe form (using the Jetpack pluggin) -->
+  <div class="widget-area">
+    <aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h1 class="widget-title">Subscribe </h1>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>To stay up to date on Karlina's latest blog posts, please enter your email address in the field below. You'll get a notification whenever new posts appear.</p>
+</div><p>Join 3 other subscribers</p>
+					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field">
+							person@example.com						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field" placeholder="person@example.com"/>
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe"/>
+						<input type="hidden" name="source" value="http://www.karlina-bytes.com/2015/06/best-practices-for-readable-code/"/>
+						<input type="hidden" name="sub-type" value="widget"/>
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+												<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget"/>
+					</p>
+							</form>
+
+			<script>
+			(function( d ) {
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.getElementById( 'jetpack-subscribe-label' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+			
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'), 
+					input = d.getElementById('subscribe-field'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+							
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+							
+							return false; 
+						}
+					}; 
+			
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>  </div><!-- .widget-area -->
+  <hr>
+  
+  <!-- Display blog post categories -->
+  <h2 class="sideBarText">Post Categories</h2>
+  <ul class="categoryListStyle">
+    	<li class="cat-item cat-item-2"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/artificial-intelligence/" title="When computers think.">Artificial Intelligence</a> (2)
+</li>
+	<li class="cat-item cat-item-23"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/culture/" title="Arts, events, and people.">Culture</a> (3)
+</li>
+	<li class="cat-item cat-item-86"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/education/" title="Tools for lifelong learning.">Education</a> (6)
+</li>
+	<li class="cat-item cat-item-87"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/environment/" title="Sustainable living and utilization of resources.">Environment</a> (0)
+</li>
+	<li class="cat-item cat-item-83"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/health/" title="Longevity, wellness, and sustainable living.">Health</a> (1)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/programming/" title="Writing in the language of computers.">Programming</a> (4)
+</li>
+	<li class="cat-item cat-item-85"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/reviews/" title="Products and experiences worth having.">Reviews</a> (5)
+</li>
+	<li class="cat-item cat-item-84"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/science/" title="Exploring the universe and how things works.">Science</a> (0)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/technology/" title="The fruits of innovation.">Technology</a> (4)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/transhumanism/" title="Augmenting human ability through technology.">Transhumanism</a> (1)
+</li>
+	<li class="cat-item cat-item-1"><a href="https://web.archive.org/web/20150712220757/http://www.karlina-bytes.com/category/uncategorized/">Uncategorized</a> (0)
+</li>
+  </ul>
+  <hr>
+    
+  <!-- Display blog archives in an expandable list -->
+  <h2 class="sideBarText">Blog Archives</h2>
+  <select class="dropDownStyle" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+    <option value="">Select Month &#9660;</option> 
+    	<option value="http://www.karlina-bytes.com/2015/07/"> July 2015 &nbsp;(1)</option>
+	<option value="http://www.karlina-bytes.com/2015/06/"> June 2015 &nbsp;(5)</option>
+	<option value="http://www.karlina-bytes.com/2015/05/"> May 2015 &nbsp;(4)</option>
+  </select>
+
+</div>  </div>
+</div><!-- #row -->
+</div><!-- #content -->
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+<div class="site-info">
+
+Copyright &copy; 2015 
+<a class="brightLink" href="https://web.archive.org/web/20150712220757/https://www.linkedin.com/pub/karlina-beringer/51/152/93b" target="_blank">
+Karlina Beringer
+</a>
+		
+</div><!-- .site-info -->
+</footer><!-- #colophon -->
+</div><!-- #page -->
+
+	<div style="display:none">
+	</div>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/plugins/akismet/_inc/form.js?ver=3.1.3"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201528"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://s.gravatar.com/js/gprofiles.js?ver=2015Julaa"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/themes/kode_orangebootstrap/js/bootstrap.min.js?ver=3.0.0"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/navigation.js?ver=20120206"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/skip-link-focus-fix.js?ver=20130115"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://www.karlina-bytes.com/wp-includes/js/comment-reply.min.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220757js_/http://stats.wp.com/e-201528.js" async defer></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.6',blog:'89660286',post:'346',tz:'0',srv:'www.karlina-bytes.com'} ]);
+	_stq.push([ 'clickTrackerInit', '89660286', '346' ]);
+</script>
+
+</body>
+</html><!--
+     FILE ARCHIVED ON 22:07:57 Jul 12, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:59:51 May 30, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  exclusion.robots: 0.372
+  captures_list: 286.604
+  PetaboxLoader3.resolve: 80.783
+  esindex: 0.015
+  LoadShardBlock: 266.062 (3)
+  PetaboxLoader3.datanode: 334.985 (4)
+  exclusion.robots.policy: 0.356
+  load_resource: 175.732
+  CDXLines.iter: 15.442 (3)
+  RedisCDXSource: 1.324
+-->

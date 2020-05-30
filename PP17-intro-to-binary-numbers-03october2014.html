@@ -1,0 +1,264 @@
+<!-- Wordpress Loop displays the content of a post. -->
+              <div class="entry ">
+          <h3 class="entrytitle" id="post-1474"> 
+            Intro to Binary Numbers          </h3>
+          <h4 class="blogdate">
+            October 3rd, 2014 
+          </h4>
+          <div class="entrybody">
+            <p>
+<iframe width="500" height="315" src="//web.archive.org/web/20150420014548if_/http://www.youtube.com/embed/b7pOcU1xMks" frameborder="0" allowfullscreen></iframe>
+</p>
+<p>
+<em>
+&#8220;There are 10 kinds of people in the world: those who understand binary and those who don&#8217;t.&#8221;<br/>
+&#8211; someone clever
+</em>
+</p>
+<p>
+Binary numbers are at the heart of how computers work. Understanding this code may seem cryptic to the uninitiated, but it&#8217;s fairly simple. Actually, it&#8217;s ridiculously simple. With just two little numbers, computers somehow create colors, sounds, text, and more. Since the advent of digital technology, binary numbers have become essential to our daily lives. Little do we know that these strings of ones and zeros comprise some of our most precious information and interactions in the world. Therefore, it&#8217;s well worth our while to have at least a basic understanding of how these infamous ones and zeros work. In this tutorial, I hope to make binary understandable to just about anyone, whether you are young, tech-savvy or not.
+</p>
+<h3>Let&#8217;s Get Digital!</h3>
+<p>
+The smallest unit of data a computer can represent is the <strong>bit</strong>. The word bit is short for binary digit. Like a light bulb, a bit can be one of two states: ON or OFF. In computing, a bit represents a single ON or OFF signal in an electrical circuit. These ON-OFF values are represented by the numbers 1 and zero respectively.
+</p>
+<p>
+From these simple bits, computers string together large sequences of ones and zeros to represent complex data and instructions. A string of 8 bits is referred to as a <strong>byte</strong>. Byte is short for binary term.
+</p>
+<p>
+<img src="https://web.archive.org/web/20150420014548im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/slide_C4.png" width="300"/>
+<img src="https://web.archive.org/web/20150420014548im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/slide_C5-2.png" width="300"/>
+</p>
+<p>
+Since these ON-OFF signals are composed of finite states, we call them <strong>digital</strong>. By contrast, an <strong>analog</strong> signal would cover a range of virtually infinite points. Visually, we could represent digital signals as step functions and analog signals as continuous waves. For example, in a digital computer, we can represent music as a series of bits in an MP3 file. In an analog system, we can represent music as a pattern of waves.  Old-fashioned vinyl records are a good example of an analog recording medium. Rather than represent music through a series of bits, the grooves in vinyl record approximate the actual sound waves that have been recorded. 
+</p>
+<p>
+<img src="https://web.archive.org/web/20150420014548im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/slide_C5-37.png" width="500" class="img-responsive"/>
+</p>
+<p>
+So now that we know what bits are, let’s learn how such a simple system can store such a wide array of information. We will learn how to represent virtually any number using just ones and zeros.
+</p>
+<h3> 1, 2, 3, &#8230; </h3>
+<p>
+Let’s use light bulbs to represent bits. Suppose we have an array of four light bulbs. When a light bulb is on, we can represent that “on” state as the digit 1. Conversely, we can represent the “off” state as the digit 0. 
+</p>
+<p>
+Suppose each bulb represents a power of two when turned on. The rightmost bulb represents 2 to the power of 0 (which evaluates to 1). The next bulb over represents 2 to the power of 1 (which evaluates to 2). The next bulb after that represents 2 to the power of 2 (which evaluates to 4). And finally, the leftmost bit represents 2 to power of 3 (which evaluates to is 8).
+</p>
+<p>
+<img src="https://web.archive.org/web/20150420014548im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/binary_12.png" width="500" class="img-responsive"/>
+</p>
+<p>
+Below is a table for how to count from zero to fifteen in binary:
+</p>
+<p>
+<table class="table table-hover">
+
+<tr>
+<th class=".col-md-1">Decimal Value</th>
+<th class=".col-md-1">Binary Value</th>
+<th class=".col-md-4">Binary-to-Decimal Conversion</th>
+</tr>
+
+<tr>
+<td class=".col-md-1">zero (0)</td>
+<td class=".col-md-1">0000</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>0</strong> * 4) + (<strong>0</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+0
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">one (1)</td>
+<td class=".col-md-1">0001</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>0</strong> * 4) + (<strong>0</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+1
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">two (2)</td>
+<td class=".col-md-1">0010</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>0</strong> * 4) + (<strong>1</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+2
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">three (3)</td>
+<td class=".col-md-1">0011</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>0</strong> * 4) + (<strong>1</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+3
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">four (4)</td>
+<td class=".col-md-1">0100</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>1</strong> * 4) + (<strong>0</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+4
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">five (5)</td>
+<td class=".col-md-1">0101</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>1</strong> * 4) + (<strong>0</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+5
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">six (6)</td>
+<td class=".col-md-1">0110</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>1</strong> * 4) + (<strong>1</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+6
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">seven (7)</td>
+<td class=".col-md-1">0111</td>
+<td class=".col-md-4">
+[<strong>0</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>0</strong> * 8) + (<strong>1</strong> * 4) + (<strong>1</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+7
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">eight (8)</td>
+<td class=".col-md-1">1000</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>0</strong> * 4) + (<strong>0</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+8
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">nine (9)</td>
+<td class=".col-md-1">1001</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>0</strong> * 4) + (<strong>0</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+9
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">ten (10)</td>
+<td class=".col-md-1">1010</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>0</strong> * 4) + (<strong>1</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+10
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">eleven (11)</td>
+<td class=".col-md-1">1011</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>0</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>0</strong> * 4) + (<strong>1</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+11
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">twelve (12)</td>
+<td class=".col-md-1">1100</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>1</strong> * 4) + (<strong>0</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+12
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">thirteen (13)</td>
+<td class=".col-md-1">1101</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>0</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>1</strong> * 4) + (<strong>0</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+13
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">fourteen (14)</td>
+<td class=".col-md-1">1110</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>0</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>1</strong> * 4) + (<strong>1</strong> * 2) + (<strong>0</strong> * 1) =<br/>
+14
+</td>
+</tr>
+
+<tr>
+<td class=".col-md-1">fifteen (15)</td>
+<td class=".col-md-1">1111</td>
+<td class=".col-md-4">
+[<strong>1</strong> * (2^3)] + [<strong>1</strong> * (2^2)] + [<strong>1</strong> * (2^1)] + [<strong>1</strong> * (2^0)] = <br/>
+(<strong>1</strong> * 8) + (<strong>1</strong> * 4) + (<strong>1</strong> * 2) + (<strong>1</strong> * 1) =<br/>
+15
+</td>
+</tr>
+
+</table>
+</p>
+
+<h3>Exponential Growth</h3>
+<p>
+As you go through the binary-to-decimal conversions in the table above, you may notice a relationship between the number of bits and the number of values that can be represented. As a general rule, X number of bits can represent a total of 2 to the X different values.
+</p>
+<p>
+<img src="https://web.archive.org/web/20150420014548im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/bit_power.png" width="500" class="img-responsive"/>
+</p>
+<p>
+As you can see, the number of values that can be represented by X bits is an exponential function, namely 2 to the X power. This is why we can represent such a vast array of information on a computer using simple ones and zeros. It’s pretty magical if you think about it. 
+</p>
+<h3>Resources</h3>
+<p>For more information on binary numbers, check out the links resources below. When I was first learning to count in binary, I found the Computer Science Unplugged videos immensely useful.</p>
+<p>
+<ul>
+
+<li>
+<p>
+“Can you explain the difference between analog and digital technology?” How Stuff Works. InfoSpace, LLC. 2014. <br/>
+<a href="https://web.archive.org/web/20150420014548/http://electronics.howstuffworks.com/question7.htm">http://electronics.howstuffworks.com/question7.htm</a>
+</p>
+</li>
+
+<li>
+<p>
+“Binary Numbers.” Computer Science Unplugged. 2014. <br/>
+<a href="https://web.archive.org/web/20150420014548/http://csunplugged.org/binary-numbers">http://csunplugged.org/binary-numbers</a>
+</p>
+</li>
+</ul>
+</p>          </div>
+          <div>
+            <hr>
+            <p class="blogcategory">
+              <strong>
+                Categories: <a href="https://web.archive.org/web/20150420014548/http://pumpkinprogrammer.com/category/math/" rel="category tag">math</a> &bull; <a href="https://web.archive.org/web/20150420014548/http://pumpkinprogrammer.com/category/tutorials/" rel="category tag">tutorials</a>              </strong>
+            </p>
+          </div>
+        </div>	
+        <!-- End of The Loop. -->

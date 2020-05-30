@@ -1,0 +1,1527 @@
+<div class="entry-content">
+		<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' width='474' height='267' src='https://www.youtube.com/embed/AZlLSLOwxZY?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span><br />
+In this tutorial, we will look at an important aspect of object-oriented programming: inheritance. Topics we will cover include composition, friend functions, inheritance hierarchies, and access levels. To download the complete C++ project files for this tutorial, click on the GitHub link <a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial">here</a>. Alternatively, you can copy and paste the code you need further down this post. At the bottom of the post is a list of helpful resources for further information on the topics discussed in this lesson.</p>
+<p>This tutorial is a followup from the previous tutorial, <a href="http://pumpkinprogrammer.com/2014/07/08/c-tutorial-classes-and-objects/">C++ Tutorial: Objects and Classes</a>. If you aren’t familiar with objects and classes, you may want to see the introductory tutorial first. Otherwise, please proceed with this tutorial on inheritance.</p>
+<h3>What is Inheritance?</h3>
+<p><span style="text-decoration:underline;">Inheritance</span> is the process of passing the attributes and behaviors of one class down to descendant classes. For example, you can start with a class named Reptile and have its descendants, Snake and Alligator, inherit the data and members of the Reptile class. Although the Snake and Alligator classes have their own particular attributes and behaviors, each class is derived from the same Reptile class.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg"><img data-attachment-id="622" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/is_has-5/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="is_has (5)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=474" class="aligncenter size-small wp-image-622" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=300&#038;h=225" alt="is_has (5)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-5.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>What is Composition</h3>
+<p><span style="text-decoration:underline;">Composition</span> is the process of making one class a data member of another class. For example, you could have a class called Band. The data members of Band could consist of objects from the Guitarist, Drummer, and Vocalist classes. These objects are data members of the Band class, but not descendants or parent classes. They are related by composition, not by inheritance.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg"><img data-attachment-id="624" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/is_has-4/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="is_has (4)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=474" class="aligncenter size-small wp-image-624" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=300&#038;h=225" alt="is_has (4)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/is_has-4.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>What is a Friend Function?</h3>
+<p>Sometimes, a friend functions are included in the method declarations of a class. The <span style="text-decoration:underline;">friend function</span> is not a true member of the class. Instead, it is the signature of a function that is external to the class. The keyword, <i>friend</i>, lets this function have access to the private data members of the class.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg"><img data-attachment-id="629" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/friend/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="friend" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=474" class="aligncenter size-small wp-image-629" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=300&#038;h=225" alt="friend" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Friend functions are commonly used for overriding the <i>iostream</i> operators so that you can print the contents of an object using the double angle brackets rather than a local print method.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg"><img data-attachment-id="626" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/friend-7/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="friend (7)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=474" class="aligncenter size-small wp-image-626" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=300&#038;h=225" alt="friend (7)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/friend-7.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>&#8220;Is A&#8221; vs. &#8220;Has A&#8221; Relationships</h3>
+<p>Inherited classes are commonly described as having an “is ­a” relationship with each other while composition involves a “has­ a” relationship between classes. We can say that Snake <i>is a</i> Reptile and that Alligator <i>is a</i> Reptile. But we cannot say that Guitarist <i>is a</i> Band. Instead, we say that Band <i>has a</i> Guitarist.</p>
+<h3>Access Specifier: Protected</h3>
+<p>In the previous tutorial, we looked at the three kinds of access specifiers in C++: private, public, and protected. Remember that <span style="text-decoration:underline;">private</span> class members are only accessible to the class that contains these members. <span style="text-decoration:underline;">Public</span> members are accessible from outside the class. <span style="text-decoration:underline;">Protected</span> members are less restrictive than private ones. Unlike private members, protected members are accessible by derived classes.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg"><img data-attachment-id="631" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/access/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="access" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=474" class="aligncenter size-small wp-image-631" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=300&#038;h=225" alt="access" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/access.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Note that the direction of inheritance is hierarchal and one-directional. Derived classes have access to all the protected members of a parent class, but parent classes don’t have access to the members of their child classes.</p>
+<h3>Example Inheritance Hierarchy</h3>
+<p>Let’s create an example inheritance hierarchy. We will start with the base class, Quadrilateral. Let this class be the template from which we build four­-sided polygon objects. To demonstrate inheritance, let’s give the Quadrilateral class a derived class called Rectangle.</p>
+<p>Rectangle objects have all the attributes of Quadrilateral with one additional property. Rectangles not only have four sides, the interior angles must each be ninety-­degrees.</p>
+<p>Let’s make another child class at the same level as Rectangle. We’ll call this class Trapezoid. Like Rectangle, Trapezoid has all of the attributes and behaviors of Quadrilateral plus the trait of having at least one pair of parallel opposite sides.</p>
+<p>For fun, let’s create a class called Square. Square inherits all the attributes of Rectangle and gains the requirement of having all four sides be the same length.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg"><img data-attachment-id="632" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/quad-1/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="quad (1)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=474" class="aligncenter size-small wp-image-632" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=300&#038;h=225" alt="quad (1)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/quad-1.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>In the coding implementation below, we will include the Point class via composition in the Quadrilateral class. Basically, the data members of a Quadrilateral consist of four Point objects to represent points on a two-dimensional plane. In the following programming example, we assume that we are working with cyclic quadrilaterals, or quadrilaterals whose vertices line up along the edges of a circle. We will use <a href="http://mathworld.wolfram.com/PtolemysTheorem.html">Ptolemy&#8217;s Theorem</a> to verify that the quadrilateral fits this definition. We will also use <a href="http://mathworld.wolfram.com/HeronsFormula.html">Heron&#8217;s Formula</a> to compute the area of a generic quadrilateral.</p>
+<h3>It&#8217;s Coding Time!</h3>
+<p>Either copy and paste the code below into your own C++ project or else download the project files from the GitHub link <a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial">here</a>. For more information on the topics discussed in this tutorial, please visit the links in the References section at the end of this post.</p>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Point.h">Point.h</a></h3>
+<p>This file declares the attributes and behaviors of the Point class.</p>
+<pre style="background-color:#d8d8d8;">//*************************************************************
+//  Point.h
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This header file contains the Point class declaration.
+//  Point is included in Quadrilateral through composition.
+//*************************************************************
+
+#ifndef Point_h
+#define Point_h
+
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+using namespace std;
+
+//------------------------------------------------------------------
+// Point represents a coordinate pair on a two-dimensional plane.
+//------------------------------------------------------------------
+class Point
+{
+private:
+    
+    // X and Y coordinates describe a point on a plane.
+    double X_coordinate, Y_coordinate;
+    
+public:
+    
+    // Default constructor creates a Point at the graph origin.
+    Point();
+    
+    // Normal constructor creates a custom Point object.
+    Point( double X, double Y );
+    
+    // Copy constructor creates a clone of a Point object.
+    Point( Point &amp; point );
+    
+    // Setter changes the value of the X_coordinate.
+    void setX( double X );
+    
+    // Setter changes the value of the Y_coordinate.
+    void setY( double Y );
+    
+    // Getter returns the value of the X_coordinate.
+    double getX();
+    
+    // Getter returns the value of the Y_coordinate.
+    double getY();
+    
+    // Getter computes the distance between this and another Point.
+    // Distance = Square_Root[ ((X2 - X1)^2) + ((X2 - X1)^2) ]
+    double getDistance( Point &amp; point );
+    
+    // Getter computes the slope between this and another Point.
+    // Slope = (Y2 - Y1) / (X2 - X1)
+    double getSlope( Point &amp; point );
+    
+    // Getter prints the coordinate pair of Point in the form ( X, Y ).
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Points's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of Point, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Point &amp; point );
+};
+
+#endif
+
+//*************************************************************
+// End of File
+//*************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Point.cpp">Point.cpp</a></h3>
+<p>This file contains the method definitions of the Point class.</p>
+<pre style="background-color:#d8d8d8;">//*************************************************************
+//  Point.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This source file contains the Point class definition.
+//  Point is included in Quadrilateral through composition.
+//*************************************************************
+
+#include "Point.h"
+
+// Default constructor creates a Point at the graph origin.
+Point::Point()
+{
+    X_coordinate = 0.0;
+    Y_coordinate = 0.0;
+}
+
+// Normal constructor creates a custom Point object.
+Point::Point( double X, double Y )
+{
+    X_coordinate = X;
+    Y_coordinate = Y;
+}
+
+// Copy constructor creates a clone of a Point object.
+Point::Point( Point &amp; point )
+{
+    X_coordinate = point.X_coordinate;
+    Y_coordinate = point.Y_coordinate;
+}
+
+// Setter changes the value of the X_coordinate.
+void Point::setX( double X )
+{
+    X_coordinate = X;
+}
+
+// Setter changes the value of the Y_coordinate.
+void Point::setY( double Y )
+{
+    Y_coordinate = Y;
+}
+
+// Getter returns the value of the X_coordinate.
+double Point::getX()
+{
+    return X_coordinate;
+}
+
+// Getter returns the value of the Y_coordinate.
+double Point::getY()
+{
+    return Y_coordinate;
+}
+
+// Getter computes the distance between this and another Point.
+// Distance = Square_Root[ ((X2 - X1)^2) + ((X2 - X1)^2) ]
+double Point::getDistance( Point &amp; point )
+{
+    return sqrt( pow(X_coordinate - point.X_coordinate, 2) +
+                 pow(Y_coordinate - point.Y_coordinate, 2));
+}
+
+// Getter computes the slope between this and another Point.
+// Slope = (Y2 - Y1) / (X2 - X1)
+double Point::getSlope( Point &amp; point )
+{
+    if (X_coordinate == point.X_coordinate) return INFINITY;
+    return (Y_coordinate - point.Y_coordinate)/
+           (X_coordinate - point.X_coordinate);
+}
+
+// Getter prints the coordinate pair of Point in the form ( X, Y ).
+// If no ostream parameter is supplied, default will be cout.
+void Point::print( ostream &amp; output )
+{
+    output &lt;&lt; "(" &lt;&lt; X_coordinate &lt;&lt; "," &lt;&lt; Y_coordinate &lt;&lt; ")";
+}
+
+// Friend function behaves like Points's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of Point, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Point &amp; point )
+{
+    point.print( output );
+    return output;
+}
+
+//*************************************************************
+// End of File
+//*************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Quadrilateral.h">Quadrilateral.h</a></h3>
+<p>This file declares the attributes and behaviors of the Quadrilateral class.</p>
+<pre style="background-color:#d8d8d8;">//*************************************************************
+//  Quadrilateral.h
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This header file contains the Quadrilateral class declaration.
+//  Quadrilateral is the base class for an inheritance chain.
+//  Quadrilateral includes Point through composition.
+//*************************************************************
+
+#ifndef Quadrilateral_h
+#define Quadrilateral_h
+#include "Point.h"
+
+//-----------------------------------------------------------------------------
+// Quadrilateral represents a four-sided polygon whose vertices can be
+// circumscribed on a circle such that we get one area rather than two
+// triangles touching each other at a single point.
+//-----------------------------------------------------------------------------
+class Quadrilateral
+{
+protected:
+    
+    // Points are accessible only by Quadrilateral and its descendents.
+    Point A, B, C, D;
+    
+    // A brief description of the class.
+    const string TYPE = "QUADRILATERAL";
+
+    // Determines whether the quadrilateral is cyclic using
+    // Ptolemy's Theorem:
+    //    If AB × CD + BC × DA = AC × BD,
+    //    where AB, CD, BC, and DA are side lengths,
+    //    Then the quadrilateral ABCD is cyclic.
+    bool isCyclicQuadrilateral();
+    
+public:
+    // Default constructor initializes all Points to default values.
+    Quadrilateral();
+    
+    // Normal constructor assigns Points to the parameter values.
+    Quadrilateral( Point A, Point B, Point C, Point D );
+    
+    // Copy constructor creates a clone of Quadrilateral object.
+    Quadrilateral( Quadrilateral &amp; quadrilateral );
+    
+    // Getter returns the perimeter of this Quadrilateral.
+    // Perimeter = sum of all side lengths.
+    double getPerimeter();
+    
+    // Getter returns the area of this Quadrilateral.
+    double getArea();
+    
+    // Print the contents of this Quadrilateral.
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Quadrilateral's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Quadrilateral &amp; quad );
+};
+
+#endif
+
+//*************************************************************
+// End of File
+//*************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Quadrilateral.cpp">Quadrilateral.cpp</a></h3>
+<p>This file contains the method definitions of the Quadrilateral class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Quadrilateral.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This source file contains the Quadrilateral class definition.
+//  Quadrilateral is the base class for an inheritance chain.
+//  Quadrilateral includes Point through composition.
+//*****************************************************************
+
+#include "Quadrilateral.h"
+
+// Determines whether the quadrilateral is cyclic using
+// Ptolemy's Theorem:
+//    If AB × CD + BC × DA = AC × BD,
+//    where AB, CD, BC, and DA are side lengths,
+//    Then the quadrilateral ABCD is cyclic.
+bool Quadrilateral::isCyclicQuadrilateral()
+{
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    if ( (AB * CD * BC * DA) == (AC * BD) ) return true;
+    return false;
+}
+
+// Default constructor initializes all Points to default values.
+Quadrilateral::Quadrilateral()
+{
+    A = Point( 0, 0 );
+    B = Point( 1, 1 );
+    C = Point( 2, 1 );
+    D = Point( 3, -1 );
+}
+
+// Normal constructor assigns Points to the parameter values.
+Quadrilateral::Quadrilateral( Point A, Point B, Point C, Point D )
+{
+    if ( isCyclicQuadrilateral() )
+    {
+        this -&gt; A = Point( A );
+        this -&gt; B = Point( B );
+        this -&gt; C = Point( C );
+        this -&gt; D = Point( D );
+    }
+    else
+    {
+        this -&gt; A = Point( 0, 0 );
+        this -&gt; B = Point( 1, 1 );
+        this -&gt; C = Point( 2, 1 );
+        this -&gt; D = Point( 3, -1 );
+    }
+}
+
+// Copy constructor creates a clone of Quadrilateral object.
+Quadrilateral::Quadrilateral( Quadrilateral &amp; quadrilateral )
+{
+    A = quadrilateral.A;
+    B = quadrilateral.B;
+    C = quadrilateral.C;
+    D = quadrilateral.D;
+}
+
+// Getter returns the perimeter of this Quadrilateral.
+// Perimeter = sum of all side lengths.
+double Quadrilateral::getPerimeter()
+{
+    return ( A.getDistance( B ) + B.getDistance( C ) +
+             C.getDistance( D ) + D.getDistance( A ) );
+}
+
+// Getter returns the area of this Quadrilateral.
+// 1. Divide the quadrilateral into two triangles.
+// 2. Use Heron's Formula to compute the area of
+//    each triangle.
+// 3. Return the sum of the two triangle areas to get
+//    the area of the quadrilateral.
+// --------------------------------------------------------
+// Heron's Formula:
+//    Let A, B, and C be the side lengths of a triangle.
+//    Let S = ( A + B + C ) / 2
+//    Then we can compute the area of the triangle:
+//    Area = sqrt[ S*( S - A )*( S - B )*( S - C ) ]
+// --------------------------------------------------------
+double Quadrilateral::getArea()
+{
+    // First Triangle
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CA = C.getDistance( A );
+    
+    // Second Triangle
+    double AC = A.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    
+    // Compute half the perimeters.
+    double S1 = ( AB + BC + CA ) / 2;
+    double S2 = ( AC + CD + DA ) / 2;
+    
+    // Compute the areas using Heron's formula.
+    double A1 = sqrt( S1*( S1-AB )*( S1-BC )*( S1-CA ));
+    double A2 = sqrt( S2*( S2-AC )*( S2-CD )*( S2-DA ));
+    
+    // Return the sum of the two triangles.
+    return A1 + A2;
+}
+
+// Print the contents of this Quadrilateral.
+// If no ostream parameter is supplied, default will be cout.
+void Quadrilateral::print( ostream &amp; output )
+{
+    output &lt;&lt; "--------------\n";
+    output &lt;&lt; TYPE &lt;&lt; "\n";
+    output &lt;&lt; "--------------\n";
+    output &lt;&lt; "Points:\n";
+    output &lt;&lt; "\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\tD = " &lt;&lt; D &lt;&lt; "\n";
+    output &lt;&lt; "Side Lengths:\n";
+    output &lt;&lt; "\tAB = " &lt;&lt; A.getDistance( B ) &lt;&lt; "\n";
+    output &lt;&lt; "\tBC = " &lt;&lt; B.getDistance( C ) &lt;&lt; "\n";
+    output &lt;&lt; "\tCD = " &lt;&lt; C.getDistance( D ) &lt;&lt; "\n";
+    output &lt;&lt; "\tDA = " &lt;&lt; D.getDistance( A ) &lt;&lt; "\n";
+    output &lt;&lt; "Shape Properties:\n";
+    output &lt;&lt; "\tPerimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\tArea = " &lt;&lt; getArea() &lt;&lt; "\n\n";
+}
+
+// Friend function behaves like Quadrilateral's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Quadrilateral &amp; quad )
+{
+    quad.print( output );
+    return output;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Trapezoid.h">Trapezoid.h</a></h3>
+<p>This file declares the attributes and behaviors of the Trapezoid class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Trapezoid.h
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 10, 2014.
+//
+//  This header file contains the Trapezoid class declaration.
+//  Trapezoid is derived from the Quadrilateral class.
+//*****************************************************************
+
+#ifndef Trapezoid_h
+#define Trapezoid_h
+#include "Quadrilateral.h"
+
+//-----------------------------------------------------------------------------
+// Trapezoid represents a quadrilateral with exactly least two parallel sides.
+//-----------------------------------------------------------------------------
+class Trapezoid: public Quadrilateral
+{
+// Trapezoid inherits the data members and methods of Quadrilateral.
+private:
+    
+    // Base1 is the longest parallel edge.
+    // Base2 is the shortest parellel edge.
+    // Height is the distance between parallel edges.
+    double base1, base2, height;
+    
+    // A brief description of the class.
+    const string TYPE = "QUADRILATERAL/TRAPEZOID";
+    
+    // Helper method forces exactly two sides to be parallel.
+    void setAttributes();
+    
+public:
+    
+    // Default constructor calls Quadrilateral's default constructor.
+    Trapezoid();
+    
+    // Normal constructor calls Quadrilateral's normal constructor.
+    Trapezoid( Point A, Point B, Point C, Point D );
+    
+    // Copy constructor calls Quadrilateral's copy constructor.
+    Trapezoid( Quadrilateral &amp; quad );
+    
+    // Getter returns the area of this Quadrilateral.
+    // Override the method to customize it for Trapezoid.
+    // Area = [(Base1 + Base2) * Height] / 2
+    double getArea();
+    
+    // Print the contents of this Quadrilateral.
+    // Override the method to customize it for Trapezoid.
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Trapezoid's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Trapezoid &amp; trap );
+};
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Trapezoid.cpp">Trapezoid.cpp</a></h3>
+<p>This file contains the method definitions of the Trapezoid class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Trapezoid.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 10, 2014.
+//
+//  This source file contains the Trapezoid class definition.
+//  Trapezoid is derived from the Quadrilateral class.
+//*****************************************************************
+
+#include "Trapezoid.h"
+
+// Helper method forces exactly two sides to be parallel.
+void Trapezoid::setAttributes()
+{
+    // Check that only AB and CD are parallel
+    // or else that only BC and DA are parallel; not both!
+    double slope_AB = A.getSlope( B );
+    double slope_CD = C.getSlope( D );
+    double slope_BC = B.getSlope( C );
+    double slope_AD = A.getSlope( D );
+    if (!(slope_AB == slope_CD xor slope_BC == slope_AD))
+    {
+        A = Point( 0, 0 );
+        B = Point( 1, 1 );
+        C = Point( 3, 1 );
+        D = Point( 5, 0 );
+    }
+    
+    // Set Trapezoid-specific attributes.
+    if (slope_AB == slope_CD)
+    {
+        if (A.getDistance( B ) &gt; C.getDistance( D ))
+        {
+            base1 = A.getDistance( B );
+            base2 = C.getDistance( D );
+        }
+        else
+        {
+            base1 = C.getDistance( D );
+            base2 = A.getDistance( B );
+        }
+        height = B.getDistance( C );
+    }
+    else
+    {
+        if (B.getDistance( C ) &gt; D.getDistance( A ))
+        {
+            base1 = B.getDistance( C );
+            base2 = D.getDistance( A );
+        }
+        else
+        {
+            base1 = D.getDistance( A );
+            base2 = B.getDistance( C );
+        }
+        height = A.getDistance( B );
+    }
+}
+
+// Default constructor calls Quadrilateral's default constructor.
+Trapezoid::Trapezoid(): Quadrilateral()
+{
+    setAttributes();
+}
+
+// Normal constructor calls Quadrilateral's normal constructor.
+Trapezoid::Trapezoid( Point A, Point B, Point C, Point D ):
+Quadrilateral( A, B, C, D )
+{
+    setAttributes();
+}
+
+// Copy constructor calls Quadrilateral's copy constructor.
+Trapezoid::Trapezoid( Quadrilateral &amp; quad ): Quadrilateral( quad )
+{
+    setAttributes();
+}
+
+// Getter returns the area of this Quadrilateral.
+// Override the method to customize it for Trapezoid.
+// Area = [(Base1 + Base2) * Height] / 2
+double Trapezoid::getArea()
+{
+    return (( base1 + base2 ) * height) / 2;
+}
+
+// Print the contents of this Quadrilateral.
+// Override the method to customize it for Trapezoid.
+// If no ostream parameter is supplied, default will be cout.
+void Trapezoid::print( ostream &amp; output )
+{
+    output &lt;&lt; "------------------------\n";
+    output &lt;&lt; TYPE &lt;&lt; "\n";
+    output &lt;&lt; "------------------------\n";
+    output &lt;&lt; "Points:\n";
+    output &lt;&lt; "\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\tD = " &lt;&lt; D &lt;&lt; "\n";
+    output &lt;&lt; "Side Lengths:\n";
+    output &lt;&lt; "\tAB = " &lt;&lt; A.getDistance( B ) &lt;&lt; "\n";
+    output &lt;&lt; "\tBC = " &lt;&lt; B.getDistance( C ) &lt;&lt; "\n";
+    output &lt;&lt; "\tCD = " &lt;&lt; C.getDistance( D ) &lt;&lt; "\n";
+    output &lt;&lt; "\tDA = " &lt;&lt; D.getDistance( A ) &lt;&lt; "\n";
+    output &lt;&lt; "Shape Properties:\n";
+    output &lt;&lt; "\tbase1= " &lt;&lt; base1 &lt;&lt; "\n";
+    output &lt;&lt; "\tbase2 = " &lt;&lt; base2 &lt;&lt; "\n";
+    output &lt;&lt; "\theight = " &lt;&lt; height &lt;&lt; "\n";
+    output &lt;&lt; "\tPerimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\tArea = " &lt;&lt; getArea() &lt;&lt; "\n\n";
+}
+
+// Friend function behaves like Trapezoid's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Trapezoid &amp; trap )
+{
+    trap.print( output );
+    return output;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Rectangle.h">Rectangle.h</a></h3>
+<p>This file declares the attributes and behaviors of the Rectangle class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Rectangle.h
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 9, 2014.
+//
+//  This header file contains the Rectangle class declaration.
+//  Rectangle is derived from the Quadrilateral class.
+//*****************************************************************
+
+#ifndef Rectangle_h
+#define Rectangle_h
+#include "Quadrilateral.h"
+
+//-------------------------------------------------------------------------
+// Rectangle represents a quadrilateral whose sides form 90-degree angles.
+//-------------------------------------------------------------------------
+class Rectangle: public Quadrilateral
+{
+// Rectangle inherits the data members and methods of Quadrilateral.
+protected:
+    
+    // width and length are adjacent sides that form a right angle.
+    double width, length;
+    
+    // A brief description of the class.
+    const string TYPE = "QUADRILATERAL/RECTANGLE";
+    
+    // Helper method forces sides to form 90-degree angles.
+    void setAttributes();
+    
+public:
+    // Default constructor calls Quadrilateral's default constructor.
+    Rectangle();
+    
+    // Normal constructor calls Quadrilateral's normal constructor.
+    Rectangle( Point A, Point B, Point C, Point D );
+    
+    // Copy constructor calls Quadrilateral's copy constructor.
+    Rectangle( Quadrilateral &amp; quad );
+    
+    // Getter returns the area of this Quadrilateral.
+    // Override the method to customize it for Rectangle.
+    // Area = Length * Width
+    double getArea();
+    
+    // Getter returns the perimeter of this Quadrilateral.
+    // Override the method to customize it for Rectangle.
+    // Perimeter = (Length + Width) * 2
+    double getPerimeter();
+    
+    // Print the contents of this Quadrilateral.
+    // Override the method to customize it for Rectangle.
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Rectangle's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Rectangle &amp; rect );
+};
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Rectangle.cpp">Rectangle.cpp</a></h3>
+<p>This file contains the method definitions of the Rectangle class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Rectangle.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 9, 2014.
+//
+//  This source file contains the Rectangle class definition.
+//  Rectangle is derived from the Quadrilateral class.
+//*****************************************************************
+
+#include "Rectangle.h"
+
+// Helper method forces sides to form 90-degree angles.
+void Rectangle::setAttributes()
+{
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    
+    // Check if sides AB and CD are the same length.
+    // Check if sides BC and AD are the same length.
+    bool lengthTest = (AB == CD &amp;&amp; BC == DA);
+    
+    // Check if sides AB and CD are perpendicular.
+    // Check if sides BC and AD are perpendicular.
+    double slope_AB = A.getSlope( B );
+    double slope_CD = C.getSlope( D );
+    double slope_BC = B.getSlope( C );
+    double slope_AD = A.getSlope( D );
+    bool slopeTest = (slope_AB == slope_CD &amp;&amp; slope_BC == slope_AD);
+    
+    // If conditions are not met, set values to default.
+    if (!lengthTest || !slopeTest)
+    {
+        A = Point( 0, 0 );
+        B = Point( 0, 5 );
+        C = Point( 6, 5 );
+        D = Point( 6, 0 );
+    }
+    
+    // Set Rectangle-specific attributes.
+    width = A.getDistance( B );
+    length = A.getDistance( D );
+}
+
+// Default constructor calls Quadrilateral's default constructor.
+Rectangle::Rectangle(): Quadrilateral()
+{
+    setAttributes();
+}
+
+// Normal constructor calls Quadrilateral's normal constructor.
+Rectangle::Rectangle( Point A, Point B, Point C, Point D ):
+Quadrilateral ( A, B, C, D )
+{
+    setAttributes();
+}
+
+// Copy constructor calls Quadrilateral's copy constructor.
+Rectangle::Rectangle( Quadrilateral &amp; quad ): Quadrilateral( quad )
+{
+    setAttributes();
+}
+
+// Getter returns the area of this Quadrilateral.
+// Override the method to customize it for Rectangle.
+// Area = Length * Width
+double Rectangle::getArea()
+{
+    return length * width;
+}
+
+// Getter returns the perimeter of this Quadrilateral.
+// Override the method to customize it for Rectangle.
+// Perimeter = (Length + Width) * 2
+double Rectangle::getPerimeter()
+{
+    return (length + width) * 2;
+}
+
+// Print the contents of this Quadrilateral.
+// Override the method to customize it for Rectangle.
+void Rectangle::print( ostream &amp; output )
+{
+    output &lt;&lt; "------------------------\n";
+    output &lt;&lt; TYPE &lt;&lt; "\n";
+    output &lt;&lt; "------------------------\n";
+    output  &lt;&lt; "Points:\n";
+    output &lt;&lt; "\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\tD = " &lt;&lt; D &lt;&lt; "\n";
+    output &lt;&lt; "Side Lengths:\n";
+    output &lt;&lt; "\tAB = " &lt;&lt; A.getDistance( B ) &lt;&lt; "\n";
+    output &lt;&lt; "\tBC = " &lt;&lt; B.getDistance( C ) &lt;&lt; "\n";
+    output &lt;&lt; "\tCD = " &lt;&lt; C.getDistance( D ) &lt;&lt; "\n";
+    output &lt;&lt; "\tDA = " &lt;&lt; D.getDistance( A ) &lt;&lt; "\n";
+    output &lt;&lt; "Shape Properties:\n";
+    output &lt;&lt; "\twidth = " &lt;&lt; width &lt;&lt; "\n";
+    output &lt;&lt; "\tlength = " &lt;&lt; length &lt;&lt; "\n";
+    output &lt;&lt; "\tPerimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\tArea = " &lt;&lt; getArea() &lt;&lt; "\n\n";
+}
+
+// Friend function behaves like Rectangle's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Rectangle &amp; rect )
+{
+    rect.print( output );
+    return output;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Square.h">Square.h</a></h3>
+<p>This file declares the attributes and behaviors of the Square class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Square.h
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 10, 2014.
+//
+//  This header file contains the Square class declaration.
+//  Square is derived from the Rectangle class.
+//*****************************************************************
+
+#ifndef Square_h
+#define Square_h
+#include "Rectangle.h"
+
+//---------------------------------------------------------------------------
+// Square represents a rectangle whose length and width are the same length.
+//---------------------------------------------------------------------------
+class Square: public Rectangle
+{
+    
+// Square inherits the data members and methods of Quadrilateral.
+private:
+    
+    // A brief description of the class.
+    const string TYPE = "QUADRILATERAL/RECTANGLE/SQUARE";
+    
+    // Helper method forces length and width to be the same length.
+    void setAttributes();
+
+public:
+    
+    // Default constructor calls Rectangle's default constructor.
+    Square();
+    
+    // Normal constructor calls Rectangle's normal constructor.
+    Square( Point A, Point B, Point C, Point D );
+    
+    // Copy constructor calls Quadrilateral's copy constructor.
+    Square( Quadrilateral &amp; quad );
+    
+    // Getter returns the perimeter of this Rectangle.
+    // Override the method to customize it for Square.
+    // Perimeter =  Length * 4
+    double getPerimeter();
+    
+    // Getter returns the area of this Rectangle.
+    // Override the method to customize it for Square.
+    // Area = Length * Length
+    double getArea();
+    
+    // Print the contents of this Rectangle.
+    // Override the method to customize it for Square.
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Square's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Square &amp; sqr );
+};
+
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Square.cpp">Square.cpp</a></h3>
+<p>This file contains the method definitions of the Square class.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  Square.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 10, 2014.
+//
+//  This source file contains the Square class definition.
+//  Square is derived from the Rectangle class.
+//*****************************************************************
+
+#include "Square.h"
+
+// Helper method forces length and width to be the same length.
+void Square::setAttributes()
+{
+    // Call the setAttributes method from the parent class.
+    Rectangle::setAttributes();
+    
+    //setAttributes();
+    if (length != width)
+    {
+        A = Point( 0, 0 );
+        B = Point( 0, 5 );
+        C = Point( 5, 5 );
+        D = Point( 5, 0 );
+    }
+    width = 5;
+    length = 5;
+}
+
+// Default constructor calls Rectangle's default constructor.
+Square::Square(): Rectangle()
+{
+    setAttributes();
+}
+
+// Normal constructor calls Rectangle's normal constructor.
+Square::Square( Point A, Point B, Point C, Point D ):
+Rectangle( A, B, C, D )
+{
+    setAttributes();
+}
+
+// Copy constructor calls Rectangle's copy constructor.
+Square::Square( Quadrilateral &amp; quad ): Rectangle( quad )
+{
+    setAttributes();
+}
+
+// Getter returns the perimeter of this Rectangle.
+// Override the method to customize it for Square.
+// Perimeter =  Length * 4
+double Square::getPerimeter()
+{
+    return length * 4;
+}
+
+// Getter returns the area of this Rectangle.
+// Override the method to customize it for Square.
+// Area = Length * Length
+double Square::getArea()
+{
+    return length * length;
+}
+
+// Print the contents of this Rectangle.
+// Override the method to customize it for Square.
+// If no ostream parameter is supplied, default will be cout.
+void Square::print( ostream &amp; output )
+{
+    cout &lt;&lt; "--------------------------------\n";
+    output &lt;&lt; TYPE &lt;&lt; "\n";
+    cout &lt;&lt; "--------------------------------\n";
+    output &lt;&lt; "Points:\n";
+    output &lt;&lt; "\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\tD = " &lt;&lt; D &lt;&lt; "\n";
+    output &lt;&lt; "Side Lengths:\n";
+    output &lt;&lt; "\tAB = " &lt;&lt; A.getDistance( B ) &lt;&lt; "\n";
+    output &lt;&lt; "\tBC = " &lt;&lt; B.getDistance( C ) &lt;&lt; "\n";
+    output &lt;&lt; "\tCD = " &lt;&lt; C.getDistance( D ) &lt;&lt; "\n";
+    output &lt;&lt; "\tDA = " &lt;&lt; D.getDistance( A ) &lt;&lt; "\n";
+    output &lt;&lt; "Shape Properties:\n";
+    output &lt;&lt; "\tlength = " &lt;&lt; length &lt;&lt; "\n";
+    output &lt;&lt; "\tPerimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\tArea = " &lt;&lt; getArea() &lt;&lt; "\n\n";
+}
+
+// Friend function behaves like Square's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Square &amp; sqr )
+{
+    sqr.print( output );
+    return output;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/main.cpp">main.cpp</a></h3>
+<p>This file contains the driver of the Quadrilateral classes.</p>
+<pre style="background-color:#d8d8d8;">//*****************************************************************
+//  main.cpp
+//  Inheritance
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This driver implements the Quadrilateral class and its
+//  derived and classes, Rectangle, Trapezoid, and Square.
+//  Quadrilateral includes Point through composition.
+//*****************************************************************
+
+#include "Quadrilateral.h"
+#include "Rectangle.h"
+#include "Trapezoid.h"
+#include "Square.h"
+
+int main()
+{
+    //*****************************************************************
+    // Point Tests
+    //*****************************************************************
+    cout &lt;&lt; "---------------------------\n";
+    cout &lt;&lt; "Point Tests...\n";
+    cout &lt;&lt; "---------------------------\n\n";
+    
+    // Create a default Point object.
+    Point A;
+    cout &lt;&lt; "\tDefault Point, A = ";
+    cout &lt;&lt; A &lt;&lt; "\n";
+    
+    // Create a custom Point object.
+    Point B( 1, 1 );
+    cout &lt;&lt; "\tCustom Point, B = ";
+    cout &lt;&lt; B &lt;&lt; "\n";
+    
+    // Create a copy of Point A and call it C.
+    Point C( A );
+    cout &lt;&lt; "\tCopy of Point A, named C = ";
+    cout &lt;&lt; C &lt;&lt; "\n";
+    
+    // Reset the values of Point C.
+    C.setX( 2 );
+    C.setY( 0 );
+    cout &lt;&lt; "\tReset C to ";
+    cout &lt;&lt; C &lt;&lt; "\n";
+    
+    // Get the slope of the line between A and B.
+    cout &lt;&lt; "\tSlope AB = ";
+    cout &lt;&lt; A.getSlope( B ) &lt;&lt; "\n";
+    
+    // Get the distance between A and B.
+    cout &lt;&lt; "\tDistance AB = ";
+    cout &lt;&lt; A.getDistance( B ) &lt;&lt; "\n";
+    
+    // Get the slope of the line between A and C.
+    cout &lt;&lt; "\tSlope AC = ";
+    cout &lt;&lt; A.getSlope( C ) &lt;&lt; "\n";
+    
+    // Get the distance between A and C.
+    cout &lt;&lt; "\tDistance AC = ";
+    cout &lt;&lt; A.getDistance( C ) &lt;&lt; "\n\n";
+    
+    //*****************************************************************
+    // Quadrilateral Tests
+    //*****************************************************************
+    cout &lt;&lt; "---------------------------\n";
+    cout &lt;&lt; "Quadrilateral Tests...\n";
+    cout &lt;&lt; "---------------------------\n\n";
+    
+    // Create a default Quadrilateral object.
+    Quadrilateral quad1;
+    cout &lt;&lt; "\tDefault Quadrilateral...\n";
+    cout &lt;&lt; quad1;
+    
+    // Create a copy Quadrilateral object.
+    Quadrilateral quad2( quad1 );
+    cout &lt;&lt; "\tCopy Quadrilateral...\n";
+    cout &lt;&lt; quad2;
+    
+    // Create a custom Quadrilateral object.
+    cout &lt;&lt; "\tCustom Quadrilateral...\n";
+    Point W( -1, -1 ), X( 0, 2 ), Y( 2, 2 ), Z( 4, 0 );
+    Quadrilateral quad3( W, X, Y, Z );
+    cout &lt;&lt; quad3;
+    
+    //*****************************************************************
+    // Trapezoid Tests
+    //*****************************************************************
+    cout &lt;&lt; "---------------------------\n";
+    cout &lt;&lt; "Trapezoid Tests...\n";
+    cout &lt;&lt; "---------------------------\n\n";
+    
+    // Create a default Trapezoid object.
+    Trapezoid trap1;
+    cout &lt;&lt; "\tDefault Trapezoid...\n";
+    cout &lt;&lt; trap1;
+    
+    // Create a copy Trapezoid object from Quadrilateral object.
+    Trapezoid trap2( quad1 );
+    cout &lt;&lt; "\tCopy Trapezoid from Quadrilateral...\n";
+    cout &lt;&lt; trap2;
+    
+    // Create a copy Trapezoid object from Trapezoid object.
+    Trapezoid trap3( trap1 );
+    cout &lt;&lt; "\tCopy Trapezoid from Trapezoid...\n";
+    cout &lt;&lt; trap3;
+    
+    // Create a custom Trapezoid object.
+    cout &lt;&lt; "\tCustom Trapezoid...\n";
+    Trapezoid trap5( W, X, Y, Z );
+    cout &lt;&lt; trap5;
+    
+    //*****************************************************************
+    // Rectangle Tests
+    //*****************************************************************
+    cout &lt;&lt; "---------------------------\n";
+    cout &lt;&lt; "Rectangle Tests...\n";
+    cout &lt;&lt; "---------------------------\n\n";
+    
+    // Create a default Rectangle object.
+    Rectangle rect1;
+    cout &lt;&lt; "\tDefault Rectangle...\n";
+    cout &lt;&lt; rect1;
+    
+    // Create a copy Rectangle object from Quadrilateral object.
+    Rectangle rect2( quad1 );
+    cout &lt;&lt; "\tCopy Rectangle from Quadrilateral...\n";
+    cout &lt;&lt; rect2;
+    
+    // Create a copy Rectangle object from Rectangle object.
+    Rectangle rect3( rect1 );
+    cout &lt;&lt; "\tCopy Rectangle from Rectangle...\n";
+    cout &lt;&lt; rect3;
+    
+    // Create a custom Rectangle object.
+    cout &lt;&lt; "\tCustom Rectangle...\n";
+    Rectangle rect4( W, X, Y, Z );
+    cout &lt;&lt; rect4;
+    
+    //*****************************************************************
+    // Square Tests
+    //*****************************************************************
+    cout &lt;&lt; "---------------------------\n";
+    cout &lt;&lt; "Square Tests...\n";
+    cout &lt;&lt; "---------------------------\n\n";
+    
+    // Create a default Square object.
+    Square sqr1;
+    cout &lt;&lt; "\tDefault Square...\n";
+    cout &lt;&lt; sqr1;
+    
+    // Create a copy Square object from Quadrilateral object.
+    Square sqr2( quad1 );
+    cout &lt;&lt; "\tCopy Square from Quadrilateral...\n";
+    cout &lt;&lt; sqr2;
+    
+    // Create a copy Square object from Rectangle object.
+    Square sqr3( rect1 );
+    cout &lt;&lt; "\tCopy Square from Rectangle...\n";
+    cout &lt;&lt; sqr3;
+    
+    // Create a copy Square object from Square object.
+    Square sqr4( sqr1 );
+    cout &lt;&lt; "\tCopy Square from Square...\n";
+    cout &lt;&lt; sqr4;
+    
+    // Create a custom Square object.
+    cout &lt;&lt; "\tCustom Square...\n";
+    Square sqr5( W, X, Y, Z );
+    cout &lt;&lt; sqr5;
+    
+    // Terminate program
+    return 0;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Inheritance_Tutorial/blob/master/Output.txt">Output.txt</a></h3>
+<p>This file contains the program output after execution.</p>
+<pre style="background-color:#d8d8d8;">---------------------------
+Point Tests...
+---------------------------
+
+	Default Point, A = (0,0)
+	Custom Point, B = (1,1)
+	Copy of Point A, named C = (0,0)
+	Reset C to (2,0)
+	Slope AB = 1
+	Distance AB = 1.41421
+	Slope AC = -0
+	Distance AC = 2
+
+---------------------------
+Quadrilateral Tests...
+---------------------------
+
+	Default Quadrilateral...
+--------------
+QUADRILATERAL
+--------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (2,1)
+	D = (3,-1)
+Side Lengths:
+	AB = 1.41421
+	BC = 1
+	CD = 2.23607
+	DA = 3.16228
+Shape Properties:
+	Perimeter = 7.81256
+	Area = 3
+
+	Copy Quadrilateral...
+--------------
+QUADRILATERAL
+--------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (2,1)
+	D = (3,-1)
+Side Lengths:
+	AB = 1.41421
+	BC = 1
+	CD = 2.23607
+	DA = 3.16228
+Shape Properties:
+	Perimeter = 7.81256
+	Area = 3
+
+	Custom Quadrilateral...
+--------------
+QUADRILATERAL
+--------------
+Points:
+	A = (-1,-1)
+	B = (0,2)
+	C = (2,2)
+	D = (4,0)
+Side Lengths:
+	AB = 3.16228
+	BC = 2
+	CD = 2.82843
+	DA = 5.09902
+Shape Properties:
+	Perimeter = 13.0897
+	Area = 9
+
+---------------------------
+Trapezoid Tests...
+---------------------------
+
+	Default Trapezoid...
+------------------------
+QUADRILATERAL/TRAPEZOID
+------------------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (3,1)
+	D = (5,0)
+Side Lengths:
+	AB = 1.41421
+	BC = 2
+	CD = 2.23607
+	DA = 5
+Shape Properties:
+	base1= 5
+	base2 = 2
+	height = 1.41421
+	Perimeter = 10.6503
+	Area = 4.94975
+
+	Copy Trapezoid from Quadrilateral...
+------------------------
+QUADRILATERAL/TRAPEZOID
+------------------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (3,1)
+	D = (5,0)
+Side Lengths:
+	AB = 1.41421
+	BC = 2
+	CD = 2.23607
+	DA = 5
+Shape Properties:
+	base1= 5
+	base2 = 2
+	height = 1.41421
+	Perimeter = 10.6503
+	Area = 4.94975
+
+	Copy Trapezoid from Trapezoid...
+------------------------
+QUADRILATERAL/TRAPEZOID
+------------------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (3,1)
+	D = (5,0)
+Side Lengths:
+	AB = 1.41421
+	BC = 2
+	CD = 2.23607
+	DA = 5
+Shape Properties:
+	base1= 5
+	base2 = 2
+	height = 1.41421
+	Perimeter = 10.6503
+	Area = 4.94975
+
+	Custom Trapezoid...
+------------------------
+QUADRILATERAL/TRAPEZOID
+------------------------
+Points:
+	A = (0,0)
+	B = (1,1)
+	C = (3,1)
+	D = (5,0)
+Side Lengths:
+	AB = 1.41421
+	BC = 2
+	CD = 2.23607
+	DA = 5
+Shape Properties:
+	base1= 5
+	base2 = 2
+	height = 1.41421
+	Perimeter = 10.6503
+	Area = 4.94975
+
+---------------------------
+Rectangle Tests...
+---------------------------
+
+	Default Rectangle...
+------------------------
+QUADRILATERAL/RECTANGLE
+------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (6,5)
+	D = (6,0)
+Side Lengths:
+	AB = 5
+	BC = 6
+	CD = 5
+	DA = 6
+Shape Properties:
+	width = 5
+	length = 6
+	Perimeter = 22
+	Area = 30
+
+	Copy Rectangle from Quadrilateral...
+------------------------
+QUADRILATERAL/RECTANGLE
+------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (6,5)
+	D = (6,0)
+Side Lengths:
+	AB = 5
+	BC = 6
+	CD = 5
+	DA = 6
+Shape Properties:
+	width = 5
+	length = 6
+	Perimeter = 22
+	Area = 30
+
+	Copy Rectangle from Rectangle...
+------------------------
+QUADRILATERAL/RECTANGLE
+------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (6,5)
+	D = (6,0)
+Side Lengths:
+	AB = 5
+	BC = 6
+	CD = 5
+	DA = 6
+Shape Properties:
+	width = 5
+	length = 6
+	Perimeter = 22
+	Area = 30
+
+	Custom Rectangle...
+------------------------
+QUADRILATERAL/RECTANGLE
+------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (6,5)
+	D = (6,0)
+Side Lengths:
+	AB = 5
+	BC = 6
+	CD = 5
+	DA = 6
+Shape Properties:
+	width = 5
+	length = 6
+	Perimeter = 22
+	Area = 30
+
+---------------------------
+Square Tests...
+---------------------------
+
+	Default Square...
+--------------------------------
+QUADRILATERAL/RECTANGLE/SQUARE
+--------------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (5,5)
+	D = (5,0)
+Side Lengths:
+	AB = 5
+	BC = 5
+	CD = 5
+	DA = 5
+Shape Properties:
+	length = 5
+	Perimeter = 20
+	Area = 25
+
+	Copy Square from Quadrilateral...
+--------------------------------
+QUADRILATERAL/RECTANGLE/SQUARE
+--------------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (5,5)
+	D = (5,0)
+Side Lengths:
+	AB = 5
+	BC = 5
+	CD = 5
+	DA = 5
+Shape Properties:
+	length = 5
+	Perimeter = 20
+	Area = 25
+
+	Copy Square from Rectangle...
+--------------------------------
+QUADRILATERAL/RECTANGLE/SQUARE
+--------------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (5,5)
+	D = (5,0)
+Side Lengths:
+	AB = 5
+	BC = 5
+	CD = 5
+	DA = 5
+Shape Properties:
+	length = 5
+	Perimeter = 20
+	Area = 25
+
+	Copy Square from Square...
+--------------------------------
+QUADRILATERAL/RECTANGLE/SQUARE
+--------------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (5,5)
+	D = (5,0)
+Side Lengths:
+	AB = 5
+	BC = 5
+	CD = 5
+	DA = 5
+Shape Properties:
+	length = 5
+	Perimeter = 20
+	Area = 25
+
+	Custom Square...
+--------------------------------
+QUADRILATERAL/RECTANGLE/SQUARE
+--------------------------------
+Points:
+	A = (0,0)
+	B = (0,5)
+	C = (5,5)
+	D = (5,0)
+Side Lengths:
+	AB = 5
+	BC = 5
+	CD = 5
+	DA = 5
+Shape Properties:
+	length = 5
+	Perimeter = 20
+	Area = 25
+
+Program ended with exit code: 0
+</pre>
+<h3>References</h3>
+<ol>
+<li>&#8220;Area of a Trapezoid.&#8221; Mrs. Glosser&#8217;s Math Goodies. A Hotchalk/Glam Partner Site. 2014.<a href="http://www.mathgoodies.com/lessons/vol1/area_trapezoid.html">http://www.mathgoodies.com/lessons/vol1/area_trapezoid.html</a></li>
+<li>&#8220;Friendship and Inheritance.&#8221; cplusplus.com. 2014.<br />
+<a href="http://www.cplusplus.com/doc/tutorial/inheritance/">http://www.cplusplus.com/doc/tutorial/inheritance/</a></li>
+<li>&#8220;Heron&#8217;s Formula.&#8221; MathIsFun.com. 2012.<br />
+<a href="http://www.mathsisfun.com/geometry/herons-formula.html">http://www.mathsisfun.com/geometry/herons-formula.html</a></li>
+<li>Stapel, Elizabeth.&#8221;Slope: Parallel and Perpendicular Lines.&#8221; Purplemath. 2014.<br />
+<a href="http://www.purplemath.com/modules/slope2.htm">http://www.purplemath.com/modules/slope2.htm</a></li>
+<li>Stapel, Elizabeth.&#8221;The Distance Formula.&#8221; Purplemath. 2014.<br />
+<a href="http://www.purplemath.com/modules/distform.htm">http://www.purplemath.com/modules/distform.htm</a></li>
+<li>Weisstein, Eric W. &#8220;Ptolemy&#8217;s Theorem. MathWorld. Wolfram Mathematica. 2014.<br />
+<a href="http://mathworld.wolfram.com/PtolemysTheorem.html">http://mathworld.wolfram.com/PtolemysTheorem.html</a></li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-594" class="share-facebook sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-594" class="share-linkedin sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-594" class="share-twitter sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/14/c-tutorial-inheritance-and-composition/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-65930048-594-5ed25afbbbd93' data-src='//widgets.wp.com/likes/index.html?ver=20190321#blog_id=65930048&amp;post_id=594&amp;origin=pumpkinprogrammerdotcom4.wordpress.com&amp;obj_id=65930048-594-5ed25afbbbd93' data-name='like-post-frame-65930048-594-5ed25afbbbd93'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->

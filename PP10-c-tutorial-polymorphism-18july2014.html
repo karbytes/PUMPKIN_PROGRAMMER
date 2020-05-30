@@ -1,0 +1,996 @@
+<div class="entry-content">
+		<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' width='474' height='267' src='https://www.youtube.com/embed/UT4Zw3WqYTc?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span></p>
+<p>
+In this tutorial, we will be looking at polymorphism in C++. Like inheritance and composition, polymorphism is another fundamental concept in object-oriented programming. Basically, in polymorphism, you start with a vague description for a family of objects. From there, you can make the description more specific depending on the context (i.e. a particular family member).
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg"><img data-attachment-id="670" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/hierarchy/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="hierarchy" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300&#038;h=225" alt="hierarchy" width="300" height="225" class="aligncenter size-small wp-image-670" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+This tutorial is a followup to the previous lesson: <a href="http://pumpkinprogrammer.com/2014/07/14/c-tutorial-inheritance-and-composition/">Inheritance and Composition (C++)</a>. It’s important to be familiar with classes, objects, and inheritance before you proceed. It’s also crucial to be familiar with pointers and memory allocation in C++. Towards the bottom of this post, you can copy and paste example code into your own project. Alternatively, you can download the project files from the GitHub link <a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial">here</a>. At the bottom of this post, there are some links to helpful online resources for further exploration.
+</p>
+<h3>What is Polymorphism</h3>
+<p>
+Polymorphism comes from the word polymorph, which literally means “a thing with many forms.” In object-oriented programming, <u>polymorphism</u> is the ability of an abstract base class to take on multiple forms through its derived classes.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg"><img data-attachment-id="666" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/abstract-1/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Abstract (1)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=300&#038;h=225" alt="Abstract (1)" width="300" height="225" class="aligncenter size-small wp-image-666" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/abstract-1.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+For example, we can use an abstract class to represent a cyclic polygon. Recall that a <u>cyclic polygon</u> is one whose vertices all touch the edge of a circle. From this vague template, we can give the polygon a more specific form by assigning it a definite number of sides. For instance, if we give it three sides, it becomes a triangle. If we give it four sides, it becomes a quadrilateral.
+</p>
+<h3>What is an Abstract Class?</h3>
+<p>
+An <u>abstract class</u> is a class that cannot be instantiated directly as itself. Instead, it serves as a base class from which more concrete classes inherit their attributes and behaviors. For instance, the abstract Polygon class cannot be instantiated as a Polygon object. Polygon’s descendant classes, Triangle and Quadrilateral, can be implemented as objects.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg"><img data-attachment-id="667" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/virtual/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Virtual" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=300&#038;h=225" alt="Virtual" width="300" height="225" class="aligncenter size-small wp-image-667" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+In general, abstraction is the process of separating the essential properties of an object from its implementation. Abstract classes are used to represent the high-level, essential attributes and behaviors of an object. In Java, an abstract class is denoted by the keyword, abstract. In C++, an abstract class is a class that contains at least one virtual function.
+</p>
+<h3>What is a Virtual Function?</h3>
+<p>
+A <u>virtual function</u> is a method in a base class that must be overridden by its derived classes. We declare the virtual function with the keyword, virtual, and set the function to equal zero.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg"><img data-attachment-id="668" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/virtual-4/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Virtual (4)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=300&#038;h=225" alt="Virtual (4)" width="300" height="225" class="aligncenter size-small wp-image-668" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/virtual-4.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+In our example, the Polygon class has two virtual functions, getArea and getPerimeter. Note that we cannot determine the area or perimeter of a generic polygon since we don’t know anything about the Polygon’s specific dimensions. In other words, it’s impossible to measure the area and perimeter of a generic polygon unless we know how many sides it has as well as the lengths of those sides. Remember that all we know about Polygon is that it is an area enclosed by lines that join points along the edge of a circle. We know that such an area takes up two-dimensional space and has a perimeter. Therefore, it makes sense to include area and perimeter as essential components of any polygon.
+</p>
+<h3>Polygon Example</h3>
+<p>
+Since the minimum number of polygonal edges is three, we can start implementing the virtual methods of Polygon in the descendant class, Triangle. We can find the area of any triangle by using <a href="http://mathworld.wolfram.com/HeronsFormula.html">Heron’s Formula</a>. To get the perimeter, we simply add up the side lengths.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg"><img data-attachment-id="669" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/hierarchy-3/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="hierarchy (3)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=300&#038;h=225" alt="hierarchy (3)" width="300" height="225" class="aligncenter size-small wp-image-669" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy-3.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+For any cyclic quadrilateral, a quadrilateral that can be inscribed in a circle, we can compute the area by dividing the quadrilateral into two triangles and then using Heron’s formula to compute the area of each of triangle. Next, we add the areas of each triangle to get the total area of the quadrilateral. To get the perimeter of Quadrilateral, we simply add up the side lengths as we do in Triangle.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg"><img data-attachment-id="670" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/hierarchy/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="hierarchy" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300&#038;h=225" alt="hierarchy" width="300" height="225" class="aligncenter size-small wp-image-670" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/hierarchy.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>It&#8217;s Coding Time!</h3>
+<p>
+Below are all the files you need to create a working C++ program to demonstrate polymorphism. Either copy and paste the code below or download the project files from the GitHub link <a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial">here</a>. At the bottom of this post are some links to some helpful online resources that relate to this project.
+</p>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Point.h">Point.h</a></h3>
+<p>This is the header file for the Point class. Point will be included in Polygon via composition. Point objects will form the vertices of Polygon&#8217;s implementations.</p>
+<pre style="background-color:#e0e0e0;">//*************************************************************************
+//  Point.h
+//  Polymorphism
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This header file contains the Point class declaration.
+//  Point is included in Polygon through composition.
+//*************************************************************************
+
+#ifndef Point_h
+#define Point_h
+
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+using namespace std;
+
+//------------------------------------------------------------------
+// Point represents a coordinate pair on a two-dimensional plane.
+//------------------------------------------------------------------
+class Point
+{
+private:
+    
+    // X and Y coordinates describe a point on a plane.
+    double X_coordinate, Y_coordinate;
+    
+public:
+    
+    // Default constructor creates a Point at the graph origin.
+    Point();
+    
+    // Normal constructor creates a custom Point object.
+    Point( double X, double Y );
+    
+    // Copy constructor creates a clone of a Point object.
+    Point( Point &amp; point );
+    
+    // Setter changes the value of the X_coordinate.
+    void setX( double X );
+    
+    // Setter changes the value of the Y_coordinate.
+    void setY( double Y );
+    
+    // Getter returns the value of the X_coordinate.
+    double getX();
+    
+    // Getter returns the value of the Y_coordinate.
+    double getY();
+    
+    // Getter computes the distance between this and another Point.
+    // Distance = Square_Root[ ((X2 - X1)^2) + ((X2 - X1)^2) ]
+    double getDistance( Point &amp; point );
+    
+    // Getter computes the slope between this and another Point.
+    // Slope = (Y2 - Y1) / (X2 - X1)
+    double getSlope( Point &amp; point );
+    
+    // Getter prints the coordinate pair of Point in the form ( X, Y ).
+    // If no ostream parameter is supplied, default will be cout.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function behaves like Points's print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of Point, but has access to its members.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; output, Point &amp; point );
+};
+
+#endif
+
+//******************************************************************************
+// End of File
+//******************************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Point.cpp">Point.cpp</a></h3>
+<p>This is the source file for the Point class. This is where we will define some handy functions such as computing the distance between two points. This will come in handy for determining the side-lengths of Polygon-derived objects (e.g. Triangle).</p>
+<pre style="background-color:#e0e0e0;">//******************************************************************************
+//  Point.cpp
+//  Polymorphism
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This source file contains the Point class definition.
+//  Point is included in Polymorphism through composition.
+//******************************************************************************
+
+#include "Point.h"
+
+// Default constructor creates a Point at the graph origin.
+Point::Point()
+{
+    X_coordinate = 0.0;
+    Y_coordinate = 0.0;
+}
+
+// Normal constructor creates a custom Point object.
+Point::Point( double X, double Y )
+{
+    X_coordinate = X;
+    Y_coordinate = Y;
+}
+
+// Copy constructor creates a clone of a Point object.
+Point::Point( Point &amp; point )
+{
+    X_coordinate = point.X_coordinate;
+    Y_coordinate = point.Y_coordinate;
+}
+
+// Setter changes the value of the X_coordinate.
+void Point::setX( double X )
+{
+    X_coordinate = X;
+}
+
+// Setter changes the value of the Y_coordinate.
+void Point::setY( double Y )
+{
+    Y_coordinate = Y;
+}
+
+// Getter returns the value of the X_coordinate.
+double Point::getX()
+{
+    return X_coordinate;
+}
+
+// Getter returns the value of the Y_coordinate.
+double Point::getY()
+{
+    return Y_coordinate;
+}
+
+// Getter computes the distance between this and another Point.
+// Distance = Square_Root[ ((X2 - X1)^2) + ((X2 - X1)^2) ]
+double Point::getDistance( Point &amp; point )
+{
+    return sqrt( pow(X_coordinate - point.X_coordinate, 2) +
+                pow(Y_coordinate - point.Y_coordinate, 2));
+}
+
+// Getter computes the slope between this and another Point.
+// Slope = (Y2 - Y1) / (X2 - X1)
+double Point::getSlope( Point &amp; point )
+{
+    if (X_coordinate == point.X_coordinate) return INFINITY;
+    return (Y_coordinate - point.Y_coordinate)/
+    (X_coordinate - point.X_coordinate);
+}
+
+// Getter prints the coordinate pair of Point in the form ( X, Y ).
+// If no ostream parameter is supplied, default will be cout.
+void Point::print( ostream &amp; output )
+{
+    output &lt;&lt; "(" &lt;&lt; X_coordinate &lt;&lt; "," &lt;&lt; Y_coordinate &lt;&lt; ")";
+}
+
+// Friend function behaves like Points's print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of Point, but has access to its members.
+ostream &amp; operator &lt;&lt; ( ostream &amp; output, Point &amp; point )
+{
+    point.print( output );
+    return output;
+}
+
+//******************************************************************************
+// End of File
+//******************************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Polygon.h">Polygon.h</a></h3>
+<p>This is the header file for the Polygon class. Polygon will be our abstract class. It contains two virtual functions: one for getting the area and one for getting the perimeter of Polygon-derived objects. </p>
+<pre style="background-color:#e0e0e0;">//************************************************************
+//  Polygon.h
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This header file contains the declaration for Polygon.
+//  Polygon is an abstract class.
+//  An abstract class has AT LEAST one virtual function.
+//  Polygon also includes Point via composition.
+//************************************************************
+
+#ifndef Polygon_h
+#define Polygon_h
+#include "Point.h"
+
+//------------------------------------------------------------
+// Let Polygon be a generic "template" for cyclic polygons.
+//------------------------------------------------------------
+class Polygon
+{
+protected:
+    
+    // Type is a description of the Polygon instance.
+    const string TYPE = "POLYGON";
+    
+    // Color is an arbitrary value.
+    // It's being used to demonstrate abstract constructors.
+    string color;
+    
+public:
+    
+    // Default constructor initializes the color.
+    // We cannot instantiate Polygon since it's abstract.
+    // Instead, the constructor is used by descendants.
+    Polygon();
+    
+    // Getter method prints a description of the Polygon.
+    // If no parameter is supplied, output goes to console.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function alternative to the print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access.
+    friend ostream &amp; operator &lt;&lt; (ostream &amp; out, Polygon &amp; P);
+    
+    //--------------------------------------------------------
+    // Virtual methods must be defined by derived classes.
+    //--------------------------------------------------------
+    virtual double getArea() = 0;
+    virtual double getPerimeter() = 0;
+};
+
+#endif
+
+//************************************************************
+// End of File
+//************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Polygon.cpp">Polygon.cpp</a></h3>
+<p>This is the source file for the Polygon class. Here we will define some basic methods. In particular, the default constructor for Polygon will set the color to &#8220;orange&#8221; since orange is the best color in the universe.</p>
+<pre style="background-color:#e0e0e0;">//************************************************************
+//  Polygon.cpp
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This header file defines methods of the Polygon class.
+//  Polygon is an abstract class.
+//  An abstract class has AT LEAST one virtual function.
+//************************************************************
+
+#include "Polygon.h"
+
+// Default constructor initializes the color.
+// We cannot instantiate Polygon since it's abstract.
+// Instead, the constructor is used by descendants.
+Polygon::Polygon()
+{
+    color = "orange";
+}
+
+// Getter method prints a description of the Polygon.
+// If no parameter is supplied, output goes to console.
+void Polygon::print( ostream &amp; output )
+{
+    output &lt;&lt; "\t" &lt;&lt; TYPE &lt;&lt; "\n\t{\n";
+    output &lt;&lt; "\t\tcolor = " &lt;&lt; color &lt;&lt; "\n\t}\n\n";
+}
+
+// Friend function alternative to the print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access.
+ostream &amp; operator &lt;&lt; (ostream &amp; out, Polygon &amp; P)
+{
+    P.print( out );
+    return out;
+}
+
+//--------------------------------------------------------
+// Virtual methods must be defined by derived classes.
+//--------------------------------------------------------
+double Polygon::getArea() { return 0.0; }
+double Polygon::getPerimeter() { return 0.0; }
+
+//************************************************************
+// End of File
+//************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Triangle.h">Triangle.h</a></h3>
+<p>This is the header file for the Triangle class. Triangle implements the Polygon class. Basically, a Triangle is a collection of three points on a Cartesian plane that meet the criteria for a triangle. In particular, the lines that connect these points in a &#8220;circuit&#8221; must obey the <a href="http://mathworld.wolfram.com/TriangleInequality.html">Triangle Inequality</a>.</p>
+<pre style="background-color:#e0e0e0;">//**********************************************************************
+//  Triangle.h
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This header file contains the declaration for Triangle.
+//  Triangle is a descendant of the abstract class, Polygon.
+//**********************************************************************
+
+#ifndef Triangle_h
+#define Triangle_h
+
+#include "Polygon.h"
+
+//----------------------------------------------------------------------
+// Let Triangle be a three-sided polygon.
+//----------------------------------------------------------------------
+class Triangle: public Polygon
+{
+protected:
+    
+    // Type is a description of the Triangle instance.
+    const string TYPE = "POLYGON/TRIANGLE";
+    
+    // A, B, and C represent points on a plane.
+    Point A, B, C;
+    
+    // Helper method uses the Triangle Inequality to determine
+    // whether side legnths a, b, and c form a triangle:
+    //    If the following conditions are true...
+    //        a + b &gt; c
+    //        a + c &gt; b
+    //        b + c &gt; a
+    //    Then a, b, and c form the side lengths of a triangle.
+    bool isTriangle();
+    
+public:
+    
+    // Default constructor calls Polygon's constructor.
+    // Initializes color to "orange" and points to
+    // A(0,0), B(0,3), C(4,0).
+    Triangle();
+    
+    // Normal constructor sets the vertices and color.
+    Triangle( string color, Point A, Point B, Point C );
+    
+    // Copy constructor creates a clone of given Triangle.
+    Triangle( Triangle &amp; copy );
+    
+    // This method overrides Polygon's print method.
+    // Getter method prints a description of the Triangle.
+    // If no parameter is supplied, output goes to console.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function alternative to the print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; out, Triangle &amp; T );
+    
+    //------------------------------------------------------------------
+    // Implements Polygon's virtual methods.
+    //------------------------------------------------------------------
+    double getArea();
+    double getPerimeter();
+};
+
+
+#endif
+
+//**********************************************************************
+// End of File
+//**********************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Triangle.cpp">Triangle.cpp</a></h3>
+<p>The source file defines the methods of the Triangle class. Among these methods are the getArea and getPerimeter methods. We will use <a href="http://mathworld.wolfram.com/HeronsFormula.html">Heron&#8217;s Formula</a> to compute the area of triangles.</p>
+<pre style="background-color:#e0e0e0;">//**********************************************************************
+//  Triangle.cpp
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This source file defines methods of the Triangle class.
+//  Triangle is a descendant of the abstract class, Polygon.
+//**********************************************************************
+
+#include "Triangle.h"
+
+// Helper method uses the Triangle Inequality to determine
+// whether side legnths a, b, and c form a triangle:
+//    If the following conditions are true...
+//        a + b &gt; c
+//        a + c &gt; b
+//        b + c &gt; a
+//    Then a, b, and c form the side lengths of a triangle.
+bool Triangle::isTriangle()
+{
+    // Get side lengths.
+    double a = C.getDistance( B );
+    double b = A.getDistance( C );
+    double c = A.getDistance( B );
+    
+    // Compare side lengths.
+    if ( (a + b) &lt; c ) return false;
+    if ( (a + c) &lt; b ) return false;
+    if ( (b + c) &lt; a ) return false;     
+    return true; 
+} 
+
+// Default constructor calls Polygon's constructor. 
+// Initializes color to "orange" and points to 
+// A(0,0), B(0,3), C(4,0). 
+Triangle::Triangle(): Polygon() 
+{     
+    A = Point( 0, 0 );     
+    B = Point( 0, 3 );     
+    C = Point( 4, 0 ); 
+} 
+
+// Normal constructor sets the vertices and color. 
+Triangle::Triangle( string color, Point A, Point B, Point C ) 
+{     
+    if ( isTriangle() )     
+    {         
+        this -&gt; A = A;
+        this -&gt; B = B;
+        this -&gt; C = C;
+    }
+    else
+    {
+        this -&gt; A = Point( 0, 0 );
+        this -&gt; B = Point( 0, 3 );
+        this -&gt; C = Point( 4, 0 );
+    }
+    this -&gt; color = color;
+}
+
+// Copy constructor creates a clone of given Triangle.
+Triangle::Triangle( Triangle &amp; copy )
+{
+    this -&gt; A = copy.A;
+    this -&gt; B = copy.B;
+    this -&gt; C = copy.C;
+    this -&gt; color = copy.color;
+}
+
+// This method overrides Polygon's print method.
+// Getter method prints a description of the Triangle.
+// If no parameter is supplied, output goes to console.
+void Triangle::print( ostream &amp; output )
+{
+    output &lt;&lt; "\t" &lt;&lt; TYPE &lt;&lt; "\n\t{\n";
+    output &lt;&lt; "\t\tcolor = " &lt;&lt; color &lt;&lt; "\n";
+    output &lt;&lt; "\t\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\t\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\t\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\t\tside a = BC = " &lt;&lt; B.getDistance(C) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tside b = AC = " &lt;&lt; A.getDistance(C) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tside c = AB = " &lt;&lt; A.getDistance(B) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tperimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\t\tarea = " &lt;&lt; getArea() &lt;&lt; "\n\t}\n\n";
+    
+}
+
+// Friend function alternative to the print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access.
+ostream &amp; operator &lt;&lt; ( ostream &amp; out, Triangle &amp; T )
+{
+    T.print( out );
+    return out;
+}
+
+// Getter returns the area of the triangle using Heron's Formula:
+// Area = sqrt( s * (s - a) * (s - b) * (s - c) ),
+// where s = (1/2) * (a + b + c)
+double Triangle::getArea()
+{
+    // Get side lengths.
+    double a = C.getDistance( B );
+    double b = A.getDistance( C );
+    double c = A.getDistance( B );
+    
+    // Compute the area using Heron's Formula.
+    double s = 0.5 * ( a + b + c );
+    return sqrt( s * (s - a) * (s - b) * (s - c) );
+}
+
+// Getter returns the perimeter of the triangle.
+// Perimeter = sum of all side lengths
+double Triangle::getPerimeter()
+{
+    // Get side lengths.
+    double a = C.getDistance( B );
+    double b = A.getDistance( C );
+    double c = A.getDistance( B );
+    
+    // Add up the side lengths.
+    return a + b + c;
+}
+
+//**********************************************************************
+// End of File
+//**********************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Quadrilateral.h">Quadrilateral.h</a></h3>
+<p>This is the header file for the Quadrilateral class. Quadrilateral implements the Polygon class. Essentially, Quadrilateral represents a collection of four points on a two-dimensional plane that meet the definition for a cyclic quadrilateral. In particular, we will use <a href="http://mathworld.wolfram.com/PtolemysTheorem.html"> Ptolemy&#8217;s Theorem</a> to verify that the points meet our criteria.</p>
+<pre style="background-color:#e0e0e0;">//**********************************************************************
+//  Quadrilateral.h
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This header file contains the declaration for Quadrilateral.
+//  Quadrilateral is a descendant of the abstract class, Polygon.
+//**********************************************************************
+
+#ifndef Quadrilateral_h
+#define Quadrilateral_h
+
+#include "Polygon.h"
+
+//----------------------------------------------------------------------
+// Let Quadrilateral be a four-sided cyclic polygon.
+//----------------------------------------------------------------------
+class Quadrilateral: public Polygon
+{
+protected:
+    
+    // Type is a description of the Triangle instance.
+    const string TYPE = "POLYGON/QUADRILATERAL";
+    
+    // A, B, C, and D represent points on a plane
+    Point A, B, C, D;
+    
+    // Helper method uses Ptolemy's Theorem to determine whether
+    // points A, B, C, and D form a cyclic quadrilateral:
+    //    If the following condition is true:
+    //           AB × CD + BC × DA = AC × BD,
+    //           where AB,BC, CD, and DA are side lengths,
+    //    Then A, B, C, and D form a cyclic quadrilateral.
+    bool isCyclicQuadrilateral();
+    
+public:
+    
+    // Default constructor calls Polygon's constructor.
+    // Initializes color to "orange" and vertices to
+    // A(0,0), B(0,5), C(4,5), D(4,0).
+    Quadrilateral();
+    
+    // Normal constructor sets the vertices and color.
+    Quadrilateral(string color, Point A, Point B, Point C, Point D);
+    
+    // Copy constructor creates a clone of given Quadrilateral.
+    Quadrilateral( Quadrilateral &amp; copy );
+    
+    // This method overrides Polygon's print method.
+    // Getter method prints a description of the Quadrilateral.
+    // If no parameter is supplied, output goes to console.
+    void print( ostream &amp; output = cout );
+    
+    // Friend function alternative to the print method.
+    // Overloads the ostream operator.
+    // Friend is NOT a member of this class, but has access.
+    friend ostream &amp; operator &lt;&lt; ( ostream &amp; out, Quadrilateral &amp; Q );
+    
+    //------------------------------------------------------------------
+    // Implements Polygon's virtual methods.
+    //------------------------------------------------------------------
+    double getArea();
+    double getPerimeter();
+};
+
+
+#endif
+//************************************************************
+// End of File
+//************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Quadrilateral.cpp">Quadrilateral.cpp</a></h3>
+<p>The source file defines the methods of the Quadrilateral class. It will implement the virtual methods of Polygon, getArea and getPerimeter. To get the area of a quadrilateral, we will use <a href="http://mathworld.wolfram.com/HeronsFormula.html">Heron&#8217;s Formula</a> as we did in the Triangle class. Alternatively, you could use <a href="http://mathworld.wolfram.com/BrahmaguptasFormula.html"> Brahmagupta&#8217;s Formula</a> to compute the area.</p>
+<pre style="background-color:#e0e0e0;">//**********************************************************************
+//  Quadrilateral.cpp
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This source file defines methods of the Quadrilateral class.
+//  Quadrilateral is a descendant of the abstract class, Polygon.
+//**********************************************************************
+
+#include "Quadrilateral.h"
+
+// Helper method uses Ptolemy's Theorem to determine whether
+// points A, B, C, and D form a cyclic quadrilateral:
+//    If the following condition is true:
+//           AB × CD + BC × DA = AC × BD,
+//           where AB,BC, CD, and DA are side lengths,
+//    Then A, B, C, and D form a cyclic quadrilateral.
+bool Quadrilateral::isCyclicQuadrilateral()
+{
+    // Get side lengths.
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    
+    // Get diagonals.
+    double AC = A.getDistance( C );
+    double BD = B.getDistance( D );
+    
+    // Employ Ptolemy's Theorem.
+    if ((AB * CD + BC * DA) == (AC * BD)) return true;
+    return false;
+}
+
+// Default constructor calls Polygon's constructor.
+// Initializes color to "orange" and vertices to
+// A(0,0), B(0,5), C(4,5), D(4,0).
+Quadrilateral::Quadrilateral(): Polygon()
+{
+    A = Point( 0, 0 );
+    B = Point( 0, 5 );
+    C = Point( 4, 5 );
+    D = Point( 4, 0 );
+}
+
+// Normal constructor sets the vertices and color.
+Quadrilateral::Quadrilateral( string color, Point A,
+                              Point B, Point C, Point D )
+{
+    if ( isCyclicQuadrilateral() )
+    {
+        this -&gt; A = A;
+        this -&gt; B = B;
+        this -&gt; C = C;
+        this -&gt; D = D;
+    }
+    else
+    {
+        this -&gt; A = Point( 0, 0 );
+        this -&gt; B = Point( 0, 5 );
+        this -&gt; C = Point( 4, 5 );
+        this -&gt; D = Point( 4, 0 );
+    }
+    this -&gt; color = color;
+}
+
+// Copy constructor creates a clone of given Quadrilateral.
+Quadrilateral::Quadrilateral( Quadrilateral &amp; copy )
+{
+    this -&gt; A = copy.A;
+    this -&gt; B = copy.B;
+    this -&gt; C = copy.C;
+    this -&gt; D = copy.D;
+    this -&gt; color = copy.color;
+}
+
+// This method overrides Polygon's print method.
+// Getter method prints a description of the Quadrilateral.
+// If no parameter is supplied, output goes to console.
+void Quadrilateral::print( ostream &amp; output )
+{
+    output &lt;&lt; "\t" &lt;&lt; TYPE &lt;&lt; "\n\t{\n";
+    output &lt;&lt; "\t\tcolor = " &lt;&lt; color &lt;&lt; "\n";
+    output &lt;&lt; "\t\tA = " &lt;&lt; A &lt;&lt; "\n";
+    output &lt;&lt; "\t\tB = " &lt;&lt; B &lt;&lt; "\n";
+    output &lt;&lt; "\t\tC = " &lt;&lt; C &lt;&lt; "\n";
+    output &lt;&lt; "\t\tD = " &lt;&lt; D &lt;&lt; "\n";
+    output &lt;&lt; "\t\tAB = " &lt;&lt; A.getDistance(B) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tBC = " &lt;&lt; B.getDistance(C) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tCD = " &lt;&lt; C.getDistance(D) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tDA = " &lt;&lt; D.getDistance(A) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tAC = " &lt;&lt; A.getDistance(C) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tBD = " &lt;&lt; B.getDistance(D) &lt;&lt; "\n";
+    output &lt;&lt; "\t\tperimeter = " &lt;&lt; getPerimeter() &lt;&lt; "\n";
+    output &lt;&lt; "\t\tarea = " &lt;&lt; getArea() &lt;&lt; "\n\t}\n\n";
+}
+
+// Friend function alternative to the print method.
+// Overloads the ostream operator.
+// Friend is NOT a member of this class, but has access.
+ostream &amp; operator &lt;&lt; ( ostream &amp; out, Quadrilateral &amp; Q )
+{
+    Q.print( out );
+    return out;
+}
+
+// Getter returns the area of the triangle using Heron's Formula:
+// First, divide the quadrilateral into two triangles.
+// Next, compute the area of each triangle:
+//     Area = sqrt( s * (s - a) * (s - b) * (s - c) ),
+//     where s = (1/2) * (a + b + c)
+// Finally, add up the areas of the triangles to get the total
+// area of the quadrilateral.
+double Quadrilateral::getArea()
+{
+    // First Triangle
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CA = C.getDistance( A );
+    
+    // Second Triangle
+    double AC = A.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    
+    // Compute half the perimeters.
+    double S1 = ( AB + BC + CA ) / 2;
+    double S2 = ( AC + CD + DA ) / 2;
+    
+    // Compute the areas using Heron's formula.
+    double A1 = sqrt( S1*( S1-AB )*( S1-BC )*( S1-CA ));
+    double A2 = sqrt( S2*( S2-AC )*( S2-CD )*( S2-DA ));
+    
+    // Return the sum of the two triangles.
+    return A1 + A2;
+}
+
+// Getter returns the perimeter of the Quadrilateral
+// Perimeter = sum of all side lengths
+double Quadrilateral::getPerimeter()
+{
+    // Get side lengths.
+    double AB = A.getDistance( B );
+    double BC = B.getDistance( C );
+    double CD = C.getDistance( D );
+    double DA = D.getDistance( A );
+    
+    // Add the side lengths.
+    return AB + BC + CD + DA;
+}
+
+//**********************************************************************
+// End of File
+//**********************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/main.cpp">main.cpp</a></h3>
+<p>The driver file implements the Polygon class hierarchy. In this file, you can observe how Polygon can be used to create pointers to Polygon-derived object, but <i>not</i> Polygon objects themselves.</p>
+<pre style="background-color:#e0e0e0;">//************************************************************
+//  main.cpp
+//  Polymorphism_Project
+//
+//  Created by Karlina Beringer on July 13, 2014.
+//
+//  This driver file implements the abstract class, Polygon.
+//  It also implements descendants, Triangle and Rectangle.
+//  This program demonstrates polymorphism in C++.
+//************************************************************
+
+#include "Polygon.h"
+#include "Triangle.h"
+#include "Quadrilateral.h"
+
+#include 
+#include 
+
+int main()
+{
+    //--------------------------------------------------------
+    // The statement below would cause an error.
+    // Abstract classes CANNOT be instantiated directly.
+    //--------------------------------------------------------
+    // Polygon polygon;
+
+    //--------------------------------------------------------
+    // Although we cannot create instances of Polygon,
+    // we can create pointer of type Polygon.
+    // These pointers can reference instances of
+    // the Rectangle and Quadrilateral classes.
+    //--------------------------------------------------------
+    Polygon * polygon;
+    
+    //--------------------------------------------------------
+    // Create a default Triangle object, trig1.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Create a default Triangle object, trig1...\n";
+    Triangle trig1;
+    cout &lt;&lt; trig1;
+    
+    //--------------------------------------------------------
+    // Create a custom Triangle object, trig2.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Create a custom Triangle object, trig2...\n";
+    Point A( -1, -1 ), B( 0, 10 ), C( -6, 6 );
+    Triangle trig2( "blue", A, B, C );
+    cout &lt;&lt; trig2;
+    
+    //--------------------------------------------------------
+    // Create a copy of trig2 called trig3.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Create a copy of trig2 called trig3...\n";
+    Triangle trig3( trig2 );
+    cout &lt;&lt; trig3;
+    
+    //--------------------------------------------------------
+    // Use pointer of type Polygon to access trig3.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Use pointer of type Polygon to access trig3.\n";
+    cout &lt;&lt; "Notice that Polygon's print method is called...\n";
+    polygon = &amp;trig3;
+    cout &lt;&lt; *polygon;
+    
+    //--------------------------------------------------------
+    // Use pointer of type Triangle to access trig3.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Use pointer of type Triangle to access trig3.\n";
+    cout &lt;&lt; "Notice that Triangle's print method is called...\n";
+    Triangle * triangle = &amp;trig3;
+    cout &lt;&lt; *triangle;
+    
+    //--------------------------------------------------------
+    // Create a default Quadrilateral object, quad1.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Create a default Quadrilateral object, quad1....\n";
+    Quadrilateral quad1;
+    cout &lt;&lt; quad1;
+    
+    //--------------------------------------------------------
+    // Create a custom Triangle object, trig2.
+    //--------------------------------------------------------
+    cout &lt;&lt; "Create a custom Triangle object, trig2.\n";
+    cout &lt;&lt; "Randomly generate four points...\n";
+    srand (time(NULL));
+    double randomValues[8];
+    for (int i = 0; i &lt; 8; i++)
+        randomValues[i] = rand() % 100;
+    Point W( randomValues[0], randomValues[1] );
+    Point X( randomValues[2], randomValues[3] );
+    Point Y( randomValues[4], randomValues[5] );
+    Point Z( randomValues[6], randomValues[7] );
+    Quadrilateral quad2( "green", W, X, Y, Z );
+    cout &lt;&lt; quad2;
+    
+    return 0;
+}
+//************************************************************
+// End of File
+//************************************************************
+</pre>
+<h3><a href="https://github.com/pumpkinprogrammer/Polymorphism_Tutorial/blob/master/Output.txt">Output.txt</a></h3>
+<p>This text file contains program output after executing the main function. This can be helpful for debugging if you try to replicate or modify the code for learning purposes.</p>
+<pre style="background-color:#e0e0e0;">Create a default Triangle object, trig1...
+	POLYGON/TRIANGLE
+	{
+		color = orange
+		A = (0,0)
+		B = (0,3)
+		C = (4,0)
+		side a = BC = 5
+		side b = AC = 4
+		side c = AB = 3
+		perimeter = 12
+		area = 6
+	}
+
+Create a custom Triangle object, trig2...
+	POLYGON/TRIANGLE
+	{
+		color = blue
+		A = (-1,-1)
+		B = (0,10)
+		C = (-6,6)
+		side a = BC = 7.2111
+		side b = AC = 8.60233
+		side c = AB = 11.0454
+		perimeter = 26.8588
+		area = 31
+	}
+
+Create a copy of trig2 called trig3...
+	POLYGON/TRIANGLE
+	{
+		color = blue
+		A = (-1,-1)
+		B = (0,10)
+		C = (-6,6)
+		side a = BC = 7.2111
+		side b = AC = 8.60233
+		side c = AB = 11.0454
+		perimeter = 26.8588
+		area = 31
+	}
+
+Use pointer of type Polygon to access trig3.
+Notice that Polygon's print method is called...
+	POLYGON
+	{
+		color = blue
+	}
+
+Use pointer of type Triangle to access trig3.
+Notice that Triangle's print method is called...
+	POLYGON/TRIANGLE
+	{
+		color = blue
+		A = (-1,-1)
+		B = (0,10)
+		C = (-6,6)
+		side a = BC = 7.2111
+		side b = AC = 8.60233
+		side c = AB = 11.0454
+		perimeter = 26.8588
+		area = 31
+	}
+
+Create a default Quadrilateral object, quad1....
+	POLYGON/QUADRILATERAL
+	{
+		color = orange
+		A = (0,0)
+		B = (0,5)
+		C = (4,5)
+		D = (4,0)
+		AB = 5
+		BC = 4
+		CD = 5
+		DA = 4
+		AC = 6.40312
+		BD = 6.40312
+		perimeter = 18
+		area = 20
+	}
+
+Create a custom Triangle object, trig2.
+Randomly generate four points...
+	POLYGON/QUADRILATERAL
+	{
+		color = green
+		A = (68,5)
+		B = (40,17)
+		C = (95,61)
+		D = (76,30)
+		AB = 30.4631
+		BC = 70.4344
+		CD = 36.3593
+		DA = 26.2488
+		AC = 62.1691
+		BD = 38.2753
+		perimeter = 163.506
+		area = 1059.5
+	}
+
+Program ended with exit code: 0
+</pre>
+<h3>References:</h3>
+<ol>
+<li>&#8220;Abstract classes (C++ only).&#8221; Language Reference. IBM Knowledge Center. 2014.<br />
+<a href="http://www-01.ibm.com/support/knowledgecenter/">http://www-01.ibm.com/support/knowledgecenter/</a></li>
+<li>Krumins, Peteris. &#8220;The Four Polymorphisms in C++.&#8221; catonmat.net. 18 June 2010.<br />
+<a href="http://www.catonmat.net/blog/cpp-polymorphism/">http://www.catonmat.net/blog/cpp-polymorphism/</a></li>
+<li>Weisstein, Eric W. &#8220;Brahmagupta&#8217;s Formula.&#8221; MathWorld. Wolfram Mathematica. 2014.<br />
+<a href="http://mathworld.wolfram.com/BrahmaguptasFormula.html">http://mathworld.wolfram.com/BrahmaguptasFormula.html</a></li>
+<li>Weisstein, Eric W. &#8220;Heron&#8217;s Formula.&#8221; MathWorld. Wolfram Mathematica. 2014.<br />
+<a href="http://mathworld.wolfram.com/HeronsFormula.html">http://mathworld.wolfram.com/HeronsFormula.html</a></li>
+<li>Weisstein, Eric W. &#8220;Ptolemy&#8217;s Theorem.&#8221; MathWorld. Wolfram Mathematica. 2014.<br />
+<a href="http://mathworld.wolfram.com/PtolemysTheorem.html">http://mathworld.wolfram.com/PtolemysTheorem.html</a></li>
+<li>Weisstein, Eric W. &#8220;Triangle Inequality.&#8221; MathWorld. Wolfram Mathematica. 2014.<br />
+<a href="http://mathworld.wolfram.com/TriangleInequality.html">http://mathworld.wolfram.com/TriangleInequality.html</a></li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-637" class="share-facebook sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-637" class="share-linkedin sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-637" class="share-twitter sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/18/c-tutorial-polymorphism/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-65930048-637-5ed25ec219d5d' data-src='//widgets.wp.com/likes/index.html?ver=20190321#blog_id=65930048&amp;post_id=637&amp;origin=pumpkinprogrammerdotcom4.wordpress.com&amp;obj_id=65930048-637-5ed25ec219d5d' data-name='like-post-frame-65930048-637-5ed25ec219d5d'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->

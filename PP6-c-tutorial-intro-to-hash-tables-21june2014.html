@@ -1,0 +1,580 @@
+<div class="entry-content">
+		<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' width='474' height='267' src='https://www.youtube.com/embed/jEdaduyLLqY?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span><br />
+In this tutorial, we will be taking an introductory look at hash tables in C++. Hash tables are useful for storing large amounts of data in an efficient manner. They are also an essential aspect of most undergraduate computer science courses, so study up! Near the bottom of this post, you can find everything you need to create a C++ program that implements a hash table. (You can also download the source files you need from the Github link <a href="https://github.com/KarlinaBeringer/HashTable">here</a>).The example program will create a simple table for storing words.</p>
+<p><span style="text-decoration:underline;">Note:</span> This tutorial assumes that you are familiar with arrays, pointers, modular arithmetic, algorithm efficiency, and linked lists especially. To learn more about linked lists, please see the <a href="http://pumpkinprogrammer.com/2014/06/13/c-tutorial-intro-to-linked-lists/">previous tutorial on linked lists</a>. With that in mind, let’s begin!</p>
+<div style="background-color:#c0c0c0;padding-top:10px;padding-left:10px;padding-bottom:10px;">
+<h4>Contents:</h4>
+<ol>
+<li>What is a Hash Table?</li>
+<li>What is a Hash Function?</li>
+<li>What are Hash Collisions?</li>
+<li>Designing the Hash Table</li>
+<li>Coding the Hash Table
+<ul>
+<li>LinkedList.h</li>
+<li>LinkedList.cpp</li>
+<li>HashTable.h</li>
+<li>HashTable.cpp</li>
+<li>main.cpp</li>
+</ul>
+</li>
+<li>References</li>
+</ol>
+</div>
+<h3>What is a Hash Table?</h3>
+<p>
+A <u>hash table</u> is a data structure for storing key-value pairs. Unlike a basic array, which uses index numbers for accessing elements, a hash table uses keys to look up table entries. This makes data management more manageable for the human user since it&#8217;s easier to catalog data entries by their attributes rather than their count in a giant list.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg"><img data-attachment-id="482" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/hash_tab_2/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Hash_Tab_2" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=300&#038;h=225" alt="Hash_Tab_2" width="300" height="225" class="aligncenter size-small wp-image-482" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hash_tab_2.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+In C++, we implement a hash table as an array of linked lists. It&#8217;s sort of like a multidimensional array. In a two-dimensional array, for instance, the elements consist of rows of a fixed length. In a hash table, however, the elements (a.k.a. buckets) can expand or shrink to accommodate a virtually infinite number of table entries.
+</p>
+<p>
+In terms of efficiency, a hash table is a compromise between an array and a linked list. It uses both indexing and list traversal to store and retrieve data elements.
+</p>
+<p>
+Looking up elements by index makes an array very efficient. No matter where an item is stored in the array, it always takes the same amount of time to retrieve it. In technical terms, getting an item from an array is an O(1) or “constant time&#8221; operation.
+</p>
+<p>
+Looking up elements in a linked list is a lot less efficient. You can’t just directly access any node in the list. Instead, you have to traverse down the list until you find the target item. If the item you are looking for happens to be at the front of the list, the retrieval is an O(1) operation since you only traversed down one node. If the item is at the end of the list, retrieving it would be an O(n) operation, where n is the total number of nodes in the list.
+</p>
+<p>
+To summarize, as the number of elements increases in an array, the runtime to access an element by its index remains constant. With a linked list, the time it takes to access a particular element increases linearly with the number of elements.
+</p>
+<h3>What is a Hash Function?</h3>
+<p>
+A <u>hash function</u> decides where to store and retrieve items in a hash table. It takes in an item key as its parameter and returns an index location for that particular item. Generally, a hash function uses modulo arithmetic. In particular, a key value is divided by the table length to generate an index number in the table. This index number refers to a location, or bucket, in the hash table.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg"><img data-attachment-id="484" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/hashfunction_7/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="HashFunction_7" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=300&#038;h=225" alt="HashFunction_7" width="300" height="225" class="aligncenter size-small wp-image-484" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/hashfunction_7.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+Here’s an example: Suppose the hash function takes in a string as its parameter, and then it adds up the ASCII values of all of the characters in that string to get an integer. If the key is &#8220;pumpkin,&#8221; then the sum of the ASCII values would be 772. After that, the hash function takes the modulus of this number by the table length to get an index number. If the table length is 13, then 772 modulo 13 is 5. So the item with the key &#8220;pumpkin,&#8221; would go into bucket # 5 in the hash table.
+</p>
+<pre style="background-color:#c0c0c0;">
+int hash( string key )
+{
+    int value = 0;
+    for ( int i = 0; i &lt; key.length(); i++ )
+        value += key[i];
+    return value % tableLength;
+}
+</pre>
+<h3>What are Hash Collisions?</h3>
+<p>
+Occasionally, different words will generate the same hash function result. For example, the keys “tar” and “rat” will both hash to the index 2 if there are 13 buckets total in the hash table. When two keys hash to the same index, we get a <u>hash collision</u>.
+</p>
+<p>
+To maximize the efficiency of storing and retrieving items in the hash table, we need to minimize the number of collisions. Each collision is another item in the bucket; another node in the linked list. We know that storing and retrieving items in a linked list grows more inefficient as the list grows longer. So it makes sense to keep these linked lists as short as possible.
+</p>
+<p>
+There are several ways to write a good hash function. Making the table size a prime number is a good way to minimize collisions. In general, a good hash function fills out a hash table fairly uniformly. The printHistogram method of the HashTable class in the code example below lets you visualize the hash table. Ideally, the distribution of items should be fairly balanced.
+</p>
+<pre style="background-color:#c0c0c0;">
+Hash Table Contains 25 Items total
+1:	 X X X X
+2:	 X
+3:	 X
+4:	 X
+5:	 X
+6:	 X
+7:	 X X X
+8:	 X X X
+9:	 X X X
+10:	 X
+11:	 X X X
+12:	
+13:	 X X X
+</pre>
+<h3>Designing the Hash Table</h3>
+<p>Before we begin coding, it&#8217;s helpful to design the classes we will need for the program and how they will all work together. In the image below, we have <u>UML (Universal Modeling Language) diagrams</u> for the objects we will need in the program. First we start with a simple struct for representing items, called <u>Item</u>. From there, we can build a <u>LinkedList</u> from Items. Finally, we build a <u>HashTable</u> from a dynamic array of LinkedList objects.<br />
+<a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg"><img data-attachment-id="480" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/uml_hashtable/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="UML_HashTable" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=474" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=300&#038;h=225" alt="UML_HashTable" width="300" height="225" class="aligncenter size-medium wp-image-480" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/uml_hashtable.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>LinkedList.h</h3>
+<p>Copy and paste this code into your <a href="https://github.com/KarlinaBeringer/HashTable/blob/master/LinkedList.h">LinkedList.h</a> file. This code declares the LinkedList class and includes the necessary C++ libraries we need for this project.</p>
+<pre style="background-color:#c0c0c0;">//*****************************************************************
+//  LinkedList.h
+//  HashTable
+//
+//  Created by Karlina Beringer on June 16, 2014.
+//
+//  This header file contains the Linked List class declaration.
+//  Hash Table array elements consist of Linked List objects.
+//*****************************************************************
+
+#ifndef LinkedList_h
+#define LinkedList_h
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+//*****************************************************************
+// List items are keys with pointers to the next item.
+//*****************************************************************
+struct Item
+{
+    string key;
+    Item * next;
+};
+
+//*****************************************************************
+// Linked lists store a variable number of items.
+//*****************************************************************
+class LinkedList
+{
+private:
+    // Head is a reference to a list of data nodes.
+    Item * head;
+    
+    // Length is the number of data nodes.
+    int length;
+    
+public:
+    // Constructs the empty linked list object.
+    // Creates the head node and sets length to zero.
+    LinkedList();
+    
+    // Inserts an item at the end of the list.
+    void insertItem( Item * newItem );
+    
+    // Removes an item from the list by item key.
+    // Returns true if the operation is successful.
+    bool removeItem( string itemKey );
+    
+    // Searches for an item by its key.
+    // Returns a reference to first match.
+    // Returns a NULL pointer if no match is found.
+    Item * getItem( string itemKey );
+    
+    // Displays list contents to the console window.
+    void printList();
+    
+    // Returns the length of the list.
+    int getLength();
+    
+    // De-allocates list memory when the program terminates.
+    ~LinkedList();
+};
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3>LinkedList.cpp</h3>
+<p>Copy and paste this code into your <a href="https://github.com/KarlinaBeringer/HashTable/blob/master/LinkedList.cpp">LinkedList.cpp</a> file. This code defines the methods of the LinkedList class. This will come in handy when we implement the HashTable class.</p>
+<pre style="background-color:#c0c0c0;">//*****************************************************************
+//  LinkedList.cpp
+//  HashTable
+//
+//  Created by Karlina Beringer on June 16, 2014.
+//
+//  This header file contains the Linked List class declaration.
+//  Hash Table array elements consist of Linked List objects.
+//*****************************************************************
+
+#include "LinkedList.h"
+
+// Constructs the empty linked list object.
+// Creates the head node and sets length to zero.
+LinkedList::LinkedList()
+{
+    head = new Item;
+    head -&gt; next = NULL;
+    length = 0;
+}
+
+// Inserts an item at the end of the list.
+void LinkedList::insertItem( Item * newItem )
+{
+    if (!head -&gt; next)
+    {
+        head -&gt; next = newItem;
+        length++;
+        return;
+    }
+    Item * p = head;
+    Item * q = head;
+    while (q)
+    {
+        p = q;
+        q = p -&gt; next;
+    }
+    p -&gt; next = newItem;
+    newItem -&gt; next = NULL;
+    length++;
+}
+
+// Removes an item from the list by item key.
+// Returns true if the operation is successful.
+bool LinkedList::removeItem( string itemKey )
+{
+    if (!head -&gt; head) return false;
+    Item * p = head;
+    Item * q = head;
+    while (q)
+    {
+        if (q -&gt; key == itemKey)
+        {
+            p -&gt; next = q -&gt; next;
+            delete q;
+            length--;
+            return true;
+        }
+        p = q;
+        q = p -&gt; next;
+    }
+    return false;
+}
+
+// Searches for an item by its key.
+// Returns a reference to first match.
+// Returns a NULL pointer if no match is found.
+Item * LinkedList::getItem( string itemKey )
+{
+    Item * p = head;
+    Item * q = head;
+    while (q)
+    {
+        p = q;
+        if ((p != head) &amp;&amp; (p -&gt; key == itemKey))
+            return p;
+        q = p -&gt; next;
+    }
+    return NULL;
+}
+
+// Displays list contents to the console window.
+void LinkedList::printList()
+{
+    if (length == 0) 
+    {
+        cout &lt;&lt; "\n{ }\n";
+        return;
+    }
+    Item * p = head;
+    Item * q = head;
+    cout &lt;&lt; "\n{ ";
+    while (q)
+    {
+        p = q;
+        if (p != head)
+        {
+            cout &lt;&lt; p -&gt; key;
+            if (p -&gt; next) cout &lt;&lt; ", ";
+            else cout &lt;&lt; " ";
+        }
+        q = p -&gt; next;
+    }
+    cout &lt;&lt; "}\n";
+}
+
+// Returns the length of the list.
+int LinkedList::getLength()
+{
+    return length;
+}
+
+// De-allocates list memory when the program terminates.
+LinkedList::~LinkedList()
+{
+    Item * p = head;
+    Item * q = head;
+    while (q)
+    {
+        p = q;
+        q = p -&gt; next;
+        if (q) delete p;
+    }
+}
+
+//***************************************************************** 
+// End of File 
+//*****************************************************************
+</pre>
+<h3>HashTable.h</h3>
+<p>Copy and paste this code into your <a href="https://github.com/KarlinaBeringer/HashTable/blob/master/HashTable.h">HashTable.h</a> file. This code contains the class declaration for the HashTable class. Notice that HashTable is a client of the LinkedList class.</p>
+<pre style="background-color:#c0c0c0;">//*****************************************************************
+//  HashTable.h
+//  HashTable
+//
+//  Created by Karlina Beringer on June 18, 2014.
+//
+//  This header file contains the Hash Table class declaration.
+//  Hash Table array elements consist of Linked List objects.
+//*****************************************************************
+
+#ifndef HashTable_h
+#define HashTable_h
+
+#include "LinkedList.h"
+
+//*****************************************************************
+// Hash Table objects store a fixed number of Linked Lists.
+//*****************************************************************
+class HashTable
+{
+private:
+    
+    // Array is a reference to an array of Linked Lists.
+    LinkedList * array;
+    
+    // Length is the size of the Hash Table array.
+    int length;
+    
+    // Returns an array location for a given item key.
+    int hash( string itemKey );
+    
+public:
+    
+    // Constructs the empty Hash Table object.
+    // Array length is set to 13 by default.
+    HashTable( int tableLength = 13 );
+    
+    // Adds an item to the Hash Table.
+    void insertItem( Item * newItem );
+    
+    // Deletes an Item by key from the Hash Table.
+    // Returns true if the operation is successful.
+    bool removeItem( string itemKey );
+    
+    // Returns an item from the Hash Table by key.
+    // If the item isn't found, a null pointer is returned.
+    Item * getItemByKey( string itemKey );
+    
+    // Display the contents of the Hash Table to console window.
+    void printTable();
+    
+    // Prints a histogram illustrating the Item distribution.
+    void printHistogram();
+    
+    // Returns the number of locations in the Hash Table.
+    int getLength();
+    
+    // Returns the number of Items in the Hash Table.
+    int getNumberOfItems();
+    
+    // De-allocates all memory used for the Hash Table.
+    ~HashTable();
+};
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+
+
+</pre>
+<h3>HashTable.cpp</h3>
+<p>Copy and paste this code into your <a href="https://github.com/KarlinaBeringer/HashTable/blob/master/HashTable.cpp">HashTable.cpp</a> file. This code contains the method definitions of the HashTable class.</p>
+<pre style="background-color:#c0c0c0;">//*****************************************************************
+//  HashTable.cpp
+//  HashTable
+//
+//  Created by Kar Beringer on June 18, 2014.
+//
+//  This header file contains the Hash Table class definition.
+//  Hash Table array elements consist of Linked List objects.
+//*****************************************************************
+
+#include "HashTable.h"
+
+// Constructs the empty Hash Table object.
+// Array length is set to 13 by default.
+HashTable::HashTable( int tableLength )
+{
+    if (tableLength &lt;= 0) tableLength = 13;
+    array = new LinkedList[ tableLength ];
+    length = tableLength;
+}
+
+// Returns an array location for a given item key.
+int HashTable::hash( string itemKey )
+{
+    int value = 0;
+    for ( int = 0; i &lt; itemKey.length(); i++ )
+        value += itemKey[i];
+    return (value * itemKey.length() ) % length;
+}
+
+// Adds an item to the Hash Table.
+void HashTable::insertItem( Item * newItem )
+{
+    int index = hash( newItem -&gt; key );
+    array[ index ].insertItem( newItem );
+}
+
+// Deletes an Item by key from the Hash Table.
+// Returns true if the operation is successful.
+bool HashTable::removeItem( string itemKey )
+{
+    int index = hash( itemKey );
+    return array[ index ].removeItem( itemKey );
+}
+
+// Returns an item from the Hash Table by key.
+// If the item isn't found, a null pointer is returned.
+Item * HashTable::getItemByKey( string itemKey )
+{
+    int index = hash( itemKey );
+    return array[ index ].getItem( itemKey );
+}
+
+// Display the contents of the Hash Table to console window.
+void HashTable::printTable()
+{
+    cout &lt;&lt; "\n\nHash Table:\n";
+    for ( int i = 0; i &lt; length; i++ )
+    {
+        cout &lt;&lt; "Bucket " &lt;&lt; i + 1 &lt;&lt; ": ";
+        array[i].printList();
+    }
+}
+
+// Prints a histogram illustrating the Item distribution.
+void HashTable::printHistogram()
+{
+    cout &lt;&lt; "\n\nHash Table Contains ";
+    cout &lt;&lt; getNumberOfItems() &lt;&lt; " Items total.\n";
+    for ( int i = 0; i &lt; length; i++ )
+    {
+        cout &lt;&lt; i + 1 &lt;&lt; ":\t";
+        for ( int j = 0; j &lt; array[i].getLength(); j++ )
+            cout &lt;&lt; " X";
+        cout &lt;&lt; "\n";
+    }
+}
+
+// Returns the number of locations in the Hash Table.
+int HashTable::getLength()
+{
+    return length;
+}
+
+// Returns the number of Items in the Hash Table.
+int HashTable::getNumberOfItems()
+{
+    int itemCount = 0;
+    for ( int i = 0; i &lt; length; i++ )
+    {
+        itemCount += array[i].getLength();
+    }
+    return itemCount;
+}
+
+// De-allocates all memory used for the Hash Table.
+HashTable::~HashTable()
+{
+    delete [] array;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3>main.cpp</h3>
+<p>Copy and paste this code into your <a href="https://github.com/KarlinaBeringer/HashTable/blob/master/main.cpp">main.cpp</a> file. This is the &#8220;driver&#8221; of the HashTable class. Feel free to tweak it and add more functionality as you test the HashTable class.</p>
+<pre style="background-color:#c0c0c0;">//**************************************************************
+//  main.cpp
+//  HashTable
+//
+//  Created by Kar Beringer on June 19, 2014.
+//  Demonstrate a simple Hash Table in C++.
+//  Implements a Linked List class.
+//**************************************************************
+
+#include "HashTable.h"
+
+int main()
+{
+    // Create 26 Items to store in the Hash Table.
+    Item * A = new Item {"Apple", NULL};
+    Item * B = new Item {"Banana", NULL};
+    Item * C = new Item {"Caterpillar", NULL};
+    Item * D = new Item {"Dog", NULL};
+    Item * E = new Item {"Elephant", NULL};
+    Item * F = new Item {"Fedora", NULL};
+    Item * G = new Item {"Goosebumps", NULL};
+    Item * H = new Item {"House", NULL};
+    Item * I = new Item {"Insects", NULL};
+    Item * J = new Item {"Jam", NULL};
+    Item * K = new Item {"Kite", NULL};
+    Item * L = new Item {"Limestone", NULL};
+    Item * M = new Item {"Mountaineering", NULL};
+    Item * N = new Item {"Night", NULL};
+    Item * O = new Item {"Open Sesame", NULL};
+    Item * P = new Item {"Potatoes", NULL};
+    Item * Q = new Item {"Quantum Mechanics", NULL};
+    Item * R = new Item {"Rrrrrrrrrrawr", NULL};
+    Item * S = new Item {"Snakes", NULL};
+    Item * T = new Item {"Tizzy Tube", NULL};
+    Item * U = new Item {"Underworld", NULL};
+    Item * V = new Item {"Volcanic Ash", NULL};
+    Item * W = new Item {"Who When What Why", NULL};
+    Item * X = new Item {"XXX", NULL};
+    Item * Y = new Item {"Yellow", NULL};
+    Item * Z = new Item {"Zest of Lemon", NULL};
+    
+    // Create a Hash Table of 13 Linked List elements.
+    HashTable table;
+    
+    // Add 3 Items to Hash Table.
+    table.insertItem(A);
+    table.insertItem(B);
+    table.insertItem(C);
+    table.printTable();
+    table.printHistogram();
+    
+    // Remove one item from Hash Table.
+    table.removeItem("Apple");
+    table.printTable();
+    table.printHistogram();
+    
+    
+    // Add 23 items to Hash Table.
+    table.insertItem(D);
+    table.insertItem(E);
+    table.insertItem(F);
+    table.insertItem(G);
+    table.insertItem(H);
+    table.insertItem(I);
+    table.insertItem(J);
+    table.insertItem(K);
+    table.insertItem(L);
+    table.insertItem(M);
+    table.insertItem(N);
+    table.insertItem(O);
+    table.insertItem(P);
+    table.insertItem(Q);
+    table.insertItem(R);
+    table.insertItem(S);
+    table.insertItem(T);
+    table.insertItem(U);
+    table.insertItem(V);
+    table.insertItem(W);
+    table.insertItem(X);
+    table.insertItem(Y);
+    table.insertItem(Z);
+    table.printTable();
+    table.printHistogram();
+    
+    // Look up an Item in the Hash Table.
+    Item * result = table.getItemByKey("Snakes");
+    cout &lt; key &lt;&lt; endl;
+    
+    return 0;
+}
+</pre>
+<h3>References:</h3>
+<ol>
+<li>Carrano, Frank. Timothy, Henry. <i>Data Abstraction &amp; Problem Solving with C : Walls and Mirrors</i>. Boston: Pearson, 2013. Print.</li>
+<li>“Hash Functions.” SparkNotes. 2014. Web. <a href="http://www.sparknotes.com/cs/searching/hashtables/section2.rhtml">http://www.sparknotes.com/cs/searching/hashtables/section2.rhtml<br />
+</a></li>
+<li>Suh, Eric. “Hash Tables.” Cprogramming.com. 2011. Web. <a href="http://www.cprogramming.com/tutorial/computersciencetheory/hash-table.html">http://www.cprogramming.com/tutorial/computersciencetheory/hash-table.html<br />
+</a></li>
+<li>Walker, Julienne. “The Art of Hashing.” Eternally Confused. 2014. Web. <a href="http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx">http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx</a></li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-452" class="share-facebook sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-452" class="share-linkedin sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-452" class="share-twitter sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/21/c-tutorial-intro-to-hash-tables/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-65930048-452-5ed2545aa68c6' data-src='//widgets.wp.com/likes/index.html?ver=20190321#blog_id=65930048&amp;post_id=452&amp;origin=pumpkinprogrammerdotcom4.wordpress.com&amp;obj_id=65930048-452-5ed2545aa68c6' data-name='like-post-frame-65930048-452-5ed2545aa68c6'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->

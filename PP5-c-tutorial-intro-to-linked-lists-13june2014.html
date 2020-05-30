@@ -1,0 +1,393 @@
+<div class="entry-content">
+		<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' width='474' height='267' src='https://www.youtube.com/embed/nwMvThJps6A?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span><br />
+In this tutorial, we will be looking at linked lists in C++. The code at the bottom of this page has everything you need to create a working linked list example. (You can also download the program files you need from the Github link <a href="https://github.com/KarlinaBeringer/LinkedList_Tutorial/tree/master">here</a>). To make it fun, I decided to make it applicable to daily life. Almost everyone likes music, so the linked list in this tutorial will represent a song playlist.</p>
+<h2>What is a Linked List?</h2>
+<p>
+Basically, a linked list is a data structure that can store an indefinite amount of items. These items don’t have to be the same data type. As long as pointers connect these items in a sequential manner, it technically counts as a linked list.
+</p>
+<p>
+<a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg"><img data-attachment-id="361" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/linked_list_0/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg" data-orig-size="732,539" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Linked_List_0" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=474" class="aligncenter size-small wp-image-361" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=300&#038;h=220" alt="Linked_List_0" width="300" height="220" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=300&amp;h=220 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=598&amp;h=440 598w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_0.jpg?w=150&amp;h=110 150w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+</p>
+<h2>Arrays vs. Linked Lists</h2>
+<p>Usually, programmers learn about arrays before they learn about linked lists, so it&#8217;s useful to compare the two. Although arrays and linked lists are both data structures for storing multiple values, there are some major differences between the two. There are pros and cons to using each.</p>
+<div align="center">
+<table border="1">
+<tbody>
+<tr>
+<th>Array</th>
+<th>Linked Lists</th>
+</tr>
+<tr>
+<td>
+<ul>
+<li>Physically Contiguous</li>
+<li>Fixed Length</li>
+<li>Access Elements by Index</li>
+<li>Insertion/Removal is Costly</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Logically Contiguous Only</li>
+<li>Changeable Length</li>
+<li>Access Elements by Traversal</li>
+<li>Insertion/Removal is Efficient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<h4>Memory Allocation</h4>
+<p>
+Unlike a linked list, an array is both physically and logically contiguous. A good way to think about an array is to imagine a single chunk of memory cells. The elements of an array are actually located next to each other as consecutive memory addresses in RAM (Random Access Memory).
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg"><img data-attachment-id="348" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/array_memory_1/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="array_memory_1" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=474" class="aligncenter size-small wp-image-348" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=300&#038;h=225" alt="array_memory_1" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/array_memory_1.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>
+The elements of a linked list, by contrast, are <i>logically</i> contiguous in their implementation, but not physically contiguous in memory. A linked list doesn&#8217;t occupy a single block of memory, allowing it to use whatever memory &#8220;scraps&#8221; are available. Because of this flexibility, node elements can be different sizes as well as different data types.
+</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg"><img data-attachment-id="350" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/heap_1/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="heap_1" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=474" class="aligncenter size-small wp-image-350" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=300&#038;h=225" alt="heap_1" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/heap_1.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h4>Length</h4>
+<p>
+Perhaps the most obvious difference between a linked list and an array is the fact that an array is a fixed length while a linked list can expand or shrink during runtime. Memory slots can be added or removed from a linked list as needed. In an array, however, you are stuck with an inflexible chunk of memory cells for the array&#8217;s lifetime. Even a dynamic array (one that is assigned a length during runtime) is incapable of changing length once it&#8217;s created.
+</p>
+<h4>Accessing Elements</h4>
+<p>
+One advantage an array has over a linked list is indexing. Instead of having to traverse down every element in the array, you can access an element directly by its index number. This costs only one instruction cycle. To get the fifth element of an array, you only need to perform one lookup operation. The same operation in a linked list would cost you five instruction cycles since you have to &#8220;inchworm&#8221; your way down the list.
+</p>
+<p>
+In technical terms, retrieving an element by its index number in an array is <i>always</i> an O(1) operation. By contrast, the same logically-equivalent operation in a linked list would take a variable amount of runtime depending on the number of elements preceding the one you&#8217;re trying to access. Thus, retrieving a particular element in a linked list would be an O(n) operation at worst and an O(1) operation at best (if the sought-after element happens to be at the front of the list).
+</p>
+<h4>Inserting/Removing Elements</h4>
+<p>
+One advantage a linked list has over an array is the ease of inserting and removing elements. In order to insert an element into the middle of an array, you have to shift each element over to make space for insertion. This can be quite costly. In a linked list, however all you need to do is reassign the pointer of one node to make it point to the new element and have that new element point to the next logical node in the sequence.
+</p>
+<h2>Types of Linked Lists</h2>
+<p>There are several kinds of linked lists. In a singly linked list, each node has only one pointer, commonly called “next” since it points to the next node in the sequence. The first node is called the &#8220;head&#8221; of the list. The last node in the list points to NULL.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg"><img data-attachment-id="369" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/linked_list_2-copy/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg" data-orig-size="685,526" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Linked_List_2 copy" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=474" class="aligncenter size-small wp-image-369" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=300&#038;h=230" alt="Linked_List_2 copy" width="300" height="230" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=300&amp;h=230 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=600&amp;h=460 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_2-copy.jpg?w=150&amp;h=115 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>A singly linked list can become a circular node by assigning the address of the head node to the tail node instead of NULL. This isn&#8217;t a particularly useful linked list, but it illustrates the flexibility of this data structure.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg"><img data-attachment-id="364" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/linked_list_4-copy/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg" data-orig-size="708,460" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Linked_List_4 copy" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=474" class="aligncenter size-small wp-image-364" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=300&#038;h=194" alt="Linked_List_4 copy" width="300" height="194" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=300&amp;h=194 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=597&amp;h=388 597w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_4-copy.jpg?w=150&amp;h=97 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>A doubly linked list has two pointer variables, one pointing forward to the next node and one pointing back to the previous node. In this tutorial, we will create a program for a singly linked list since it’s the simplest kind of list. We will use the list to represent a music playlist where each node represents a song and artist combination.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg"><img data-attachment-id="365" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/linked_list_3-copy/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg" data-orig-size="672,541" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Linked_List_3 copy" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=474" class="aligncenter size-small wp-image-365" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=300&#038;h=241" alt="Linked_List_3 copy" width="300" height="241" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=300&amp;h=241 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=600&amp;h=482 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/linked_list_3-copy.jpg?w=150&amp;h=121 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h2>Linked List Nodes</h2>
+<p>The elements of a linked list are usually referred to as &#8220;nodes.&#8221; A C++ linked list is composed of node structs, each with a data component and a pointer to other nodes in the list. The data attributes of the node in this example store a song name and an artist name. The next pointer refers to the next song in the playlist.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg"><img data-attachment-id="371" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/node/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Node" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=474" class="aligncenter size-small wp-image-371" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=300&#038;h=225" alt="Node" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/06/node.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h2>Designing the Class</h2>
+<p>As a budding programmer, I was eager to bypass the high-level design phase and get to coding right away. With experience, however, I learned that taking the time to design the program components on paper first made a huge difference. It has saved me a lot of time and frustration. For object-oriented programming in particular, it&#8217;s a good idea to use UML (Universal Modeling Language) diagrams for representing classes.</p>
+<p>Below is a UML diagram for the LinkedList class design. It&#8217;s a collection of fairly basic linked list operations and data attributes.</p>
+<div align="center">
+<table border="1">
+<tbody>
+<tr>
+<th>LinkedList</th>
+</tr>
+<tr>
+<td>Attributes:</p>
+<ul>
+<li>head: node reference</li>
+<li>listLength: integer</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Behaviors:</p>
+<ul>
+<li>LinkedList(): constructor</li>
+<li>insertNode(): boolean</li>
+<li>removeNode(): boolean</li>
+<li>printList(): void</li>
+<li>~LinkedList(): destructor</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+You can download the program files you need from the Github link <a href="https://github.com/KarlinaBeringer/LinkedList_Tutorial/tree/master">here</a>.
+</p>
+</div>
+<h2>LinkedList.h</h2>
+<p>Copy and paste the code below into your <a href="https://github.com/KarlinaBeringer/LinkedList_Tutorial/blob/master/LinkedList.h">LinkedList header file</a>. This is the next step after designing the LinkedList class in the UML diagram.</p>
+<div style="background-color:#e0e0e0;">
+<pre>//*******************************************************************
+//  LinkedList.h
+//  LinkedList_Project
+//
+//  Created by Karlina Beringer on June 12, 2014.
+//  This header file contains the LinkedList class declarations.
+//*******************************************************************
+
+#ifndef LinkedList_h
+#define LinkedList_h
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+//*******************************************************************
+// Node structs contain data and a pointer to the next node.
+// In this project, it will represent a song/artist combination.
+//*******************************************************************
+struct node
+{
+    string song;
+    string artist;
+    node * next;
+};
+
+//*******************************************************************
+// LinkedList is a list of singly-linked nodes.
+// In this project, it will represent a song playlist.
+//*******************************************************************
+class LinkedList
+{
+private:
+    // Head of the list contains no song data, 
+    // but points to the song playlist.
+    node * head;
+    int listLength;
+    
+public:
+    // Default Constructor creates the head node.
+    LinkedList();
+    
+    // Setter adds a node to the list at a given position.
+    // Takes a node and list position as parameters.
+    // Position must be between 1 and the number of data nodes.
+    // Returns true if the operation is successful.
+    bool insertNode( node * newNode, int position );
+    
+    // Setter removes a node by its given position.
+    // Returns true if the operation is successful.
+    bool removeNode( int position );
+
+    // Prints each node in the list in consecutive order,
+    // starting at the head and ending at the tail.
+    // Prints list data to the console.
+    void printList();
+    
+    // Destructor de-allocates memory used by the list.
+    ~LinkedList();
+};
+
+#endif
+</pre>
+</div>
+<h2>LinkedList.cpp</h2>
+<p>Copy and paste the code below into your <a href="https://github.com/KarlinaBeringer/LinkedList_Tutorial/blob/master/LinkedList.h">Linked List source file</a>. This is where we flesh out the methods of the LinkedList class.</p>
+<div style="background-color:#e0e0e0;">
+<pre>//*******************************************************************
+//  LinkedList.cpp
+//  LinkedList_Project
+//
+//  Created by Karlina Beringer on June 12, 2014.
+//  This source file contains the LinkedList class definitions.
+//*******************************************************************
+
+#include "LinkedList.h"
+
+// Default Constructor creates the head node.
+LinkedList::LinkedList()
+{
+    head -&gt; song = "head (contains no song data)";
+    head -&gt; artist = "head (contains no artist data)";
+    head -&gt; next = NULL;
+    listLength = 0;
+}
+
+// Setter adds a node to the list at a given position.
+// Takes a node and list position as parameters.
+// Position must be between 1 and the number of data nodes.
+// Returns true if the operation is successful.
+bool LinkedList::insertNode( node * newNode, int position )
+{
+    if ((position &lt;= 0) || (position &gt; listLength + 1))
+    {
+        cout &lt;&lt; "\nError: the given position is out of range.\n";
+        return false;
+    }
+    if (head -&gt; next == NULL) 
+    {
+        head -&gt; next = newNode;
+        listLength++;
+        return true;
+    } 
+    int count = 0;
+    node * p = head;
+    node * q = head;
+    while (q)
+    { 
+        if (count == position)
+        {
+            p -&gt; next = newNode;
+            newNode -&gt; next = q;
+            length++;
+            return true;
+        }
+        p = q;
+        q = p -&gt; next;
+        count++;
+    }
+    if (count == position)
+    {
+        p -&gt; next = newNode;
+        newNode -&gt; next = q;
+        listLength++;
+        return true;
+    }
+    cout &lt;&lt; "\nError: node was not added to list.\n";
+    return false;
+}
+
+// Setter removes a node by its given position.
+// Returns true if the operation is successful.
+bool LinkedList::removeNode( int position )
+{
+    if ((position &lt;= 0) || (position &gt; listLength + 1))
+    {
+        cout &lt;&lt; "\nError: the given position is out of range.\n";
+        return false;
+    }
+    if (head -&gt; next == NULL)
+    {
+       cout &lt;&lt; "\nError: there is nothing to remove.\n";
+       return false;
+    }
+    int count = 0;
+    node * p = head;
+    node * q = head;
+    while (q) 
+    {
+        if (count == position)
+        {
+            p -&gt; next = q -&gt; next;
+            delete q;
+            listLength--;
+            return true;
+        }
+        p = q;
+        q = p -&gt; next;
+        count++;
+    }
+    cout &lt;&lt; "\nError: nothing was removed from the list.\n";
+    return false;
+}
+
+// Prints each node in the list in consecutive order,
+// starting at the head and ending at the tail.
+// Prints the data to the console.
+void LinkedList::printList()
+{
+    node * p = head;
+    node * q = head;
+    cout &lt;&lt; "\n---------------------------\n";
+    cout &lt;&lt; "Song Playlist \n";
+    while (q)
+    {
+        p = q;
+        cout &lt;&lt; "\n-----------------------------\n";
+        cout &lt;&lt; "\t position: " &lt;&lt; count &lt;&lt; endl;
+        cout &lt;&lt; "\t song: " &lt;&lt; p -&gt; song &lt;&lt; endl;
+        cout &lt;&lt; "\t artist: " &lt;&lt; p -&gt; artist &lt;&lt; endl;
+        q = p -&gt; next;
+        count++;
+    }
+}
+
+// Destructor de-allocates memory used by the list.
+LinkedList::~LinkedList() 
+{
+    node * p = head;
+    node * q = head;
+    while (q)
+    {
+        p = q;
+        q = p -&gt; next;
+        if (q) delete p;
+    }
+}</pre>
+</div>
+<h2>main.cpp</h2>
+<p>Finally, copy and paste the code below into your <a href="https://github.com/KarlinaBeringer/LinkedList_Tutorial/blob/master/main.cpp">driver source file</a>. This is where we see the LinkedList class in action. The code below will generate some song nodes and add, remove, and display them as in a playlist.</p>
+<div style="background-color:#e0e0e0;">
+<pre>//*******************************************************************
+//  main.cpp
+//  LinkedList_Project
+//
+//  Created by Karlina Beringer on June 12, 2014.
+//  This driver implements the LinkedList class.
+//*******************************************************************
+
+#include "LinkedList.h"
+using namespace std;
+
+int main()
+{
+    // STEP 1: Create some unlinked song nodes.
+    node * A = new node;
+    A -&gt; song = "We Are";
+    A -&gt; artist = "Vertical Horizon";
+    
+    node * B = new node;
+    B -&gt; song = "I Stand Alone";
+    B -&gt; artist = "Godsmack";
+    
+    node * C = new node;
+    C -&gt; song = "Heir Apparent";
+    C -&gt; artist = "Opeth";
+    
+    node * D = new node;
+    D -&gt; song = "Fear of the Dark";
+    D -&gt; artist = "Iron Maiden";
+    
+    node * E = new node;
+    E -&gt; song = "Blue Monday";
+    E -&gt; artist = "New Order";
+    
+    node * F = new node;
+    F -&gt; song = "The Moth";
+    F -&gt; artist = "Aimee Mann";
+    
+    // STEP 2: Build a list of three song nodes by appending to end of list.
+    LinkedList myList;
+    myList.insertNode(A, 1);
+    myList.insertNode(B, 2);
+    myList.insertNode(C, 3);
+    myList.insertNode(D, 4);
+    myList.printList();
+    
+    // STEP 3: Insert a node into middle of list.
+    myList.insertNode(E, 2);
+    myList.printList();
+    
+    // STEP 4: Insert node at the front of list.
+    myList.insertNode(F,1);
+    myList.printList();
+    
+    // STEP 5: Remove the last node from the list.
+    myList.removeNode(6);
+    myList.printList();
+    
+    // STEP 6: Remove the first node from the list.
+    myList.removeNode(1);
+    myList.printList();
+    
+    // STEP 7: Remove a node from the middle of the list.
+    myList.removeNode(3);
+    myList.printList();
+    
+    return 0;
+}
+</pre>
+</div>
+<h2>References:</h2>
+<ol>
+<li>Brain, Marshall. &#8220;Pointers: Understanding Memory Addresses.&#8221; How Stuff Works, Inc. 2014. <a href="http://computer.howstuffworks.com/c23.htm">http://computer.howstuffworks.com/c23.htm</a></li>
+<li>&#8220;Linked Lists.&#8221; cplusplus.com. 12 October 2011. <a href="http://www.cplusplus.com/articles/Lw6AC542/">http://www.cplusplus.com/articles/Lw6AC542/</a></li>
+<li>Malik, D. S. <i>C Programming: From Problem Analysis to Program Design</i>. Boston, MA: Course Technology, 2009. Print.</li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-322" class="share-facebook sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-322" class="share-linkedin sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-322" class="share-twitter sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/06/13/c-tutorial-intro-to-linked-lists/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-65930048-322-5ed2531bcca77' data-src='//widgets.wp.com/likes/index.html?ver=20190321#blog_id=65930048&amp;post_id=322&amp;origin=pumpkinprogrammerdotcom4.wordpress.com&amp;obj_id=65930048-322-5ed2531bcca77' data-name='like-post-frame-65930048-322-5ed2531bcca77'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->

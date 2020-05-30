@@ -1,0 +1,346 @@
+<div class="entry-content">
+		<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' width='474' height='267' src='https://www.youtube.com/embed/kj5fV4Ibb2w?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span><br />
+In this tutorial, we will be taking an introductory look at object-­oriented programming in C++. Here, we will look at classes and objects and their various components. We will look at the basic types of class operations such as constructors, destructors, setters, and getters. Finally, we will look at the key words private, public, and protected.</p>
+<p>At the bottom of this page, you will find code for a complete working program that will demonstrate how objects work. Either copy-paste the code into your own project or download the program files from the Github <a href="https://github.com/KarlinaBeringer/Classes_and_Objects/tree/master">link</a>.</p>
+<h3>What is Object-Oriented Programming?</h3>
+<p><span style="text-decoration:underline;">Object-­oriented programming</span> is a programming methodology that focuses on modeling data and functions as objects. By contrast, procedural programming focuses on program execution, statement-­by­-statement. In a way, object­-oriented programming is more abstract while procedural programming is closer to the raw machine instructions.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg"><img data-attachment-id="549" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/oop_ppp-13/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="OOP_PPP (13)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=474" class="aligncenter size-small wp-image-549" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=300&#038;h=225" alt="OOP_PPP (13)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-13.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>Why learn Object-Oriented Programming?</h3>
+<p>Object-oriented programming is essential to modern computing. Rather than just focus on getting tasks accomplished, object-oriented programming allows you to build models and relationships that reflect the &#8220;real world.&#8221;</p>
+<ul>
+<li><span style="text-decoration:underline;">Application Development:</span> Object­-oriented programming is how the majority of apps are made today. It’s essential to game programming and making the kind of apps you might use on your phone or tablet.</li>
+<li><span style="text-decoration:underline;">Top-Down Design:</span> Object­-oriented programming is a good way to design programs in an efficient and intuitive manner. Objects give you a high-­level concept to start with so that you can design first and code later.</li>
+<li><span style="text-decoration:underline;">Code Reusability:</span>Object-­oriented programming is also a good way to encapsulate data and keep components functionally separate from each other. If you create a linked list class for one program, you can easily reuse this code in another program as long as the linked list class is self­-contained, meaning it doesn’t rely on external code to do its job.</li>
+</ul>
+<h3>What is an Object?</h3>
+<p>In general, we can think of an object as something with a unique identity. This is true in the “real world” as well as in the software world. A bike, for example, is an object with a unique identity since it occupies a unique location in space and time. Likewise, a variable in a program has a unique location in random-access memory and and execution time. Also, an object, such as a bike, possesses its own set of attributes and behaviors. Attributes may include the brand name, color, and price. Behaviors may include pedal, brake, and change gears.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg"><img data-attachment-id="546" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/what_is_object-14/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="What_Is_Object (14)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=474" class="aligncenter size-small wp-image-546" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=300&#038;h=225" alt="What_Is_Object (14)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/what_is_object-14.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>In object-oriented programming, a <span style="text-decoration:underline;">class</span> is a template for creating objects. The template is a particular set of attributes and behaviors. An <span style="text-decoration:underline;">object</span> is an instance of a class. Objects implement class attributes as data and class behaviors as functions. Basically, a class is a data type and an object is a variable of that class.</p>
+<h3>Class Functions (i.e. Methods)</h3>
+<p>The functions of classes are called methods. Here are the main types of methods:</p>
+<p><b>Constructors and Destructors</b></p>
+<p>In general, objects have two basic methods: the <span style="text-decoration:underline;">constructor</span> and the <span style="text-decoration:underline;">destructor</span>. The constructor is what instantiates the object and allocates dynamic memory as needed. A constructor that takes in parameters is called a normal constructor while an constructor that does not is called a default constructor. A constructor that takes in a reference to another instance of the class is called a copy constructor. The destructor is used to deallocate any dynamic memory used up by the object. The destructor is called at the end of the object’s lifespan or when the program terminates.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg"><img data-attachment-id="551" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/oop_methods-4/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="OOP_Methods (4)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=474" class="aligncenter size-small wp-image-551" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=300&#038;h=225" alt="OOP_Methods (4)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-4.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a><br />
+<b>Setters and Getters</b></p>
+<p>Besides constructors and destructors, objects have two other kinds of methods: setters and getters. A <span style="text-decoration:underline;">setter</span> is a method that changes the data attributes of an object. For example, <i>setPrice</i> will take a floating-­point number as a parameter and set the price variable to the value passed in. A getter method retrieves the data of an object. A <span style="text-decoration:underline;">getter</span> doesn’t change an object, but rather, lets you peek inside of it.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg"><img data-attachment-id="554" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/oop_methods-13/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="OOP_Methods (13)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=474" class="aligncenter size-small wp-image-554" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=300&#038;h=225" alt="OOP_Methods (13)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_methods-13.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3>Access Specifiers</h3>
+<p>In C++, there are certain key ­words for controlling the access level of the data members and methods of a class:</p>
+<ul>
+<li><span style="text-decoration:underline;">Private</span> means that the class members are only visible to the class itself. Usually, data members are private so that you can only access them through setter and getter methods. <i>(Note: By default, class members are treated as private in C++)</i>.</li>
+<li><span style="text-decoration:underline;">Protected</span> means that the class members are only visible to the class and its derived classes. Protected is used in inheritance chains. (We will cover inheritance in the next tutorial in the object-­oriented programming series).</li>
+<li><span style="text-decoration:underline;">Public</span> means that the class members are visible to entities outside the class. Typically, most class methods are public so that they can be called from outside the class.</li>
+</ul>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg"><img data-attachment-id="556" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/oop_ppp-4/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="OOP_PPP (4)" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=474" class="aligncenter size-small wp-image-556" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=300&#038;h=225" alt="OOP_PPP (4)" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/oop_ppp-4.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>The process of keeping some class attributes private and independent from other code is <span style="text-decoration:underline;">encapsulation</span>. Encapsulation is a crucial aspect of object-­oriented programming. It keeps code easy to maintain by keeping it self-­contained. It also enables greater app security by constraining data to only where it is needed.</p>
+<h3>Coding Example</h3>
+<p>Below is everything you need to make a working program example. Simply copy and paste the code you need into your own project files or else download the project files from the Github link <a href="https://github.com/KarlinaBeringer/Classes_and_Objects/tree/master">here</a>.</p>
+<p>For simplicity, you could declare and define the Bike class inside <span style="text-decoration:underline;">main.cpp</span>. First, copy and paste everything in <span style="text-decoration:underline;">Bike.h</span> between <i>#define Bike_h</i> and <i>#endif</i> into <span style="text-decoration:underline;">main.cpp</span> outside the main function. Next, copy and paste everything in <span style="text-decoration:underline;">Bike.cpp</span> into <span style="text-decoration:underline;">main.cpp</span> outside of the main function. For starting out, consolidating the class declaration, definition, and implementation into one file is quick and dirty. In the long run, however, it&#8217;s better to encapsulate the class definition and declaration into separate files away from <span style="text-decoration:underline;">main.cpp</span>.</p>
+<p><a href="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg"><img data-attachment-id="580" data-permalink="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/bike_class/" data-orig-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg" data-orig-size="960,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="Bike_Class" data-image-description="" data-medium-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=300" data-large-file="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=474" class="aligncenter size-small wp-image-580" src="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=300&#038;h=225" alt="Bike_Class" width="300" height="225" srcset="https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=300&amp;h=225 300w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=600&amp;h=450 600w, https://pumpkinprogrammerdotcom4.files.wordpress.com/2014/07/bike_class.jpg?w=150&amp;h=113 150w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<h3><a href="https://github.com/KarlinaBeringer/Classes_and_Objects/blob/master/Bike.h">Bike.h</a></h3>
+<pre style="background-color:#e0e0e0;">//*****************************************************************
+//  Bike.h
+//  Objects_Project
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This header file contains the Bike class declaration.
+//  Bike objects model bicycles in the real world.
+//*****************************************************************
+
+#ifndef Bike_h
+#define Bike_h
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+class Bike
+{
+//-----------------------------------------------------------------
+// Bike attributes (class members are private by default)
+//-----------------------------------------------------------------
+private:
+    string brand;
+    string model;
+    double price;
+    double speed;
+
+//-----------------------------------------------------------------
+// Bike behaviors (a.k.a. methods)
+//-----------------------------------------------------------------
+public:
+    // Default constructor creates a generic Bike object.
+    Bike();
+    
+    // Normal construcor creates a custom Bike object.
+    Bike( string brand, string model, double price, double speed );
+
+    // Copy constructor creates Bike object clone.
+    Bike( Bike &amp; object );
+    
+    // Getter returns the brand of the bike object.
+    string getBrand();
+    
+    // Getter returns the model of the Bike object.
+    string getModel();
+    
+    // Getter returns the price of the Bike object.
+    double getPrice();
+    
+    // Getter returns the speed in mph of the Bike object.
+    double getSpeed();
+    
+    // Getter computes the distance covered by the Bike.
+    double getDistance( double minutes );
+    
+    // Getter prints a summary of the Bike object's state.
+    void print();
+    
+    // Setter changes the brand of the Bike object.
+    void setBrand( string brand );
+    
+    // Setter changes the model of the Bike object.
+    void setModel( string model );
+    
+    // Setter changes the price of the Bike object.
+    void setPrice( double price );
+    
+    // Setter changes the speed of the Bike object.
+    void setSpeed( double speed );
+    
+    // Destructor is called when the program terminates.
+    ~Bike();
+};
+
+
+#endif
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/KarlinaBeringer/Classes_and_Objects/blob/master/Bike.cpp">Bike.cpp</a></h3>
+<pre style="background-color:#e0e0e0;">//*****************************************************************
+//  Bike.cpp
+//  Objects_Project
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This source file contains the Bike class definition.
+//  Bike objects model bicycles in the real world.
+//*****************************************************************
+
+#include "Bike.h"
+
+// Default constructor creates a generic Bike object.
+// The double colons are called the "resolution specifier."
+Bike::Bike()
+{
+    brand = "brand";
+    model = "model";
+    price = 0.0;
+    speed = 0.0;
+}
+
+// Normal constructor creates a generic Bike object.
+// Keyword "this" points to the instance calling the method.
+Bike::Bike( string brand, string model, double price, double speed )
+{
+    this -&gt; brand = brand;
+    this -&gt; model = model;
+    this -&gt; price = price;
+    this -&gt; speed = speed;
+}
+
+// Copy constructor creates Bike object clone.
+// The "dot operator" returns an attribute of the object.
+Bike::Bike( Bike &amp; object )
+{
+    this -&gt; brand = object.brand;
+    this -&gt; model = object.model;
+    this -&gt; price = object.price;
+    this -&gt; speed = object.speed;
+}
+
+// Getter returns the brand of the Bike object.
+string Bike::getBrand()
+{
+    return brand;
+}
+
+// Getter returns the model of the Bike object.
+string Bike::getModel()
+{
+    return model;
+}
+
+// Getter returns the price of the Bike object.
+double Bike::getPrice()
+{
+    return price;
+}
+
+// Getter returns the speed in mph of the Bike object.
+double Bike::getSpeed() 
+{
+    return speed;
+}
+
+// Getter computer the distance covered by the Bike.
+// Distance = Speed * Time
+// Miles = (Miles/Hour)*(Minutes)*(Hour/60 Minutes)
+double Bike::getDistance( double minutes )
+{
+    return speed * (minutes/60);
+}
+
+// Getter prints a summary of the Bike object's state.
+void Bike::print()
+{
+    cout &lt;&lt; "\n\nBrand:\t" &lt;&lt; brand &lt;&lt; endl;
+    cout &lt;&lt; "Model:\t" &lt;&lt; model &lt;&lt; endl;
+    cout &lt;&lt; "Price:\t$" &lt;&lt; setprecision(2) &lt;&lt; fixed &lt;&lt; price &lt;&lt; endl;
+    cout &lt;&lt; "Speed:\t" &lt;&lt; setprecision(4) &lt;&lt; speed &lt;&lt; " miles per hour" &lt;&lt; endl;
+}
+
+// Setter changes the brand of the Bike object.
+void Bike::setBrand( string brand ) 
+{
+    this -&gt; brand = brand;
+}
+
+// Setter changes the model of the Bike object.
+void Bike::setModel( string model )
+{
+    this -&gt; model = model;
+}
+
+// Setter changes the price of the Bike object.
+void Bike::setPrice( double price )
+{
+    this -&gt; price = price;
+}
+
+// Setter changes the speed of the Bike object.
+void Bike::setSpeed( double speed )
+{
+    this -&gt; speed = speed;
+}
+
+// Destructor is called when the program terminates.
+Bike::~Bike()
+{
+    cout &lt;&lt; "Deleting Bike object..." &lt;&lt; endl;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/KarlinaBeringer/Classes_and_Objects/blob/master/main.cpp">main.cpp</a></h3>
+<pre style="background-color:#e0e0e0;">//*****************************************************************
+//  main.cpp
+//  Objects_Project
+//
+//  Created by Karlina Beringer on July 8, 2014.
+//
+//  This file contains the main function of the program.
+//  Main implements objects of the Bike class.
+//  Bike objects model bicycles in the real world.
+//*****************************************************************
+
+// Include the header file for the Bike class.
+#include "Bike.h"
+
+int main()
+{
+    cout &lt;&lt; "Starting program...\n\n";
+    
+    // Create two Bike objects.
+    // Bike is a data type. A and B are Bike variables.
+    // A uses the default constructor.
+    // B uses the normal constructor.
+    cout &lt;&lt; "Creating Bike objects A and B...\n";
+    Bike A;
+    Bike B( "Magna", "Glacier Point", 120, 5 );
+    
+    // Display contents of each Bike objects.
+    cout &lt;&lt; "Displaying contents of Bike object A...\n";
+    A.print();
+    cout &lt;&lt; "Displaying contents of Bike object B...\n";
+    B.print();
+    
+    // Set the speed of A to 10 miles per hour.
+    cout &lt;&lt; "\nSetting the speed of A to 10 mph...\n";
+    A.setSpeed( 10 );
+    cout &lt;&lt; "Bike A now travels at " &lt;&lt; A.getSpeed() &lt;&lt; " mph.\n";
+    
+    // Show how far A travels in 15 minutes.
+    cout &lt;&lt; "In 15 minutes, Bike A travels ";
+    cout &lt;&lt; A.getDistance( 15 ) &lt;&lt; " miles.\n\n";
+    
+    // Create a copy of Bike object B name C.
+    cout &lt;&lt; "Create a copy of Bike object B named C...\n";
+    Bike C( B );
+    cout &lt;&lt; "Displaying contents of copy of C...";
+    C.print();
+    
+    // Terminate program.
+    cout &lt;&lt; "\nEnding program...\n";
+    return 0;
+}
+
+//*****************************************************************
+// End of File
+//*****************************************************************
+</pre>
+<h3><a href="https://github.com/KarlinaBeringer/Classes_and_Objects/blob/master/Output.txt">Program_Output.txt</a></h3>
+<pre style="background-color:#e0e0e0;">Starting program...
+
+Creating Bike objects A and B...
+Displaying contents of Bike object A...
+
+
+Brand:	brand
+Model:	model
+Price:	$0.00
+Speed:	0.0000 miles per hour
+Displaying contents of Bike object B...
+
+
+Brand:	Magna
+Model:	Glacier Point
+Price:	$120.00
+Speed:	5.0000 miles per hour
+
+Setting the speed of A to 10 mph...
+Bike A now travels at 10.0000 mph.
+In 15 minutes, Bike A travels 2.5000 miles.
+
+Displaying contents of copy of C...
+
+Brand:	Magna
+Model:	Glacier Point
+Price:	$120.00
+Speed:	5.0000 miles per hour
+
+Ending program...
+Deleting Bike object...
+Deleting Bike object...
+Deleting Bike object...
+Program ended with exit code: 0
+</pre>
+<h3>References</h3>
+<ol>
+<li>Carrano, Frank. Timothy, Henry. <i>Data Abstraction &amp; Problem Solving with C : Walls and Mirrors</i>. Boston: Pearson, 2013. Print.</li>
+<li>&#8220;Classes (I).&#8221; cplusplus.com. 2014.<br />
+<a href="http://www.cplusplus.com/doc/tutorial/classes/">http://www.cplusplus.com/doc/tutorial/classes/</a></li>
+<li>&#8220;Lesson: Object-Oriented Programming Concepts.&#8221; The Java Tutorials. Oracle. 2014.<br />
+<a href="http://docs.oracle.com/javase/tutorial/java/concepts/">http://docs.oracle.com/javase/tutorial/java/concepts/</a></li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-539" class="share-facebook sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-539" class="share-linkedin sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-539" class="share-twitter sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://pumpkinprogrammerdotcom4.wordpress.com/2014/07/08/c-tutorial-classes-and-objects/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-65930048-539-5ed2598e38108' data-src='//widgets.wp.com/likes/index.html?ver=20190321#blog_id=65930048&amp;post_id=539&amp;origin=pumpkinprogrammerdotcom4.wordpress.com&amp;obj_id=65930048-539-5ed2598e38108' data-name='like-post-frame-65930048-539-5ed2598e38108'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->

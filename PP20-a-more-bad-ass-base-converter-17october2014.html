@@ -1,0 +1,375 @@
+<!-- Wordpress Loop displays the content of a post. -->
+              <div class="entry ">
+          <h3 class="entrytitle" id="post-1809"> 
+            A (More Bad-Ass) Base Converter          </h3>
+          <h4 class="blogdate">
+            October 28th, 2014 
+          </h4>
+          <div class="entrybody">
+            <!--*********************************************************
+    * The code below generates the user interface for
+    * a multi-base converter for bases two through sixteen.
+    **********************************************************
+    -->
+<div class="well" style="background-color:#99FF00">
+
+  <!-- Display a title and subtitle. -->
+  <h3>Base Converter</h3>
+  <h4><em>Converts between the bases two through sixteen.</em></h4>
+  <div style="padding:5px"></div>
+
+  <!-- User enters a number to convert. -->
+  <h4>1) Enter a positive integer in the field below.</h4>
+  <input type="text" id="startField" placeholder="Start Value"/>
+
+  <!-- User selects a base to convert FROM. -->
+  <h4>2) Select the base for the number entered.</h4>
+  <select id="startBaseSelect">
+    <option value="2" selected>Binary (Base 2)</option>
+    <option value="3">Ternary (Base 3)</option>
+    <option value="4">Quaternary (Base 4)</option>
+    <option value="5">Quinary (Base 5)</option>
+    <option value="6">Senary (Base 6)</option>
+    <option value="7">Septenary (Base 7)</option>
+    <option value="8">Octal (Base 8)</option>
+    <option value="9">Nonary (Base 9)</option>
+  	<option value="10">Decimal (Base 10)</option>
+  	<option value="11">Undecimal (Base 11)</option>
+  	<option value="12">Duodecimal (Base 12)</option>
+  	<option value="13">Tridecimal (Base 13)</option>
+  	<option value="14">Tetradecimal (Base 14)</option>
+  	<option value="15">Pentadecimal  (Base 15)</option>
+  	<option value="16">Hexadecimal (Base 16)</option>
+  </select>
+
+  <!-- User selects a base to convert TO. -->
+  <h4>3) Select the base to convert to.</h4>
+  <select id="endBaseSelect">
+    <option value="2" selected>Binary (Base 2)</option>
+    <option value="3">Ternary (Base 3)</option>
+    <option value="4">Quaternary (Base 4)</option>
+    <option value="5">Quinary (Base 5)</option>
+    <option value="6">Senary (Base 6)</option>
+    <option value="7">Septenary (Base 7)</option>
+    <option value="8">Octal (Base 8)</option>
+    <option value="9">Nonary (Base 9)</option>
+    <option value="10">Decimal (Base 10)</option>
+    <option value="11">Undecimal (Base 11)</option>
+    <option value="12">Duodecimal (Base 12)</option>
+    <option value="13">Tridecimal (Base 13)</option>
+    <option value="14">Tetradecimal (Base 14)</option>
+    <option value="15">Pentadecimal  (Base 15)</option>
+    <option value="16">Hexadecimal (Base 16)</option>
+  </select>
+
+  <!-- User clicks a button to start calculations. -->
+  <h4>4) Click &#8220;Convert&#8221; when ready.</h4>
+  <input type="button" id="convertButton" class="btn btn-primary" value="Convert" onclick="buttonClick()"/>
+  <div style="padding:10px"></div>
+
+  <!-- Display the results of the calculations. -->
+  <div class="well" style="background-color:#00FF33;display:none;" id="resultArea">
+  </div>
+</div>
+
+<!-- JavaScript for Base Converter -->
+<script>
+
+/*********************************************************
+ * Responds to the "Convert!" button click.
+ * (This could be thought of as the "main" function).
+ * 
+ * INPUT:         Validate the web form input.
+ * PROCESSING:    Perform the conversions.
+ * OUTPUT:        Display the results on the web page.
+ ********************************************************/
+function buttonClick() {
+
+    // 1) Extract user data from the form fields.
+    var inputNumber = document.getElementById("startField").value;
+    var inputBase = document.getElementById("startBaseSelect").value;
+    var outputBase = document.getElementById("endBaseSelect").value;
+
+    // 2) Remove spaces and set letters to uppercase.
+    inputNumber = sanitizeInput(inputNumber);
+
+    // 3.1) If inputNumber and inputBase don't match, flag an error.
+    if (!numberAndBaseMatch(inputNumber, inputBase)) 
+      displayResult( 
+        "Error: Invalid number. <br />" +
+        "Please enter a positive base-" + 
+        inputBase + " integer.<br />" 
+      );
+
+    // 3.2) Otherwise, proceed with the base conversion.
+    else {
+
+      // 3.2.1) Convert the inputNumber to the given outputBase.
+      inputBase = parseInt(inputBase);
+      outputBase = parseInt(outputBase);
+      var outputNumber = baseConvert(inputNumber,inputBase,outputBase);
+
+      // 3.2.2) Display the result on the web page.
+      displayResult( 
+          inputNumber + " (base " + inputBase + ") = " + 
+          outputNumber + " (base " + outputBase + ")" 
+      );
+    }   
+}
+
+/*********************************************************
+ * Removes space characters from the input string.
+ * Sets any letters in the input string to uppercase.
+ * @param {String} inputString
+ * @return {String} "cleaned up" inputString.
+ *********************************************************/
+function sanitizeInput( inputString ) {
+
+    // If the inputString is empty, return an error.
+    if (!inputString) return "Error";
+
+    // Remove space characters.
+    var modifiedString = "";
+    for (var i in inputString) 
+      if (inputString[i] != " ")
+        modifiedString += inputString[i];
+
+    // Set letters to uppercase. Return result.
+    return modifiedString.toUpperCase();
+}
+
+/*********************************************************
+ * Checks whether a given string represents a number of
+ * the given base. For example, 1101 is base 2. 
+ * @param {String} digitString 
+ * @param {String} base 
+ * @return {Boolean} true if digitString matches base
+ ********************************************************/
+function numberAndBaseMatch( digitString, base ) {
+
+    // Determine the cardinality of the digitSet.
+    var digitSet = ['0'];
+    var letterDigits = ['A','B','C','D','E'];
+    for (var i = 2; i <= 16; i++) {
+
+      // Add digits 0 through 9 as needed.
+      if (i <= 10) {
+        digitSet.push( (i - 1).toString().charAt(0) );
+        if (parseInt(base) == i) break;
+      }
+
+      // Add digits A through F as needed.
+      else {
+        digitSet.push( letterDigits[i - 11] );
+        if (parseInt(base) == i) break;       
+      }
+    }
+
+    // Check whether inputString chars are digitSet members.
+    for (var i in digitString) {
+      var charMatch = false;
+        for (var k in digitSet) {
+          if (digitString[i] == digitSet[k]) charMatch = true;
+        }
+        if (!charMatch) return false;
+    }
+
+    // Return true if inputString matches inputBase.
+    return true;
+}
+
+/*********************************************************
+ * Displays an output message on the webpage.
+ * @param {String} message to display
+ ********************************************************/
+function displayResult( message ) {
+  var resultArea = document.getElementById("resultArea");
+  var content = ("<h4><em>" + message + "</em></h4>");
+  resultArea.innerHTML = content;
+  resultArea.style.display = "block";
+}
+
+/*********************************************************
+ * Converts to and from any base in the set (2,16).
+ * Assumes that the digitString and inputBase match.
+ * @param {String} digitString is a sequence of digits.
+ * @param {Number} inputBase is in the set (2,16)
+ * @param {Number} outputBase is in the set (2,16)
+ * @return {String} result is a string of digits 2-F
+ ********************************************************/
+function baseConvert( digitString, inputBase, outputBase ) {
+  
+  // First, convert the inputNumber to its decimal form.
+  var decimalValue = 0;
+  if (inputBase == 10) decimalValue = parseInt(digitString, 10);
+  else decimalValue = convertToDecimal(digitString, inputBase);
+
+  // Next, convert the decimalValue to its outputBase form.
+  if (outputBase == 10) return decimalValue;
+  return convertToBase(decimalValue, outputBase);
+}
+
+/*********************************************************
+ * Converts from any base in the set (2,16) to decimal.
+ * Assumes that the inputNumber and inputBase match.
+ * @param {String} inputDigits is a string of digits
+ * @param {Number} inputBase is in the set (2,16)
+ * @return {Number} a decimal value 
+ ********************************************************/
+function convertToDecimal( inputDigits, inputBase ) {
+
+  // decimalResult is a sum of products in base-ten.
+  var decimalResult = 0;
+
+  // placeValue represents the value of a digit position.
+  // The rightmost position is the one's place (any_base ^ 0).
+  var placeValue = 1;
+
+  /* STEP 1: Extract the rightmost digit from the string.
+   * STEP 2: Multiply the digit by its position value.
+   * STEP 3: Add that product to the decimalResult.
+   * STEP 4: Remove the rightmost digit from the string.
+   * STEP 4: Repeat for all digits.
+   */
+  while ( inputDigits.length > 0 ) {
+
+    // Extract the rightmost character from inputDigits.
+    var digitChar = inputDigits[ inputDigits.length-1 ];
+
+    // Convert this character to its value in base-ten.
+    var digitNum = parseInt( ("" + digitChar), inputBase );
+
+    // Find the value of the digit based on its position.
+    var digitValue = digitNum * placeValue;
+
+    // Add this product to the result sum.
+    decimalResult += digitValue;
+
+    // Increment the base place exponentially.
+    placeValue *= inputBase;
+
+    // Shorten the digit string by removing the rightmost char.
+    inputDigits = inputDigits.slice(0, (inputDigits.length-1) );
+  }
+
+  // Return the sum of digit values in base-ten.
+  return decimalResult;
+}
+
+/*********************************************************
+ * Converts from decimal to any base in the set (2,16).
+ * @param {Number} decimalInput is a base-ten number 
+ * @param {Number} outputBase is in the set (2,16)
+ * @return {String} digitString in the outputBase
+ ********************************************************/
+function convertToBase( decimalInput, outputBase ) {
+
+  // letterDigits represent digits 10 through 16.
+  var letterDigits = ['A','B','C','D','E','F'];
+
+  // digitString is a number in the outputBase to return.
+  var digitString = "";
+   
+  // placeValue is a power of ten 
+  var placeValue = 1;
+  
+  /* STEP 1: Divide the decimalInput by the outputBase.
+   * STEP 2: Store the remainder of the division as digit.
+   * STEP 3: Append this digit to the front of digitString.
+   * STEP 4: Repeat for all digits.
+   */
+  while ( decimalInput > 0 ) {
+    
+    // Extract the rightmost digit from decimalInput.
+    var digit = decimalInput % outputBase;
+
+    // If the digit is higher than 9,
+    // convert it to the appropriate character.
+    if (digit > 9) {
+      for (var i = 10; i <= 16; i++) {
+        if (digit == i) {
+          // Append the letter digit to digitString.
+          digitString = letterDigits[i-10] + digitString;
+          break;
+        }
+      }
+    }
+    // Otherwise, append the digit to digitString as is.
+    else digitString = digit + digitString;
+
+    // Remove te rightmost digit from decimalInput.
+    decimalInput = Math.floor(decimalInput / outputBase);
+  }
+ 
+   // Return the sum of digit values.
+   return digitString;
+}
+</script>
+<p>
+A little over a week ago, I created a <a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/2014/10/17/binary-decimal-converter/" target="_blank">simple JavaScript applet</a> for converting numbers between the bases two and ten. In today's post, I'll show you how to create a base converter for converting between multiple bases, namely bases two through sixteen.
+</p>
+<h3> Step 0: Set Up </h3>
+<p>
+<a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/sublime.png"><img src="https://web.archive.org/web/20150420014731im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/sublime-300x254.png" alt="sublime" width="300" height="254" class="aligncenter size-medium wp-image-1825"/></a>
+</p>
+<p>
+Although it's not required, knowing a little HTML and JavaScript beforehand will make this tutorial easier to follow. I'm going to assume that readers may have little or no experience with web programming, so I will try to make this tutorial as simple as possible.
+</p>
+<p>
+To begin, create a folder on your Desktop called "baseConverter." This is where you will put your HTML and JavaScript files. The HTML file creates a simple web page you can view locally on your computer by opening it with a web browser. The JavaScript file will house all the functions you need to make that web interface work!
+</p>
+<p>
+To create the files you will need for this tutorial, you'll need some kind of text editor. My personal favorite is <a href="https://web.archive.org/web/20150420014731/http://www.sublimetext.com/" target="_blank">Sublime Text</a>. This text editor will help make your code look pretty by colorizing the text against a dark background. 
+</p>
+<h3> Step 1: The User Interface </h3>
+<p>
+<a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/user_interface.png"><img src="https://web.archive.org/web/20150420014731im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/user_interface-300x293.png" alt="user_interface" width="300" height="293" class="aligncenter size-medium wp-image-1815"/></a>
+</p>
+<p>
+The following code creates a simple user interface for interacting with the applet. It's a lime-green web form that takes in a number as input through a text field and converts it to and from various numerical bases. (The user selects the starting and ending bases through drop-down menus). To start the conversion, the user clicks on the "Convert" button. If the input data is correct (i.e. the input number is a valid number of the starting base), the calculator will display a result message at the bottom. If the input is invalid, the calculator will print an error message in the same place.
+</p>
+<p>
+Copy and paste the following code into a text editor. Save the file as "baseConverter.html" in the "BaseConverter" folder you created in step zero.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014731js_/https://gist.github.com/pumpkinprogrammer/5760a5656601c1a94a87.js"></script>
+</p>
+<h3> Step 2: The Main Function </h3>
+<p>
+<a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/input_processing_output.png"><img src="https://web.archive.org/web/20150420014731im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/input_processing_output-300x93.png" alt="input_processing_output" width="300" height="93" class="aligncenter size-medium wp-image-1829"/></a>
+</p>
+<p>
+Open up a new file in your text editor. Copy and paste the code below into this file and save it as "functions.js" in your BaseConverter folder. The code below is the "main" function for the applet. The function is called when the user clicks the "Convert" button. Of course, there are more "helper" functions you will need to make this applet work, so read on!
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014731js_/https://gist.github.com/pumpkinprogrammer/dfd515f48cd8590840ed.js"></script>
+</p>
+<h3> Step 3: "Sanity Check" Functions </h3>
+<p>
+<a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/validate.png"><img src="https://web.archive.org/web/20150420014731im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/validate-300x93.png" alt="validate" width="300" height="93" class="aligncenter size-medium wp-image-1832"/></a>
+</p>
+<p>
+Good programmers know the importance of "sanity checks." An application should be able to handle all kinds of user input without crashing. The functions below "clean up" the text field input by removing space characters, setting letters to uppercase, and making sure that the number and starting base match. If they don't match up, the applet will display an error message.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014731js_/https://gist.github.com/pumpkinprogrammer/e7198f2cf78dd918cd74.js"></script>
+</p>
+<h3> Step 4: The Base-Conversion Logic </h3>
+<p>
+<a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/base_convert.png"><img src="https://web.archive.org/web/20150420014731im_/http://pumpkinprogrammer.com/wp-content/uploads/2014/10/base_convert-300x93.png" alt="base_convert" width="300" height="93" class="aligncenter size-medium wp-image-1835"/></a>
+</p>
+<p>
+Finally, we need to add the functionality that performs the actual base conversion. The functions below convert a number from the starting base to decimal first. Then it converts that decimal value to the output base.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014731js_/https://gist.github.com/pumpkinprogrammer/aab6d5e123a06e9a646d.js"></script>
+</p>          </div>
+          <div>
+            <hr>
+            <p class="blogcategory">
+              <strong>
+                Categories: <a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/category/math/" rel="category tag">math</a> &bull; <a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/category/technology/" rel="category tag">technology</a> &bull; <a href="https://web.archive.org/web/20150420014731/http://pumpkinprogrammer.com/category/tutorials/" rel="category tag">tutorials</a>              </strong>
+            </p>
+          </div>
+        </div>	
+        <!-- End of The Loop. -->

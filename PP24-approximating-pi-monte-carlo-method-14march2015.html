@@ -1,0 +1,162 @@
+<!-- Wordpress Loop displays the content of a post. -->
+              <div class="entry ">
+          <h3 class="entrytitle" id="post-2594"> 
+            Approximating Pi (Monte Carlo Method)          </h3>
+          <h4 class="blogdate">
+            March 14th, 2015 
+          </h4>
+          <div class="entrybody">
+            <p>
+<iframe src="https://web.archive.org/web/20150420014856if_/https://www.youtube.com/embed/rfZxOdyIu5M" frameborder="0" class="embed-responsive-item" allowfullscreen>
+</iframe>
+</p>
+<p>
+In honor of P​i Day,​ I’ve decided to share a cool trick for approximating the number pi using the Monte Carlo Method. I’ve built a simple HTML5/JavaScript applet to demonstrate the Monte Carlo simulation further down on this page. Feel free to copy and paste the code into a text editor to learn more about how the algorithm works.
+</p>
+<a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/pi_4.png"><img src="https://web.archive.org/web/20150420014856im_/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/pi_4-300x169.png" alt="pi_4" width="300" height="169" class="aligncenter size-medium wp-image-2597 img-responsive"/></a>
+<h3>A Bit About Pi</h3>
+<p>
+Pi ​(approximately 3.14159) is an irrational number (can’t be represented as a fraction) with infinite digits. In the real world, pi (represented by the Greek letter π) is the ratio between the circumference and diameter of <em>any</em> circle. It’s philosophically interesting because it’s a non-repeating decimal, meaning that the digit combinations are random (without an infinitely repeating pattern). Because of this randomness, it’s possible that your name in ASCII could be represented somewhere in this long digit string. Some people speculate that every written and unwritten book in the world could be represented somewhere down the line in Pi’s vast array of digits. Although it’s a beautiful thought, it’s important to remember that just because something is possible doesn’t mean that it <em>must</em> happen.
+</p>
+<h3>Approximating Pi</h3>
+<p>
+We understand that pi is a ratio between the circumference and diameter of any circle. In the real world, it’s easy to measure the circumference of a circle using a tape ruler. In the computing world, however, getting the precise length of an arc is virtually impossible since every number in a computer is treated as discrete rather than continuous. The distance between two points is measured as a line, not a curve (see the distance formula). How do we get around the problem of measuring curves? We approximate!
+</p>
+<a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/monteCarlo_4.png"><img src="https://web.archive.org/web/20150420014856im_/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/monteCarlo_4-300x169.png" alt="monteCarlo_4" width="300" height="169" class="aligncenter size-medium wp-image-2598 img-responsive"/></a>
+<p>
+First, imagine a square with a circle inscribed inside it. Now divide this square up into four quadrants. The side length of each quadrant is the radius of the circle. To save time, we will only use one quadrant in our simulation. For some duration of time (in this example, thirty seconds), we will place dots randomly in this quadrant. Then we will approximate pi by dividing the number of dots in the circle by the number of dots total (in both the circle and the square), and then, multiplying that quotient by four.
+</p>
+
+<div id="approxPi">
+<h4>Monte Carlo Pi Approximation</h4>
+<p>
+ Click the button to view a thirty-second animation.
+</p>
+ 
+<!-- Canvas for placing the dots. -->
+<canvas id="myCanvas" width="200" height="200" style="border:3px solid #303030;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br/>
+ 
+<!-- Button for starting the thirty-second animation. -->
+<input id="startButton" type="button" value="Approximate Pi!" onclick="approxPi()">
+ 
+<!-- Area to display the Pi approximation calculation. -->
+<div id="Pi_Data"></div>
+<br/>
+</div>
+
+<p>
+In the simulation above, we can tell that the orange dots resemble a quarter of a circle while the blue dots resemble the space outside outside of that circle. How do we know whether to make the dots orange or blue? If the distance between the center of the circle and any given point has a distance less than or equal to the circle’s radius, we say that the point is within the circle (and color it orange). Otherwise, we say that the dot is outside of the circle (and color it blue).
+</p>
+<a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/monteCarlo_flow.png"><img src="https://web.archive.org/web/20150420014856im_/http://pumpkinprogrammer.com/wp-content/uploads/2015/03/monteCarlo_flow-300x300.png" alt="monteCarlo_flow" width="300" height="300" class="aligncenter size-medium wp-image-2603 img-responsive"/></a>
+<h3>Code for the Simulation</h3>
+<p>
+Below is the code I wrote for the Monte Carlo simulation on this page. It’s in HTML5 and JavaScript. To see this demonstration in action, simply copy and paste the code below into a text editor and save as <strong>approxPi.html</strong>.​ Next, open the file with a web browser to play with the simulation. Happy Pi Day!
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014856js_/https://gist.github.com/pumpkinprogrammer/f536017ff85857a99ac1.js"></script>
+</p>
+<h3>Things to Think About</h3>
+<ul>
+<li><p>
+Could you use the digits of pi to make a good random number generator?
+</p></li>
+<li><p>
+What’s possible may not be actual. Is the reverse true?
+</p></li>
+<li><p>
+What’s the largest number of pi digits computed today?
+</p></li>
+</ul>
+<h3>Resources</h3>
+<ul>
+<li><p>
+Dan Hellerich. &#8220;Learn About Pi.&#8221; PiDay.org. 14 March 2015.<br/>
+<a href="https://web.archive.org/web/20150420014856/http://www.piday.org/learn-about-pi/" target="_blank">http://www.piday.org/learn-about-pi/</a></p></li>
+<li><p>
+&#8220;Pi approximation using Monte Carlo method.&#8221; Curiosity Driven. 14 March 2015.<br/>
+<a href="https://web.archive.org/web/20150420014856/https://curiosity-driven.org/pi-approximation" target="_blank">https://curiosity-driven.org/pi-approximation</a></p></li>
+</p></li>
+<li><p>
+&#8220;About Pi.&#8221; The Math Forum @ Drexel University. 14 March 2015.<br/>
+<a href="https://web.archive.org/web/20150420014856/http://mathforum.org/dr.math/faq/faq.pi.html" target="_blank">http://mathforum.org/dr.math/faq/faq.pi.html</a></p></li>
+</p></li>
+</ul>
+
+<script>
+
+// Draw the canvas with the circle circumscribed within it.
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext("2d");
+context.beginPath();
+context.arc(0, 0, canvas.width, 0, 2*Math.PI);
+context.stroke();
+var dotsInCircle = 0, dotsOutsideCircle = 0;
+var RADIUS = canvas.width;
+
+// Start the simulation.
+function approxPi() {
+	resetAnimation();
+	animate();
+}
+
+// Place dots randomly on the canvas for thirty seconds.
+function animate() {
+	var drawDots = setInterval(function(){ drawDot(); }, 0.125);
+	setTimeout(function(){ clearTimeout(drawDots); displayButton(); }, 30000);
+}
+
+// Randomly place a dot on the canvas. Update UI values.
+function drawDot() {
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	document.getElementById("startButton").style.display = "none";
+	var x = Math.floor((Math.random() * canvas.width) + 1);
+    var y = Math.floor((Math.random() * canvas.width) + 1);
+    var distance = Math.sqrt(x * x + y * y);
+    if (distance < RADIUS) {
+    	context.fillStyle = "#ff9900";
+	    context.fillRect(x, y, 2, 2);
+	    dotsInCircle++;
+    }
+    else {
+    	context.fillStyle = "#006699";
+	    context.fillRect(x, y, 2, 2);
+	    dotsOutsideCircle++;
+    }
+    var message = "<p><code>&pi; &#8776; 4(dots_in_circle)/(dots_in_square)<br />";
+    message += " = 4(" + dotsInCircle + ")/(";
+    message += dotsInCircle + dotsOutsideCircle + ")<br />";
+    message += " = " + (4 * (dotsInCircle / (dotsInCircle + dotsOutsideCircle)));
+    message += "</code></p>";
+    document.getElementById("Pi_Data").innerHTML = message;
+}
+
+function displayButton() {
+	document.getElementById("startButton").style.display = "block";
+}
+
+// Clear the dots from the canvas. Reset UI values.
+function resetAnimation() {
+	document.getElementById("startButton").style.display = "block";
+	document.getElementById("Pi_Data").innerHTML = "";
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.beginPath();
+    context.arc(0, 0, 200, 0, 2*Math.PI);
+    context.stroke();
+    dotsInCircle = 0, dotsOutsideCircle = 0;
+}
+</script>          </div>
+          <div>
+            <hr>
+            <p class="blogcategory">
+              <strong>
+                Categories: <a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/category/math/" rel="category tag">math</a> &bull; <a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/category/philosophy/" rel="category tag">philosophy</a> &bull; <a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/category/technology/" rel="category tag">technology</a> &bull; <a href="https://web.archive.org/web/20150420014856/http://pumpkinprogrammer.com/category/tutorials/" rel="category tag">tutorials</a>              </strong>
+            </p>
+          </div>
+        </div>	
+        <!-- End of The Loop. -->

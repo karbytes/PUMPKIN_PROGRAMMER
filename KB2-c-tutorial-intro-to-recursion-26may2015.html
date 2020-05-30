@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app56.us.archive.org';v.server_ms=819;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=R56vIgLu" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=nWgLpXRB" charset="utf-8"></script>
+<script type="text/javascript">
+if (window._WBWombatInit) {
+  wbinfo = {}
+  wbinfo.url = "http://www.karlina-bytes.com:80/2015/05/c-tutorial-intro-to-recursion/";
+  wbinfo.timestamp = "20150712220717";
+  wbinfo.request_ts = "20150712220717";
+  wbinfo.prefix = "https://web.archive.org/web/";
+  wbinfo.mod = "if_";
+  wbinfo.is_framed = false;
+  wbinfo.is_live = false;
+  wbinfo.coll = "web";
+  wbinfo.proxy_magic = "";
+  wbinfo.static_prefix = "/_static/";
+  wbinfo.enable_auto_fetch = true;
+  wbinfo.auto_fetch_worker_prefix = "https://web.archive.org/web/";
+  wbinfo.wombat_ts = "20150712220717";
+  wbinfo.wombat_sec = "1436738837";
+  wbinfo.wombat_scheme = "https";
+  wbinfo.wombat_host = "www.karlina-bytes.com:80";
+  wbinfo.ignore_prefixes = ["/__wb/",
+                            "/_static/",
+                            "/web/",
+                            "http://analytics.archive.org/",
+                            "https://analytics.archive.org/",
+                            "//analytics.archive.org/",
+                            "http://archive.org/",
+                            "https://archive.org/",
+                            "//archive.org/",
+                            "http://faq.web.archive.org/",
+                            "http://web.archive.org/",
+                            "https://web.archive.org/"
+                            ];
+  wbinfo.wombat_opts = {};
+  window._WBWombatInit(wbinfo);
+}
+__wm.init("https://web.archive.org/web");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=HyR5oymJ" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.karlina-bytes.com/xmlrpc.php">
+
+<!--================================================================-->
+<!-- A tag YouTube required me to add to prove that I own this site -->
+<!--================================================================-->
+<meta name="google-site-verification" content="rCOMt6pSBoCyUFrvFDccWMB8osntwF0FhN-9EXYLcFA"/>
+<meta name="google-site-verification" content="G_u7SvgOaOT6c4wGjEkHuMquWy0K43Tt0bwXAtKJBPE"/>
+
+<!--====================================-->
+<!-- Set up the page title and favicon. -->
+<!--====================================-->
+<link rel="icon" href="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/favicon.ico" type="image/x-icon"/>
+<title>  C++ Tutorial: Intro to Recursion</title>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » Feed" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » Comments Feed" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/comments/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="Karlina Bytes » C++ Tutorial: Intro to Recursion Comments Feed" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/feed/"/>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/web.archive.org\/web\/20150712220717\/http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/web.archive.org\/web\/20150712220717\/http:\/\/www.karlina-bytes.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="bootstrap-css-css" href="https://web.archive.org/web/20150712220717cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/bootstrap/css/bootstrap.min.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="style-css-css" href="https://web.archive.org/web/20150712220717cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/style.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="kode_orange-style-css" href="https://web.archive.org/web/20150712220717cs_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/style.css?ver=4.2.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="jetpack_css-css" href="https://web.archive.org/web/20150712220717cs_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/css/jetpack.css?ver=3.6" type="text/css" media="all"/>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-includes/js/jquery/jquery.js?ver=1.11.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/bootstrap/js/bootstrap.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/jquery.min.js?ver=4.2.2"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.karlina-bytes.com/xmlrpc.php?rsd"/>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.karlina-bytes.com/wp-includes/wlwmanifest.xml"/> 
+<link rel="prev" title="AI in Cinema: Ex Machina" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/2015/05/ex-machina-review/"/>
+<link rel="next" title="C++ Tutorial: Pointers and Memory" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/2015/05/c-tutorial-pointers-and-memory/"/>
+<meta name="generator" content="WordPress 4.2.2"/>
+<link rel="canonical" href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/"/>
+<link rel="shortlink" href="https://web.archive.org/web/20150712220717/http://wp.me/p64cJE-3a"/>
+
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220717/http://i0.wp.com/">
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220717/http://i1.wp.com/">
+<link rel="dns-prefetch" href="//web.archive.org/web/20150712220717/http://i2.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="C++ Tutorial: Intro to Recursion"/>
+<meta property="og:url" content="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/"/>
+<meta property="og:description" content="Recursion is an important concept in computer science, yet it is often challenging for beginners to wrap their minds around. Don’t worry; it makes a lot of sense once you get it. Follow along with ..."/>
+<meta property="article:published_time" content="2015-05-26T12:24:04+00:00"/>
+<meta property="article:modified_time" content="2015-06-04T21:53:06+00:00"/>
+<meta property="og:site_name" content="Karlina Bytes"/>
+<meta property="og:image" content="https://web.archive.org/web/20150712220717im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/05/bas_6.png?fit=1200%2C1200"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="twitter:image" content="https://web.archive.org/web/20150712220717im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/05/bas_6.png?fit=1200%2C1200&amp;w=240"/>
+<meta name="twitter:card" content="summary"/>
+</head>
+
+<body class="single single-post postid-196 single-format-standard"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="wm-ipp-inside">
+  <div style="position:relative;">
+    <div id="wm-logo" style="float:left;width:130px;padding-top:10px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+    </div>
+    <div class="r" style="float:right;">
+      <div id="wm-btns" style="text-align:right;height:25px;">
+                  <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php"
+             title="Sign In"
+             id="wm-sign-in"
+          >
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        	<a href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" onclick="__wm.h(event);return false;" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share">
+          <a href="/web/20150712220717/http://web.archive.org/screenshot/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/"
+             id="wm-screenshot"
+             title="screenshot">
+            <span class="wm-icon-screen-shot"></span>
+          </a>
+	<a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com:80/2015/05/c-tutorial-intro-to-recursion/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com:80/2015/05/c-tutorial-intro-to-recursion/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+    </div>
+    <table class="c" style="">
+      <tbody>
+	<tr>
+	  <td class="u" colspan="2">
+	    <form target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20150712220717" /><input type="submit" value="Go" /></form>
+	  </td>
+	  <td class="n" rowspan="2" style="width:110px;">
+	    <table>
+	      <tbody>
+		<!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+		<tr class="m">
+		  <td class="b" nowrap="nowrap">Jun</td>
+		  <td class="c" id="displayMonthEl" title="You are here: 22:07:17 Jul 12, 2015">JUL</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20150825181157/http://karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/" title="25 Aug 2015"><strong>Aug</strong></a></td>
+		</tr>
+		<!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+		<tr class="d">
+		  <td class="b" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0" /></td>
+		  <td class="c" id="displayDayEl" style="width:34px;font-size:24px;white-space:nowrap;" title="You are here: 22:07:17 Jul 12, 2015">12</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20150825181157/http://karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/" title="18:11:57 Aug 25, 2015"><img src="/_static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a></td>
+		</tr>
+		<!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+		<tr class="y">
+		  <td class="b" nowrap="nowrap">2014</td>
+		  <td class="c" id="displayYearEl" title="You are here: 22:07:17 Jul 12, 2015">2015</td>
+		  <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20161021055539/http://karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/" title="21 Oct 2016"><strong>2016</strong></a></td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="s">
+	    	    <div id="wm-nav-captures">
+	      	      <a class="t" href="/web/20150712220717*/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/" title="See a list of every capture for this URL">7 captures</a>
+	      <div class="r" title="Timespan for captures of this URL">12 Jul 2015 - 01 May 2017</div>
+	      </div>
+	  </td>
+	  <td class="k">
+	    <a href="" id="wm-graph-anchor">
+	      <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+		<canvas id="wm-sparkline-canvas" width="625" height="27" border="0"></canvas>
+	      </div>
+	    </a>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+    <div style="position:absolute;bottom:0;right:2px;text-align:right;">
+      <a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span style="font-size:80%">About this capture</span></a>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;transpiled=0&amp;referer=https%3A//web.archive.org/web/20150712220717/http%3A//www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><script type="text/javascript">
+__wm.bt(625,27,25,2,"web","http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/","20150712220717",1996,"/_static/",["/_static/css/banner-styles.css?v=HyR5oymJ","/_static/css/iconochive.css?v=qtvMKcIJ"]);
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+<div id="page" class="hfeed site">
+
+<!--==========================================================-->
+<!-- Display a fixed navigation bar at the top of the screen. -->
+<!--==========================================================-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--=================================================================-->
+      <!-- When viewed from a mobile device, a three-bar icon will appear. -->
+      <!-- Click on this button to show or hide a drop-down menu of links. -->
+      <!--=================================================================-->
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <!--=================================================================-->
+      <!-- Display an image logo that links to the home page when clicked. -->
+      <!--=================================================================-->
+      <a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/">
+        <span class="navbar-brand navbar-logo">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/07/kb_logo.png" width="200">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/07/kb_logo_hover.png" width="200">
+        </span>
+      </a>
+    </div><!--/.navbar-header-->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <!--==============================================================-->
+      <!-- Display a list of site page links. Iterate through the list. -->
+      <!--==============================================================-->
+      <ul class="nav navbar-nav"><li><li class="page_item page-item-5"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/about/">About</a></li>
+<li class="page_item page-item-7"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/recommended/">Recommended</a></li>
+</li></ul> 
+      
+      <!--===================================================================-->
+      <!-- Display a search bar (pull-right on desktop, pull-left on mobile) -->
+      <!--===================================================================-->
+      <div class="navbar-search">
+        <div class="pull-right">
+          
+<form class="form-group" style="display:inline;" role="search" method="get" id="search-form" action="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/">
+    <div class="search-wrap">
+      <div class="input-group">
+      
+        <!-- The search term box -->
+        <input class="form-control" id="searchBox" type="text" placeholder="Search..." name="s" id="search-input" value=""/>
+        
+        <!-- The submit button -->
+        <span class="input-group-addon">
+          <button type="submit" id="search-submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+        
+    </div><!-- #input-group -->
+  </div><!-- #search-wrap -->
+</form>
+ 
+        </div>
+        <div class="pull-left">
+          
+<form class="form-group" style="display:inline;" role="search" method="get" id="search-form" action="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/">
+    <div class="search-wrap">
+      <div class="input-group">
+      
+        <!-- The search term box -->
+        <input class="form-control" id="searchBox" type="text" placeholder="Search..." name="s" id="search-input" value=""/>
+        
+        <!-- The submit button -->
+        <span class="input-group-addon">
+          <button type="submit" id="search-submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+        
+    </div><!-- #input-group -->
+  </div><!-- #search-wrap -->
+</form>
+        </div>
+      </div><!--/.navbar-search-->
+      
+    </div><!--/.collapse-->
+  </div><!--/.container-->
+</nav><!--/.navbar-->
+
+<!--============================-->
+<!-- Beginning of body content. -->
+<!--============================-->
+<div id="content" class="site-content">
+<div class="row">
+  <div id="main" class="col-md-8">
+    <div id="primary" class="content-area">
+            
+        <!-- Display the title of the blog post -->
+        <h2>C++ Tutorial: Intro to Recursion</h2>
+        
+        <!-- Display the date in which the blog post was published -->
+        <h4>26  •  May  •  2015</h4>
+        <br>
+        
+        <!-- Display the actual blog content here -->
+        <div class="video-container">
+<iframe src="https://web.archive.org/web/20150712220717if_/https://www.youtube.com/embed/D052mLQicOc" frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+<br/>
+<p>
+Recursion is an important concept in computer science, yet it is often challenging for beginners to wrap their minds around. Don’t worry; it makes a lot of sense once you get it. Follow along with this tutorial, and I will help you master recursion!
+</p>
+<p>
+In a nutshell, recursion is a divide­-and-­conquer method for solving certain kinds of problems. In this tutorial, we will use recursion to perform simple calculations such as computing n factorial. We will also use recursion to compute the nth term of the Fibonacci sequence. In real­-world applications, recursion is used for tasks like traversing through file directories.
+</p>
+<h3>Prerequisites</h3>
+<p>
+In order to benefit from this tutorial, you need a basic understanding of functions in C++ or some other semantically-­similar language such as Java or JavaScript.
+</p>
+<h3>What is Recursion?</h3>
+<p>
+In English, the word “recur” means to happen again. In computer science, recursion is a technique used to solve a problem in which a function calls itself. It might sound strange, perhaps like a snake eating its own tail, but it actually works!
+</p>
+<p>
+<img src="https://web.archive.org/web/20150712220717im_/http://i1.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/05/def_7.png?w=100%25" class="img-responsive" data-recalc-dims="1">
+</p>
+<p>
+By calling itself, a recursive function can solve a problem with minimal code. With each self­-referential call, the problem is solved in parts. Eventually, the function will stop calling itself. When the function reaches its base case, it will return a value for every function call. The return values of those function calls will be rolled into one, large return value.
+</p>
+<h3>The Recursive Case</h3>
+<p>
+In order for a function to be recursive, it needs a special conditional statement called the recursive case. When executed, the recursive case will have the function call itself.
+</p>
+<p>
+The functions below perform the same task, which is computing n­-factorial (n! = n * (n­1) * (n­2) *&#8230;* 1, where 0! = 1). Function A uses iteration, or looping, while function B uses recursion.
+</p>
+<div class="row">
+<div class="col-md-6">
+<pre>
+/**
+ * Computes n factorial, n!, using iteration.
+ * n! = n * (n - 1) * (n - 2) * ... * 1.
+ * Assume that 0! = 1.
+ * @param {Integer} n: a nonnegative integer
+ * @return {Integer} a positive integer, n factorial.
+ */
+int A(int n)
+{
+    // Keep the input size reasonable
+    if (n &lt; 0 || n &gt; MAX) n = 0;
+
+    // Iteratively compute n!
+    int result = 1;
+    while (n &gt; 0)
+    {
+        result = result * n;
+        n = n - 1;
+    }
+    return result;
+}
+</pre>
+</div>
+<div class="col-md-6">
+<pre>
+/**
+ * Computes n factorial, n!, using recursion.
+ * n! = n * (n - 1) * (n - 2) * ... * 1.
+ * Assume that 0! = 1.
+ * @param {Integer} n: a nonnegative integer
+ * @return {Integer} a positive integer, n factorial.
+ */
+int B(int n)
+{
+    // Keep the input size reasonable
+    if (n &lt; 0 || n &gt; MAX) n = 0;
+    
+    // Base Case
+    if (n &lt;= 0) return 1;
+    
+    // Recursive Case
+    return n * B(n - 1);
+}
+</pre>
+</div>
+</div>
+<h3>The Base Case</h3>
+<p>
+Every recursive function requires an exit condition. Otherwise, the function would run forever. We call the exit condition the base case. When the base case evaluates to true, the function will return an actual value instead of calling itself.
+</p>
+<h3>The Memory Stack</h3>
+<p>
+In order to keep track of all of these function calls, the program uses a structure known as a memory stack. Function calls are pushed onto the stack and then popped off in the opposite order. 
+</p>
+<p>
+<img src="https://web.archive.org/web/20150712220717im_/http://i1.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/05/dis_6.png?w=100%25" class="img-responsive" data-recalc-dims="1">
+</p>
+<p>
+Although recursion generally uses less code than iteration, recursion tends to use a lot more memory than iteration does. This is true for imperative languages such as C, C++, Java, and Python. If the recursive chain is too long, the stack will run out of room to store programmatic instructions. When that happens, we get a stack overflow. This would probably crash your computer!
+</p>
+<h3>Stack Overflow!</h3>
+<p>
+If you would like to crash your computer, try entering a very large term in the following Fibonacci sequence function and try running it on your computer. (The function on the right contains a reference parameter for keeping track of the number of times the function is called. Since you may only return one value in a C++ function, updating a reference parameter is a handy little "cheat" that is a lot like returning two variables). 
+</p>
+<div class="row">
+<div class="col-md-6">
+<pre>
+/**
+ * Computes the nth term of the Fibonacci sequence.
+ * Fibonacci Sequence: 1, 1, 2, 3, 5, 8, 13, 21, ...
+ * @param {Integer} n: the term of the Fibonacci sequence
+ * @return {Integer} the nth term of the Fibonacci sequence
+ */
+int fibonacci(int n)
+{
+    // Keep the input size reasonable
+    if (n &lt; 0 || n &gt; MAX) n = 0;
+    
+    // Base Case
+    if (n &lt;= 0) return 1;
+    
+    // Recursive Case
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+</pre>
+</div>
+<div class="col-md-6">
+<pre>
+/**
+ * Computes the nth term of the Fibonacci sequence.
+ * Keeps track of the number of fib function calls.
+ * Fibonacci Sequence: 1, 1, 2, 3, 5, 8, 13, 21, ...
+ * @param {Integer} n: the term of the Fibonacci sequence
+ * @param {Integer &#038;} &#038;callOut: for tracking call counts
+ * @return {Integer} the nth term of the Fibonacci sequence
+ */
+int fib(int n, int &#038;callCount)
+{
+    // Keep the input size reasonable
+    if (n &lt; 0 || n &gt; MAX) n = MAX;
+    
+    // Increment call count for each fib call
+    callCount = callCount + 1;
+    
+    // Base Case
+    if (n &lt;= 0) return 1;
+    
+    // Recursive Call
+    return fib(n - 1, callCount) + fib(n - 2, callCount);
+}
+</pre>
+</div>
+</div>
+<p>
+Unlike the factorial function in the previous example, the Fibonacci sequence function will take up exponentially more memory as the input value increases by just one. Instead of forming a linear stack in the memory, the Fibonacci function will form a binary tree. That is because each recursive case in the Fibonacci function makes two calls.
+</p>
+<p>
+If you want to compute the zeroth term of the fibonacci sequence, only one function call will be made since you are immediately exiting the function through the base case. If you want to compute the first term of the fibonacci sequence, you will make a total of three calls to the function since you would enter the recursive case, which calls the function twice. If you want to compute the second term in the fibonacci sequence, you would call the function five times.
+</p>
+<p>
+<img src="https://web.archive.org/web/20150712220717im_/http://i2.wp.com/www.karlina-bytes.com/wp-content/uploads/2015/05/fib_11.png?w=100%25" class="img-responsive" data-recalc-dims="1">
+</p>
+<p>
+In general, the number of function calls pushed to the stack for a recursive Fibonacci function call is 2^N + 1, where N represents the count of the Fibonacci term.
+</p>
+<h3>A Handy Trick</h3>
+<p>
+To save time and memory space, you can create an array that saves the terms of the Fibonacci sequence in order up to some maximum number of terms. You can run a modified version of the Fibonacci function just once and store all the terms of the sequence up to n. Then, whenever you need some term in the fibonacci sequence, you just retrieve it from the array instead of computing the result. Technically, the time it would take to retrieve an element from the array would be time O(1).
+</p>
+<p>
+<em>In another computer science tutorial, I will go over algorithm efficiency and Big­-O notation.</em>
+</p>
+<div>
+<pre>
+/**
+ * Creates a map of Fibonacci terms from the 0th to nth term.
+ * Fibonacci Sequence: 1, 1, 2, 3, 5, 8, 13, 21, ...
+ * @param {Integer} n: the term of the Fibonacci sequence
+ * @return {Integer *} a pointer to a dynamic array of Fibonacci terms
+ */
+int * fibonacciMap(int n)
+{
+    // Keep the input size reasonable
+    if (n &lt; 0 || n &gt; MAX) n = MAX;
+    
+    // Create a dynamic array of size n
+    int * map = new int[n];
+    
+    // Load the array with Fibonacci terms from 0 to n.
+    for (int i = 0; i &lt; n; i++) map[i] = fibonacci(i);
+    
+    // Return the array
+    return map;
+}
+</pre>
+</div>
+<div>
+<pre>
+// As you can see, I like to comment the hell out of my code.
+int main()
+{ 
+    // Variables needed to run the program:
+    // - If quit is not zero, the loop will terminate.
+    // - n is the number of Fibonacci terms to generate.
+    // - i is an arbitray index in the array (between 0 and n-1).
+    // - map is a pointer to an integer array.
+    int quit = 0, n = 0, i = 0;
+    int * map;
+    
+    // Prompt the user for input (the array size).
+    cout &lt;&lt; "How many Fibonacci terms do you want in your array? " &lt;&lt; flush;
+    cin &gt;&gt; n;
+    
+    // Keep the input size reasonable.
+    if (n &lt; 0 || n &gt; MAX) n = MAX;
+    
+    // Create a dynamic array of n Fibonacci terms.
+    cout &lt;&lt; "Creating an array of " &lt;&lt; n &lt;&lt; " numbers..." &lt;&lt; endl;
+    map = fibonacciMap(n);
+    
+    // The loop will run indefinitely until the user indicates "quit."
+    // Each time the loop runs, the user can retrieve a Fibonacci term in time O(1).
+    while (quit == 0)
+    {
+        // Prompt the user for input (the array index).
+        cout &lt;&lt; "\n\nEnter a number between 0 and " &lt;&lt; n &lt;&lt; ": " &lt;&lt; flush;
+        cin &gt;&gt; i;
+        
+        // Keep the input size reasonable.
+        if (i &lt; 0 || i &gt;= n) i = 0;
+        
+        // Fetch the ith term of the Fibonacci sequence. Print the result.
+        cout &lt;&lt; "Fibonacci(" &lt;&lt; i &lt;&lt; ") = " &lt;&lt; map[i] &lt;&lt; endl;
+        
+        // Ask the user whether to continue or quit the program.
+        cout &lt;&lt; "\nWould you like to try again? (0 = yes, 1 = no): " &lt;&lt; flush;
+        cin &gt;&gt; quit;
+    }
+    
+    // Free up memory used for the dynamic array.
+    delete [] map;
+    return 0;
+}
+</pre>
+</div>
+<h3>References</h3>
+<ul>
+<li>
+<p>
+Weisstein, Eric W. "Recursion." From MathWorld-A Wolfram Web Resource. 2015.<br/>
+<a href="https://web.archive.org/web/20150712220717/http://mathworld.wolfram.com/Recursion.html" target="_blank">http://mathworld.wolfram.com/Recursion.html</a>
+</p>
+</li>
+<li>
+<p>
+Wolfbyte. Peter Burns. "What is recursion and when should I use it?" Stack Overflow. 2010.
+<a href="https://web.archive.org/web/20150712220717/http://stackoverflow.com/questions/3021/what-is-recursion-and-when-should-i-use-it" target="_blank">http://stackoverflow.com/questions/3021/what-is-recursion-and-when-should-i-use-it</a>
+</p>
+</li>
+</ul>
+
+<!--================================-->
+<!-- Google Analytics Tracking Info -->
+<!--================================-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//web.archive.org/web/20150712220717/http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63739902-1', 'auto');
+  ga('send', 'pageview');
+
+</script>        
+        <!-- Display the blog post categories -->
+        <hr>
+        <h3>Categories</h3>
+        <p><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/education/" rel="category tag">Education</a> | <a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/programming/" rel="category tag">Programming</a></p>
+        
+        <!-- Display the comments section -->
+        
+<div id="comments" class="comments-area">
+  
+	
+        <!-- Display the comment form -->
+        <hr>
+							<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/web/20150712220717/http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+																			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true" required="required"/></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required"/></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30"/></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea></p>						<p class="form-allowed-tags" id="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"/> <input type="hidden" name="comment_post_ID" value="196" id="comment_post_ID"/>
+<input type="hidden" name="comment_parent" id="comment_parent" value="0"/>
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="05db95bff0"/></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="180"/></p>					</form>
+							</div><!-- #respond -->
+				<hr>
+
+</div><!-- #comments -->        
+        
+      <!-- If the blog post cannot be found, display an appropriate message -->
+            
+    </div><!-- #primary -->
+  </div><!-- #main -->
+  <div id="secondary" class="col-md-4">
+    
+<div id="primary-sidebar" class="sidebar primary-sidebar widget-area" role="complementary">
+  
+  <!-- Display social media icons (Facebook, YouTube, GitHub, Twitter) -->
+  <h2 class="sideBarText">Connect with Karlina</h2>
+  <table>
+    <tr>
+    
+      <!-- A link to the Karlina Bytes Facebook page -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220717/https://www.facebook.com/karlinabytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/facebook.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes YouTube channel -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220717/https://www.youtube.com/c/KarlinabytesChannel" target="_blank">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/youtube.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes GitHub profile -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220717/https://github.com/Karlina-Bytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/github.png" class="img-responsive">
+        </a>
+      </td>
+      
+      <!-- A link to the Karlina Bytes Twitter page -->
+      <td class="socialMediaIcons">
+        <a href="https://web.archive.org/web/20150712220717/https://twitter.com/Karlina_Bytes" target="_blank">
+          <img src="https://web.archive.org/web/20150712220717im_/http://www.karlina-bytes.com/wp-content/uploads/2015/04/twitter.png" class="img-responsive">
+        </a>
+      </td>
+      
+    </tr>
+  </table>
+  <hr>
+    
+  <!-- Display an email subscribe form (using the Jetpack pluggin) -->
+  <div class="widget-area">
+    <aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h1 class="widget-title">Subscribe </h1>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>To stay up to date on Karlina's latest blog posts, please enter your email address in the field below. You'll get a notification whenever new posts appear.</p>
+</div><p>Join 3 other subscribers</p>
+					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field">
+							person@example.com						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field" placeholder="person@example.com"/>
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe"/>
+						<input type="hidden" name="source" value="http://www.karlina-bytes.com/2015/05/c-tutorial-intro-to-recursion/"/>
+						<input type="hidden" name="sub-type" value="widget"/>
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+												<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget"/>
+					</p>
+							</form>
+
+			<script>
+			(function( d ) {
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.getElementById( 'jetpack-subscribe-label' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+			
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'), 
+					input = d.getElementById('subscribe-field'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+							
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+							
+							return false; 
+						}
+					}; 
+			
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>  </div><!-- .widget-area -->
+  <hr>
+  
+  <!-- Display blog post categories -->
+  <h2 class="sideBarText">Post Categories</h2>
+  <ul class="categoryListStyle">
+    	<li class="cat-item cat-item-2"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/artificial-intelligence/" title="When computers think.">Artificial Intelligence</a> (2)
+</li>
+	<li class="cat-item cat-item-23"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/culture/" title="Arts, events, and people.">Culture</a> (3)
+</li>
+	<li class="cat-item cat-item-86"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/education/" title="Tools for lifelong learning.">Education</a> (6)
+</li>
+	<li class="cat-item cat-item-87"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/environment/" title="Sustainable living and utilization of resources.">Environment</a> (0)
+</li>
+	<li class="cat-item cat-item-83"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/health/" title="Longevity, wellness, and sustainable living.">Health</a> (1)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/programming/" title="Writing in the language of computers.">Programming</a> (4)
+</li>
+	<li class="cat-item cat-item-85"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/reviews/" title="Products and experiences worth having.">Reviews</a> (5)
+</li>
+	<li class="cat-item cat-item-84"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/science/" title="Exploring the universe and how things works.">Science</a> (0)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/technology/" title="The fruits of innovation.">Technology</a> (4)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/transhumanism/" title="Augmenting human ability through technology.">Transhumanism</a> (1)
+</li>
+	<li class="cat-item cat-item-1"><a href="https://web.archive.org/web/20150712220717/http://www.karlina-bytes.com/category/uncategorized/">Uncategorized</a> (0)
+</li>
+  </ul>
+  <hr>
+    
+  <!-- Display blog archives in an expandable list -->
+  <h2 class="sideBarText">Blog Archives</h2>
+  <select class="dropDownStyle" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+    <option value="">Select Month &#9660;</option> 
+    	<option value="http://www.karlina-bytes.com/2015/07/"> July 2015 &nbsp;(1)</option>
+	<option value="http://www.karlina-bytes.com/2015/06/"> June 2015 &nbsp;(5)</option>
+	<option value="http://www.karlina-bytes.com/2015/05/"> May 2015 &nbsp;(4)</option>
+  </select>
+
+</div>  </div>
+</div><!-- #row -->
+</div><!-- #content -->
+
+<footer id="colophon" class="site-footer" role="contentinfo">
+<div class="site-info">
+
+Copyright &copy; 2015 
+<a class="brightLink" href="https://web.archive.org/web/20150712220717/https://www.linkedin.com/pub/karlina-beringer/51/152/93b" target="_blank">
+Karlina Beringer
+</a>
+		
+</div><!-- .site-info -->
+</footer><!-- #colophon -->
+</div><!-- #page -->
+
+	<div style="display:none">
+	</div>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/plugins/akismet/_inc/form.js?ver=3.1.3"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201528"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://s.gravatar.com/js/gprofiles.js?ver=2015Julaa"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/themes/kode_orangebootstrap/js/bootstrap.min.js?ver=3.0.0"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/navigation.js?ver=20120206"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-content/themes/kode_orange/js/skip-link-focus-fix.js?ver=20130115"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://www.karlina-bytes.com/wp-includes/js/comment-reply.min.js?ver=4.2.2"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20150712220717js_/http://stats.wp.com/e-201528.js" async defer></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.6',blog:'89660286',post:'196',tz:'0',srv:'www.karlina-bytes.com'} ]);
+	_stq.push([ 'clickTrackerInit', '89660286', '196' ]);
+</script>
+
+</body>
+</html><!--
+     FILE ARCHIVED ON 22:07:17 Jul 12, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:44:01 May 30, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  exclusion.robots: 1.407
+  captures_list: 611.896
+  PetaboxLoader3.resolve: 548.592 (2)
+  esindex: 0.016
+  LoadShardBlock: 553.127 (3)
+  PetaboxLoader3.datanode: 145.43 (4)
+  exclusion.robots.policy: 1.392
+  load_resource: 185.257
+  CDXLines.iter: 15.007 (3)
+  RedisCDXSource: 39.102
+-->

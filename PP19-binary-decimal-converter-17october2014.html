@@ -1,0 +1,299 @@
+<!-- Wordpress Loop displays the content of a post. -->
+              <div class="entry ">
+          <h3 class="entrytitle" id="post-1554"> 
+            Binary-Decimal Converter          </h3>
+          <h4 class="blogdate">
+            October 17th, 2014 
+          </h4>
+          <div class="entrybody">
+              <div class="well" style="background-color:#99FF00">
+  	<h3> Binary/Decimal Converter </h3>
+  	<h4><em> Converts from binary to decimal (and vice versa).</em></h4>
+  	<div style="padding:5px"></div>
+  	<h4> 1) Enter a positive integer in the field below. </h4>
+  	<input type="text" id="startField" placeholder="Starting Value"/>
+  	<h4> 2) Select the base for the number entered. </h4>
+  	<select id="startBaseSelect">
+  		<option value="2" selected> Binary (Base 2) </option>
+  		<option value="10"> Decimal (Base 10) </option>
+  	</select>
+   	<h4> 3) Select the base to convert to. </h4>
+  	<select id="endBaseSelect">
+  		<option value="2" selected> Binary (Base 2) </option>
+  		<option value="10"> Decimal (Base 10) </option>
+  	</select>
+  	<h4> 4) Click &#8220;Convert&#8221; when ready. </h4>
+  	<input type="button" id="convertButton" class="btn btn-primary" value="Convert" onclick="buttonClick()"/>
+  	<div style="padding:10px"></div>
+  	<div class="well" style="background-color:#00FF33; display:none" id="resultArea">
+  	   <!-- Result message will appear here. -->
+  	</div>
+  </div>
+<script>
+
+    /*********************************************************
+     * Responds to the "Convert!" button click.
+     * (This could be thought of as the "main" function).
+     * Step 1: Validates the text field input.
+     * Step 2: Determines which conversion to perform.
+     * Step 3: Performs the appropriate calculation.
+     * Step 4: Displays the result on the web page.
+     ********************************************************/
+    function buttonClick() {
+
+    	// Extract user data from the form fields.
+    	var inputNumber = removeSpaces( document.getElementById("startField").value );
+    	var inputBase = document.getElementById("startBaseSelect").value;
+    	var outputBase = document.getElementById("endBaseSelect").value;
+
+        // Make sure that the given input is a valid number in the selected base.
+        if ( !validateInput(inputNumber, inputBase) ) 
+        	displayResult( "Error: Invalid number. Make sure the base is correct." );
+        // If the input is correct, perform the appropriate calculation.
+        else 
+        {
+        	switch( inputBase ) {
+        		case "2":
+        		  if (outputBase == "2")
+        		  	displayResult( "Nothing changed (Binary to Binary)." );
+        		  else
+        		  	displayResult( "Binary Number " + inputNumber + " = Decimal Number " + binaryToDecimal( inputNumber ) );
+        		  break;
+        		case "10":
+        		  if (outputBase == "10")
+        		  	displayResult( "Nothing changed (Decimal to Decimal)." );
+        		  else
+        		  	displayResult( "Decimal Number " + inputNumber + " = Binary Number " + decimalToBinary( inputNumber ) );
+        		  break;
+        	}
+        } 	
+    }
+
+/*********************************************************
+     * Removes space characters from the input string.
+     * @param {String} inputString
+     * @return {String} "cleaned up" inputString.
+     *********************************************************/
+    function removeSpaces( inputString ) {
+
+    	// If the inputString is empty, return an error.
+    	if (!inputString) return "Error";
+
+        /**
+    	 * For each character in inputString,
+         * if the character is NOT a space character,
+         * append it to the string to return.
+         */
+    	var modifiedString = "";
+    	for (var i in inputString) 
+    		if (inputString[i] != " ")
+    			modifiedString += inputString[i];
+
+    	// Return de-spaced string.
+    	return modifiedString;
+    }
+
+    /*********************************************************
+     * Checks whether a given string represents a number of
+     * the given base. For example, 1101 is base 2. 
+     * @param {String} digitString 
+     * @param {String} base 
+     * @return {Boolean} true if digitString matches base
+     ********************************************************/
+    function validateInput( digitString, base ) {
+
+    	// Determine the cardinality of the digitSet.
+    	var digitSet = [];
+    	if ( base == "2" ) 
+    		digitSet = ['0', '1'];
+    	else 
+    		digitSet = ['0','1','2','3','4','5','6','7','8','9'];
+
+    	/**
+    	 * For each character in digitString,
+    	 * check whether the character is a member 
+    	 * of the digitSet for the given base.
+    	 * Return false if not.
+    	 */
+    	for ( var i in digitString ) {
+    		var charMatch = false;
+    		for (var k in digitSet ) {
+    			if ( digitString[i] == digitSet[k] ) 
+    				charMatch = true;
+    		}
+    		if (!charMatch) 
+    			return false;
+    	}
+
+    	/**
+    	 * If all the characters in digitString are
+    	 * members of digitSet, then return true.
+    	 */
+    	 return true;
+    }
+
+    /*********************************************************
+     * Displays an output message on the webpage.
+     * @param {String} message to display
+     ********************************************************/
+    function displayResult( message ) {
+    	var resultArea = document.getElementById("resultArea");
+    	var content = ("<h4><em>" + message + "</em></h4>");
+    	resultArea.innerHTML = content;
+    	resultArea.style.display = "block";
+    }
+
+
+    /*********************************************************
+     *  Converts a positive binary integer to its 
+     *  decimal equivalent.
+     *  @param {Number} binaryNumber (e.g. 1101)
+     *  @return {Number} decimalNumber (e.g. 13)
+     ********************************************************/
+    function binaryToDecimal( binaryNumber ) {
+        
+        /**
+         * The decimalNumber is the summation of bit values.
+         * A bit value is a bit (1 or 0) multiplied by its 
+         * place value (some power of 2).
+         */
+    	var decimalNumber = 0;
+
+    	/**
+    	 * The powerOfTwo is the place value of a binary digit.
+    	 * Rightmost digit's place is 2^0 = 1.
+    	 * Next digit after that has a place value of 2^1 = 2.
+    	 * Next digit after that has a place value of 2^2 = 4.
+    	 * And so on...
+    	 * General: Nth bitValue = bit * 2^(N-1).
+    	 */
+    	var powerOfTwo = 1;
+
+        /** 
+         * For each digit in binaryNumber, 
+         * determine the value of the bit.
+         * The sum of these bit values is the decimal result.
+         */
+    	while ( binaryNumber > 0 ) {
+
+    		// Divide binaryNUmber by 10. Store the decimal remainder.
+    		var bit = binaryNumber % 10;
+
+    		// Determine the value of the bit.
+    		var bitValue = bit * powerOfTwo;
+
+    		// Add the bitValue to the decimalNumber sum.
+    		decimalNumber = decimalNumber + bitValue;
+
+            // Increment the powerOfTwo.
+            powerOfTwo = powerOfTwo * 2;
+
+            // Cut off the rightmost digit in binaryNumber.
+            binaryNumber = Math.floor( binaryNumber / 10 );
+    	}
+
+    	/**
+    	 * The decimalNumber is a sequence of base-ten digits.
+    	 * A base-ten digit is either 0,1,2,3,4,5,6,7,8, or 9.
+    	 */
+    	return decimalNumber;
+    }
+
+/*********************************************************
+ *  Converts a positive decimal integer 
+ *  to its binary equivalent.
+ *  @param {Number} decimalNumber (e.g. 5)
+ *  @return {Number} binaryNumber (e.g. 101)
+ ********************************************************/
+ function decimalToBinary( decimalNumber ) {
+  
+   // binaryNumber represents a summation of digit values.
+   var binaryNumber = 0;
+   
+   // placeValue represents a power of ten.
+   var placeValue = 1;
+   
+   // Compute each digit value (from right to left). 
+   while ( decimalNumber > 0 ) {
+    
+     // Divide decimalNumber by 2. Store the binary remainder.
+     var remainder = decimalNumber % 2;
+     
+     // Determine the remainder digit.
+     var digitValue = remainder * placeValue;
+ 
+     // Add the digitValue to the binaryNumber sum.
+     binaryNumber += digitValue;
+ 
+     // Increment the placeValue
+     placeValue *= 10;
+ 
+     // Increment to the next digit (left adjacent).
+     decimalNumber = Math.floor( decimalNumber / 2 );
+   }
+ 
+   // Return the sum of digit values.
+   return binaryNumber;
+ }
+</script>
+
+<p>In this blog post, I&#8217;ll show you how to build your own binary-decimal converter machine exactly like the one above. It&#8217;s a fairly simple program I wrote in JavaScript and HTML. The HTML code creates the &#8220;dashboard&#8221; you see on the web page. The JavaScript is the magic behind the machine. Feel free to use it on your own website and tweak it to your satisfaction.
+</p>
+<p>
+In the near future, I shall upgrade this calculator so that it converts between more than two bases. Specifically, the new base converter will convert between any base from two to sixteen. Using the logic from the binary-decimal converter, you can convert from virtually any base to any base. It&#8217;s quite magical once you see the pattern! (To see a visual example of how to convert from binary to decimal, please see the video tutorial and blogpost <a href="https://web.archive.org/web/20150420014657/http://pumpkinprogrammer.com/2014/10/03/intro-to-binary-numbers/" target="_blank">here</a>. This may come in handy if you&#8217;re new to binary numbers).
+</p>
+<h3> &#8220;The Dashboard&#8221; (User Interface) </h3>
+<p>
+The code below will generate the nice green-colored dashboard you see above. Copy and paste the code below into the body of your HTML file. Check to make sure it looks like the &#8220;applet&#8221; above by viewing the page through a web browser.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/ef20cc293a4fbeeca492.js"></script>
+</p>
+<h3> &#8220;The Push Lever&#8221; (Event Handler) </h3>
+<p>
+Without the JavaScript, the dashboard would have no functionality. If you clicked on the &#8220;Convert&#8221; button, nothing would happen. With all the JavaScript in place, the button click will set the machine into motion. To get started, we need a JavaScript function that handles the button click event. 
+</p>
+<p>
+In your HTML file, between &#8220;script&#8221; tags, copy and paste the JavaScript functions. If you want to encapsulate your JavaScript away from the HTML, put the functions in a separate file. Name this file something like &#8220;functions.js.&#8221; Then place the JS file in the same directory as your HTML page. To include the JS file in your HTML file, add the following line of code to the HTML:
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/71afa29d6e457e37db30.js"></script>
+</p>
+<p>Here&#8217;s the &#8220;trigger&#8221; function that responds to button clicks:</p>
+<p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/bbd883e9b6c5b25032cc.js"></script>
+</p>
+<h3> &#8220;The Engine&#8221; (Functionality) </h3>
+<p>
+The event-handler function above acts like a &#8220;main&#8221; function in C/C++. We will use the <em>buttonClick</em> function to call the other &#8220;helper&#8221; functions. Some of these functions validate the user input, checking it for errors. We can think of those as our &#8220;scrubbers.&#8221; The converter functions represent the heart and soul of this machine. We can think of those as the &#8220;motor.&#8221;
+</p>
+<h4> &#8220;The Scrubbers&#8221; </h4>
+<p>
+The <em>removeSpaces</em> function eliminates any spaces from the textfield input, either typed accidentally or on purpose to bug me.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/8ee90fdb1e45f787cbc0.js"></script>
+</p>
+<p>
+The <em>validateInput</em> function determines whether the input number and input base match. If they don&#8217;t match, the machine will display an error message. If the inputs do match, the machine will proceed with the appropriate calculation.
+</p>
+<p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/cce40544f6836fe8775e.js"></script>
+</p>
+<h4> &#8220;The Motor&#8221; </h4>
+<p>Below are the two most important functions in this application. These demonstrate the essential logic we need to convert between bases.
+</p>
+<p>Here&#8217;s the function for converting from binary to decimal.</p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/e6d8d3957ab2881d4068.js"></script>
+<p>Here&#8217;s the function for converting from decimal to binary. </p>
+<script src="https://web.archive.org/web/20150420014657js_/https://gist.github.com/pumpkinprogrammer/1b8d16a36a594102cd40.js"></script>
+          </div>
+          <div>
+            <hr>
+            <p class="blogcategory">
+              <strong>
+                Categories: <a href="https://web.archive.org/web/20150420014657/http://pumpkinprogrammer.com/category/math/" rel="category tag">math</a> &bull; <a href="https://web.archive.org/web/20150420014657/http://pumpkinprogrammer.com/category/technology/" rel="category tag">technology</a> &bull; <a href="https://web.archive.org/web/20150420014657/http://pumpkinprogrammer.com/category/tutorials/" rel="category tag">tutorials</a>              </strong>
+            </p>
+          </div>
+        </div>	
+        <!-- End of The Loop. -->

@@ -1,0 +1,41 @@
+The following two Uniform Resource Locators (URLs) each connect to a unique background noise (audio) generator.
+
+* * *
+
+URL_0: BINAURAL_BEATS_GENERATOR
+
+- Sound_Machine_Web_Page: https://mynoise.net/NoiseMachines/binauralBrainwaveGenerator.php
+
+- Utility: induces a mild auditory hallucination of "three dimensional" sound created by the brain rather than the ear drums (because left ear and right ear are separate audio inputs which get mixed into one "hallucination" in the brain such that the following statements are true):
+
+Binaural_Beat_Objects(Left_Audio_Input(1) + Right_Audio_Input(0)) := 1.
+
+Binaural_Beat_Objects(Left_Audio_Input(0) + Right_Audio_Input(1)) := 1.
+
+Binaural_Beat_Objects(Left_Audio_Input(0) + Right_Audio_Input(0)) := 0.
+
+Binaural_Beat_Objects(Left_Audio_Input(1) + Right_Audio_Input(1)) := 3.
+
+Binaural_To_Monaural_Objects(Left_Audio_Input(1) + Right_Audio_Input(1)) := 2.
+
+Binaural_To_Monaural_Objects(Left_Audio_Input(1) + Right_Audio_Input(0)) := 1.
+
+Binaural_To_Monaural_Objects(Left_Audio_Input(0) + Right_Audio_Input(1)) := 1.
+
+- Relevant_Information_URL_0: https://en.wikipedia.org/wiki/3D_sound_localization
+
+* * *
+
+URL_1: WHITE_NOISE_GENERATOR
+
+- Sound_Machine_Web_Page: https://mynoise.net/NoiseMachines/whiteNoiseGenerator.php
+
+- Utility: masks otherwise distracting sounds from the environment and from internal conditions such as tinnitus and interference from electromagnetic auditory transcranial input remotely beamed into the cochlea and/or auditory processing cortex.
+
+- Relevant_Information_URL_1: https://en.wikipedia.org/wiki/Acoustic_mirror
+
+* * *
+
+This Minds dot Com post is current as of 03_AUGUST_2020.
+
+#binaural #monaural #3D_sound_localization #audio #neuroscience
